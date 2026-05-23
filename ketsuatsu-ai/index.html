@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>血圧手帳AI - 親・シニアの血圧記録と家族見守り</title>
+  <meta name="description" content="離れて暮らす親の血圧が心配な方へ。撮影するだけでAIが数値を自動入力、LINEで家族に即送信。大きな文字でシニアも安心。">
+
+  <!-- OGP -->
+  <meta property="og:title" content="血圧手帳AI - 親・シニアの血圧記録と家族見守り">
+  <meta property="og:description" content="離れて暮らす親の血圧が心配な方へ。撮影するだけでAIが数値を自動入力、LINEで家族に即送信。大きな文字でシニアも安心。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/ketsuatsu-ai/">
+  <meta property="og:locale" content="ja_JP">
+
+  <!-- canonical -->
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/ketsuatsu-ai/">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+      font-size: 17px;
+      color: #1a1a1a;
+      background: #fff;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ===== パンくず ===== */
+    .breadcrumb {
+      padding: 12px 24px;
+      font-size: 13px;
+      color: #888;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .breadcrumb a {
+      color: #4a90d9;
+      transition: opacity 0.2s;
+    }
+
+    .breadcrumb a:hover {
+      opacity: 0.7;
+    }
+
+    /* ===== ヒーローセクション ===== */
+    .hero {
+      background: linear-gradient(160deg, #c0392b 0%, #e74c3c 50%, #f15a4a 100%);
+      color: #fff;
+      text-align: center;
+      padding: 60px 24px 48px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.25);
+      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 13px;
+      margin-bottom: 20px;
+      letter-spacing: 0.05em;
+    }
+
+    .hero h1 {
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.4;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      opacity: 0.92;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .app-store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #000;
+      color: #fff;
+      border-radius: 14px;
+      padding: 14px 28px;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 40px;
+      transition: opacity 0.2s;
+    }
+
+    .app-store-btn:hover {
+      opacity: 0.85;
+    }
+
+    .app-store-btn svg {
+      width: 22px;
+      height: 22px;
+      fill: #fff;
+    }
+
+    .hero-screenshots {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .screenshot-placeholder {
+      width: 160px;
+      height: 290px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 20px;
+      border: 2px solid rgba(255,255,255,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 12px;
+    }
+
+    /* ===== 課題提起セクション ===== */
+    .problem {
+      background: #fafafa;
+      padding: 56px 24px;
+      text-align: center;
+    }
+
+    .section-label {
+      display: inline-block;
+      color: #e74c3c;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.45;
+      margin-bottom: 32px;
+    }
+
+    .problem-list {
+      list-style: none;
+      max-width: 400px;
+      margin: 0 auto 32px;
+      text-align: left;
+    }
+
+    .problem-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 14px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 16px;
+    }
+
+    .problem-list li:last-child {
+      border-bottom: none;
+    }
+
+    .problem-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .problem-answer {
+      background: #fff;
+      border: 2px solid #e74c3c;
+      border-radius: 16px;
+      padding: 24px 20px;
+      max-width: 400px;
+      margin: 0 auto;
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 1.6;
+      color: #c0392b;
+    }
+
+    /* ===== 機能紹介セクション ===== */
+    .features {
+      padding: 56px 24px;
+      text-align: center;
+    }
+
+    .feature-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 20px;
+      padding: 28px 24px;
+      text-align: left;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .feature-icon-wrap {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+
+    .feature-icon-wrap.red { background: #fde8e6; }
+    .feature-icon-wrap.blue { background: #e6f0fd; }
+    .feature-icon-wrap.green { background: #e6f9ee; }
+
+    .feature-card h3 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      font-size: 15px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    .sub-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-top: 14px;
+      padding: 12px 14px;
+      background: #f0f7ff;
+      border-radius: 10px;
+      font-size: 14px;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    .sub-feature-icon {
+      font-size: 18px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .send-options {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .send-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 12px;
+    }
+
+    .send-option.line {
+      background: #e8faf0;
+      border: 1px solid #b2dfca;
+    }
+
+    .send-option.sms {
+      background: #f0f4ff;
+      border: 1px solid #c5d3f5;
+    }
+
+    .send-option-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .send-option-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .send-option-desc {
+      font-size: 12px;
+      color: #666;
+      margin-top: 1px;
+    }
+
+    .send-option-divider {
+      text-align: center;
+      font-size: 12px;
+      color: #999;
+      font-weight: 600;
+    }
+
+    .feature-badge {
+      display: inline-block;
+      background: #e74c3c;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    /* ===== 全機能リスト ===== */
+    .all-features {
+      background: #fafafa;
+      padding: 56px 24px;
+      text-align: center;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .feature-item {
+      background: #fff;
+      border-radius: 14px;
+      padding: 18px 14px;
+      text-align: center;
+      border: 1px solid #eee;
+    }
+
+    .feature-item .emoji {
+      font-size: 26px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .feature-item span {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      line-height: 1.4;
+    }
+
+    /* ===== 使い方セクション ===== */
+    .howto {
+      padding: 56px 24px;
+      text-align: center;
+    }
+
+    .steps {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      text-align: left;
+      padding: 20px 0;
+      position: relative;
+    }
+
+    .step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 23px;
+      top: 56px;
+      width: 2px;
+      height: calc(100% - 36px);
+      background: #f0f0f0;
+    }
+
+    .step-num {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: #e74c3c;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-content h4 {
+      font-size: 17px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .step-content p {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* ===== プレミアムセクション ===== */
+    .premium {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #fff;
+      padding: 56px 24px;
+      text-align: center;
+    }
+
+    .premium .section-label {
+      color: #f9ca24;
+    }
+
+    .premium .section-title {
+      color: #fff;
+    }
+
+    .premium-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-width: 400px;
+      margin: 0 auto 32px;
+    }
+
+    .premium-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-align: left;
+    }
+
+    .premium-card .emoji {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .premium-card h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .premium-card p {
+      font-size: 13px;
+      opacity: 0.75;
+    }
+
+    .price-box {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 24px;
+      max-width: 360px;
+      margin: 0 auto 24px;
+    }
+
+    .price-box .trial {
+      font-size: 14px;
+      color: #f9ca24;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .price-row:last-child {
+      border-bottom: none;
+    }
+
+    .price-label {
+      font-size: 15px;
+      opacity: 0.85;
+    }
+
+    .price-value {
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .price-save {
+      font-size: 12px;
+      background: #f9ca24;
+      color: #1a1a2e;
+      border-radius: 6px;
+      padding: 2px 7px;
+      font-weight: 700;
+      margin-left: 6px;
+    }
+
+    .free-note {
+      font-size: 13px;
+      opacity: 0.7;
+      line-height: 1.6;
+    }
+
+    /* ===== CTAセクション ===== */
+    .cta {
+      padding: 64px 24px;
+      text-align: center;
+      background: #fff;
+    }
+
+    .cta .section-title {
+      margin-bottom: 10px;
+    }
+
+    .cta-sub {
+      font-size: 15px;
+      color: #666;
+      margin-bottom: 32px;
+    }
+
+    .cta .app-store-btn {
+      font-size: 17px;
+      padding: 18px 36px;
+      border-radius: 16px;
+    }
+
+    .cta-note {
+      margin-top: 16px;
+      font-size: 13px;
+      color: #999;
+    }
+
+    /* ===== フッター ===== */
+    footer {
+      background: #1a1a1a;
+      color: rgba(255,255,255,0.6);
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.6);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    /* ===== レスポンシブ ===== */
+    @media (min-width: 600px) {
+      .hero h1 { font-size: 32px; }
+      .hero-screenshots { gap: 16px; }
+      .screenshot-placeholder { width: 180px; height: 320px; }
+      .feature-grid { grid-template-columns: 1fr 1fr 1fr; }
+      .premium-cards { display: grid; grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (min-width: 900px) {
+      .feature-cards {
+        flex-direction: row;
+        max-width: 860px;
+      }
+      .feature-card { flex: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== パンくず ===== -->
+<nav class="breadcrumb">
+  <a href="../">MC Apps</a> &rsaquo; 血圧手帳AI
+</nav>
+
+<!-- ===== ヒーローセクション ===== -->
+<section class="hero">
+  <div class="hero-badge">📱 iPhone対応 · 無料ダウンロード</div>
+  <h1>離れて暮らす親の<br>血圧、毎日気になりますか？</h1>
+  <p class="hero-sub">
+    撮影するだけでAIが数値を自動入力。<br>
+    記録したらLINEで家族にすぐ送れる。<br>
+    大きな文字で、スマホが苦手な方も安心。
+  </p>
+  <a href="#" class="app-store-btn">
+    <svg viewBox="0 0 814 1000"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.3 134.4-316.7 266.8-316.7 99.8 0 162.6 64.8 212.7 64.8 46.2 0 121.2-68.8 228.5-68.8zm-88-174c43.8-51.7 74.6-123.5 74.6-195.3 0-10.3-.6-20.7-2.6-29.2-70.7 2.6-154.7 47.1-204.7 107.2-38.4 44.4-75.9 116.2-75.9 189 0 11.6 1.9 23.2 2.6 26.9 4.5.6 11.6 1.9 18.7 1.9 63.5 0 143.9-42.5 187.3-100.5z"/></svg>
+    App Store からダウンロード
+  </a>
+  <div class="hero-screenshots">
+    <div class="screenshot-placeholder">ホーム画面<br>スクショ</div>
+    <div class="screenshot-placeholder">記録入力<br>スクショ</div>
+    <div class="screenshot-placeholder">グラフ<br>スクショ</div>
+  </div>
+</section>
+
+<!-- ===== 課題提起セクション ===== -->
+<section class="problem">
+  <div class="section-label">こんなお悩みありませんか？</div>
+  <h2 class="section-title">離れて暮らす家族の<br>健康が心配…</h2>
+  <ul class="problem-list">
+    <li>
+      <span class="problem-icon">😰</span>
+      <span>親が血圧を記録しているか確認できない</span>
+    </li>
+    <li>
+      <span class="problem-icon">📱</span>
+      <span>スマホが苦手で、アプリが使えるか不安</span>
+    </li>
+    <li>
+      <span class="problem-icon">💊</span>
+      <span>薬を飲み忘れていないか気になる</span>
+    </li>
+    <li>
+      <span class="problem-icon">🏥</span>
+      <span>病院で血圧のデータをうまく見せられない</span>
+    </li>
+  </ul>
+  <div class="problem-answer">
+    血圧手帳AIが<br>まとめて解決します。
+  </div>
+</section>
+
+<!-- ===== 機能紹介セクション（メイン3つ） ===== -->
+<section class="features">
+  <div class="section-label">主な機能</div>
+  <h2 class="section-title">3つの機能で、<br>毎日の記録が続けられる</h2>
+  <div class="feature-cards">
+
+    <div class="feature-card">
+      <div class="feature-icon-wrap blue">📷</div>
+      <h3>カメラで撮るだけ<span class="feature-badge">NEW</span></h3>
+      <p>血圧計を撮影するとAIが数値を自動で読み取ります。手入力なし。文字を打つのが苦手な方でも、毎日記録が続けられます。</p>
+      <div class="sub-feature">
+        <span class="sub-feature-icon">⚖️</span>
+        <span><strong>2回計測の平均を自動計算</strong>。1回目・2回目を入力するだけで、保存される値を自動で算出します。</span>
+      </div>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-wrap red">💌</div>
+      <h3>LINE・SMSで家族に即送信</h3>
+      <p>記録したらワンタップでご家族にお知らせ。LINEがなくても、電話番号があればSMSでそのまま送れます。</p>
+      <div class="send-options">
+        <div class="send-option line">
+          <span class="send-option-icon">💚</span>
+          <div>
+            <div class="send-option-name">LINE</div>
+            <div class="send-option-desc">LINEアプリで送信</div>
+          </div>
+        </div>
+        <div class="send-option-divider">または</div>
+        <div class="send-option sms">
+          <span class="send-option-icon">📱</span>
+          <div>
+            <div class="send-option-name">SMS（ショートメール）</div>
+            <div class="send-option-desc">電話番号だけで送れる</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-wrap green">🏥</div>
+      <h3>先生に見せるモード</h3>
+      <p>30日分の血圧を大きな表で表示。色で高低が一目でわかります。印刷不要、スマホをそのまま見せるだけ。</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== 全機能リスト ===== -->
+<section class="all-features">
+  <div class="section-label">全機能</div>
+  <h2 class="section-title">必要な機能が<br>全部そろっています</h2>
+  <div class="feature-grid">
+    <div class="feature-item">
+      <span class="emoji">📊</span>
+      <span>血圧グラフ</span>
+    </div>
+    <div class="feature-item">
+      <span class="emoji">💊</span>
+      <span>服薬チェック</span>
+    </div>
+    <div class="feature-item">
+      <span class="emoji">⏰</span>
+      <span>測定リマインダー</span>
+    </div>
+    <div class="feature-item">
+      <span class="emoji">📷</span>
+      <span>AI自動入力</span>
+    </div>
+    <div class="feature-item">
+      <span class="emoji">💌</span>
+      <span>家族へ送信</span>
+    </div>
+    <div class="feature-item">
+      <span class="emoji">🏥</span>
+      <span>病院対応モード</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 使い方セクション ===== -->
+<section class="howto">
+  <div class="section-label">使い方</div>
+  <h2 class="section-title">3ステップで<br>かんたんに始められます</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>アプリをダウンロード</h4>
+        <p>App Storeから無料でダウンロード。アカウント登録は不要です。すぐに使えます。</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>血圧計を撮影して記録</h4>
+        <p>カメラで血圧計を撮るだけ。AIが数値を読み取り自動で入力します。もちろん手入力にも対応。</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>LINEで家族に送る</h4>
+        <p>記録が終わったらワンタップで家族に送信。離れていても毎日の元気を伝え合えます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== プレミアムセクション ===== -->
+<section class="premium">
+  <div class="section-label">プレミアムプラン</div>
+  <h2 class="section-title">10日間、無料でお試しください</h2>
+  <div class="premium-cards">
+    <div class="premium-card">
+      <span class="emoji">📷</span>
+      <div>
+        <h4>AI自動入力 使い放題</h4>
+        <p>血圧計を撮るだけで毎回自動入力</p>
+      </div>
+    </div>
+    <div class="premium-card">
+      <span class="emoji">💌</span>
+      <div>
+        <h4>家族への送信 無制限</h4>
+        <p>LINE・SMS でいつでも送り放題</p>
+      </div>
+    </div>
+    <div class="premium-card">
+      <span class="emoji">📊</span>
+      <div>
+        <h4>長期グラフ表示</h4>
+        <p>3ヶ月・6ヶ月の血圧推移を確認</p>
+      </div>
+    </div>
+  </div>
+  <div class="price-box">
+    <div class="trial">🎁 最初の10日間は無料でお試しできます</div>
+    <div class="price-row">
+      <span class="price-label">月額プラン</span>
+      <span class="price-value">¥480<small style="font-size:13px;font-weight:400;">/月</small></span>
+    </div>
+    <div class="price-row">
+      <span class="price-label">年額プラン</span>
+      <span class="price-value">¥3,600<small style="font-size:13px;font-weight:400;">/年</small><span class="price-save">17%お得</span></span>
+    </div>
+  </div>
+  <p class="free-note">※ 無料でも記録・グラフ・リマインダー・<br>服薬チェック・病院モードはご利用いただけます</p>
+</section>
+
+<!-- ===== ダウンロードCTAセクション ===== -->
+<section class="cta">
+  <h2 class="section-title">今日から始めましょう</h2>
+  <p class="cta-sub">ダウンロード無料・アカウント登録不要<br>すぐに使えます</p>
+  <a href="#" class="app-store-btn">
+    <svg viewBox="0 0 814 1000" width="24" height="24" fill="white"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.3 134.4-316.7 266.8-316.7 99.8 0 162.6 64.8 212.7 64.8 46.2 0 121.2-68.8 228.5-68.8zm-88-174c43.8-51.7 74.6-123.5 74.6-195.3 0-10.3-.6-20.7-2.6-29.2-70.7 2.6-154.7 47.1-204.7 107.2-38.4 44.4-75.9 116.2-75.9 189 0 11.6 1.9 23.2 2.6 26.9 4.5.6 11.6 1.9 18.7 1.9 63.5 0 143.9-42.5 187.3-100.5z"/></svg>
+    App Store からダウンロード（無料）
+  </a>
+  <p class="cta-note">iOS 16以降対応 · iPhone対応</p>
+</section>
+
+<!-- ===== フッター ===== -->
+<footer>
+  <div class="footer-links">
+    <a href="../">MC Apps トップへ</a>
+    <a href="https://sites.google.com/view/ketsuatsu-privacy">プライバシーポリシー</a>
+    <a href="https://sites.google.com/view/ketsuatsu-terms">利用規約</a>
+    <a href="mailto:chimasaki31@gmail.com">お問い合わせ</a>
+  </div>
+  <p>© 2026 MC Apps. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

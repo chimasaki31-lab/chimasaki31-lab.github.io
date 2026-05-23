@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MC Apps - シンプルで使いやすいiOSアプリ</title>
+  <meta name="description" content="個人開発者MCが作るiOSアプリ一覧。シニア・家族向けの健康管理アプリなど、誰でもかんたんに使えるアプリを開発しています。">
+
+  <!-- OGP -->
+  <meta property="og:title" content="MC Apps - シンプルで使いやすいiOSアプリ">
+  <meta property="og:description" content="個人開発者MCが作るiOSアプリ一覧。誰でもかんたんに使えるアプリを開発しています。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/">
+  <meta property="og:locale" content="ja_JP">
+
+  <!-- canonical -->
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+      font-size: 17px;
+      color: #1a1a1a;
+      background: #fff;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ===== ヘッダー ===== */
+    header {
+      border-bottom: 1px solid #eee;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .site-name {
+      font-size: 18px;
+      font-weight: 800;
+      color: #1a1a1a;
+      letter-spacing: -0.02em;
+    }
+
+    .site-name span {
+      color: #4a90d9;
+    }
+
+    .header-sns {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .header-sns a {
+      font-size: 13px;
+      color: #666;
+      transition: color 0.2s;
+    }
+
+    .header-sns a:hover {
+      color: #1a1a1a;
+    }
+
+    /* ===== ヒーローセクション ===== */
+    .hero {
+      background: linear-gradient(160deg, #1a2a4a 0%, #2c4a7a 60%, #4a90d9 100%);
+      color: #fff;
+      text-align: center;
+      padding: 64px 24px 56px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 20px;
+      padding: 4px 16px;
+      font-size: 13px;
+      margin-bottom: 20px;
+      letter-spacing: 0.05em;
+    }
+
+    .hero h1 {
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1.4;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      opacity: 0.88;
+      line-height: 1.7;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ===== セクション共通 ===== */
+    .section-label {
+      display: inline-block;
+      color: #4a90d9;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.45;
+      margin-bottom: 32px;
+    }
+
+    /* ===== アプリ一覧セクション ===== */
+    .apps {
+      padding: 64px 24px;
+      text-align: center;
+    }
+
+    .apps-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .app-card {
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 20px;
+      padding: 24px;
+      text-align: left;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .app-card:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+      transform: translateY(-2px);
+    }
+
+    .app-card-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .app-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #c0392b, #e74c3c);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .app-meta {
+      flex: 1;
+    }
+
+    .app-category {
+      font-size: 12px;
+      color: #888;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-bottom: 2px;
+    }
+
+    .app-name {
+      font-size: 18px;
+      font-weight: 800;
+      color: #1a1a1a;
+    }
+
+    .app-status-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 8px;
+      margin-top: 4px;
+    }
+
+    .app-status-badge.released {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    .app-status-badge.coming-soon {
+      background: #fff8e1;
+      color: #f57f17;
+    }
+
+    .app-description {
+      font-size: 15px;
+      color: #555;
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+
+    .app-card-footer {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-lp {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1a1a1a;
+      color: #fff;
+      border-radius: 10px;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+
+    .btn-lp:hover {
+      opacity: 0.8;
+    }
+
+    .btn-lp svg {
+      width: 16px;
+      height: 16px;
+      fill: #fff;
+    }
+
+    .btn-appstore {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #4a90d9;
+      color: #fff;
+      border-radius: 10px;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+
+    .btn-appstore:hover {
+      opacity: 0.85;
+    }
+
+    /* ===== 開発中アプリ（ティーザー） ===== */
+    .teaser-card {
+      background: #f5f7fa;
+      border: 2px dashed #d0d8e4;
+      border-radius: 20px;
+      padding: 24px;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .teaser-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.3);
+      backdrop-filter: blur(1px);
+    }
+
+    .teaser-card .app-icon {
+      background: linear-gradient(135deg, #666, #999);
+      filter: blur(1.5px);
+    }
+
+    .teaser-card .app-name {
+      filter: blur(4px);
+      user-select: none;
+    }
+
+    .teaser-card .app-description {
+      filter: blur(3px);
+      user-select: none;
+    }
+
+    .teaser-label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #1a1a1a;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 18px;
+      border-radius: 20px;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      z-index: 1;
+    }
+
+    /* ===== プロフィールセクション ===== */
+    .profile {
+      background: #f5f7fa;
+      padding: 64px 24px;
+      text-align: center;
+    }
+
+    .profile-inner {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .profile-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1a2a4a, #4a90d9);
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+    }
+
+    .profile-name {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .profile-handle {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .profile-bio {
+      font-size: 15px;
+      color: #444;
+      line-height: 1.8;
+      text-align: left;
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+    }
+
+    .profile-sns {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .sns-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1.5px solid #ddd;
+      border-radius: 10px;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      background: #fff;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .sns-btn:hover {
+      border-color: #1a1a1a;
+      color: #1a1a1a;
+    }
+
+    /* ===== フッター ===== */
+    footer {
+      background: #1a1a1a;
+      color: rgba(255,255,255,0.55);
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.55);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    /* ===== レスポンシブ ===== */
+    @media (min-width: 600px) {
+      .hero h1 { font-size: 36px; }
+      .apps-grid { flex-direction: column; }
+    }
+
+    @media (min-width: 860px) {
+      .apps-grid {
+        flex-direction: row;
+        flex-wrap: wrap;
+        max-width: 900px;
+      }
+      .app-card, .teaser-card {
+        flex: 1;
+        min-width: 280px;
+        max-width: calc(50% - 10px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== ヘッダー ===== -->
+<header>
+  <div class="site-name">MC <span>Apps</span></div>
+  <div class="header-sns">
+    <a href="https://x.com/mc_appmaker" target="_blank" rel="noopener">X (Twitter)</a>
+  </div>
+</header>
+
+<!-- ===== ヒーローセクション ===== -->
+<section class="hero">
+  <div class="hero-badge">📱 iOS アプリ 個人開発</div>
+  <h1>誰でもかんたんに<br>使えるアプリを作っています</h1>
+  <p class="hero-sub">
+    シニアの方や、スマホに慣れていない方でも<br>
+    安心して使えるiOSアプリを、<br>個人開発者MCが作っています。
+  </p>
+</section>
+
+<!-- ===== アプリ一覧セクション ===== -->
+<section class="apps">
+  <div class="section-label">APPS</div>
+  <h2 class="section-title">リリース済みアプリ</h2>
+  <div class="apps-grid">
+
+    <!-- 血圧手帳AI -->
+    <div class="app-card">
+      <div class="app-card-header">
+        <div class="app-icon">🩺</div>
+        <div class="app-meta">
+          <div class="app-category">健康管理</div>
+          <div class="app-name">血圧手帳AI</div>
+          <span class="app-status-badge released">リリース済み</span>
+        </div>
+      </div>
+      <p class="app-description">
+        撮影するだけでAIが血圧を自動入力。記録したらLINEで家族にすぐ送れる。
+        大きな文字で、スマホが苦手なシニアの方も安心して使えます。
+      </p>
+      <div class="app-card-footer">
+        <a href="./ketsuatsu-ai/" class="btn-lp">詳しく見る</a>
+        <a href="#" class="btn-appstore">
+          <svg viewBox="0 0 814 1000"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.3 134.4-316.7 266.8-316.7 99.8 0 162.6 64.8 212.7 64.8 46.2 0 121.2-68.8 228.5-68.8zm-88-174c43.8-51.7 74.6-123.5 74.6-195.3 0-10.3-.6-20.7-2.6-29.2-70.7 2.6-154.7 47.1-204.7 107.2-38.4 44.4-75.9 116.2-75.9 189 0 11.6 1.9 23.2 2.6 26.9 4.5.6 11.6 1.9 18.7 1.9 63.5 0 143.9-42.5 187.3-100.5z"/></svg>
+          App Store
+        </a>
+      </div>
+    </div>
+
+    <!-- 開発中ティーザー -->
+    <div class="teaser-card">
+      <div class="app-card-header">
+        <div class="app-icon">🚀</div>
+        <div class="app-meta">
+          <div class="app-category">近日公開</div>
+          <div class="app-name">新しいアプリ開発中です</div>
+          <span class="app-status-badge coming-soon">開発中</span>
+        </div>
+      </div>
+      <p class="app-description">
+        次のアプリを現在開発中です。詳細はもうしばらくお待ちください。
+        X（@mc_appmaker）で最新情報をお届けしています。
+      </p>
+      <div class="teaser-overlay"></div>
+      <div class="teaser-label">🔧 Coming Soon</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== プロフィールセクション ===== -->
+<section class="profile">
+  <div class="profile-inner">
+    <div class="section-label">ABOUT</div>
+    <h2 class="section-title">開発者について</h2>
+    <div class="profile-avatar">💻</div>
+    <div class="profile-name">MC</div>
+    <div class="profile-handle">@mc_appmaker</div>
+    <div class="profile-bio">
+      <p>はじめまして、MCと申します。</p>
+      <br>
+      <p>「スマホが苦手な方でも、かんたんに使えるアプリを届けたい」という思いでiOSアプリを個人で開発しています。</p>
+      <br>
+      <p>特にシニアの方や、テクノロジーに不慣れな方が、デジタルの力で毎日を少し便利に・安心できるよう、シンプルで使いやすいアプリを目指しています。</p>
+    </div>
+    <div class="profile-sns">
+      <a href="https://x.com/mc_appmaker" target="_blank" rel="noopener" class="sns-btn">
+        𝕏 @mc_appmaker
+      </a>
+      <a href="mailto:chimasaki31@gmail.com" class="sns-btn">
+        ✉ お問い合わせ
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== フッター ===== -->
+<footer>
+  <div class="footer-links">
+    <a href="./ketsuatsu-ai/">血圧手帳AI</a>
+    <a href="mailto:chimasaki31@gmail.com">お問い合わせ</a>
+  </div>
+  <p>© 2026 MC Apps. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
