@@ -588,6 +588,35 @@
       }
       .feature-card { flex: 1; }
     }
+
+    /* ===== 動画セクション ===== */
+    .demo-video {
+      background: #f7f7f7;
+      padding: 56px 24px;
+      text-align: center;
+    }
+
+    .demo-video-inner {
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    .demo-video video {
+      width: 100%;
+      border-radius: 28px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+      display: block;
+    }
+
+    .demo-video-caption {
+      margin-top: 16px;
+      font-size: 14px;
+      color: #888;
+    }
+
+    @media (min-width: 600px) {
+      .demo-video-inner { max-width: 340px; }
+    }
   </style>
 </head>
 <body>
@@ -615,6 +644,23 @@
     <img class="screenshot-img" src="./images/02_record.png" alt="血圧手帳AI 記録入力画面">
     <img class="screenshot-img" src="./images/03_graph.png" alt="血圧手帳AI グラフ画面">
     <img class="screenshot-img" src="./images/05_history.png" alt="血圧手帳AI 家族への共有">
+  </div>
+</section>
+
+<!-- ===== 動画セクション ===== -->
+<section class="demo-video">
+  <div class="section-label">アプリ紹介動画</div>
+  <h2 class="section-title" style="margin-bottom:28px;">実際の使い方を<br>動画でご覧ください</h2>
+  <div class="demo-video-inner">
+    <video
+      src="./demo.mp4"
+      autoplay
+      loop
+      muted
+      playsinline
+      controls
+    ></video>
+    <p class="demo-video-caption">血圧計を撮影→記録→LINEで送信まで、約20秒</p>
   </div>
 </section>
 
