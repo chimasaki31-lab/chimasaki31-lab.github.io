@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>麻雀の符計算と点数計算を初心者向けに完全解説｜符の数え方・早見表・例題</title>
+  <meta name="description" content="麻雀の符の数え方と点数計算を初心者向けに解説。基本符・面子・雀頭・待ちの符を表で整理し、平和や七対子などの特例、点数の計算式・早見表・例題まで網羅。点数の数え方がわからない人向け。">
+
+  <!-- OGP -->
+  <meta property="og:title" content="麻雀の符計算と点数計算を初心者向けに完全解説">
+  <meta property="og:description" content="符の数え方から点数の出し方まで、麻雀を覚えたての人でも迷わない順番で解説。平和・七対子などの特例、早見表、例題つき。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/mahjong-fu-keisan/">
+  <meta property="og:locale" content="ja_JP">
+
+  <!-- canonical -->
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/mahjong-fu-keisan/">
+
+  <!-- Article schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "麻雀の符計算と点数計算を初心者向けに完全解説｜符の数え方・早見表・例題",
+    "description": "麻雀の符の数え方と点数計算を初心者向けに解説。基本符・面子・雀頭・待ちの符、平和や七対子などの特例、点数の計算式・早見表・例題まで網羅。",
+    "inLanguage": "ja",
+    "author": { "@type": "Organization", "name": "MC Labs" },
+    "publisher": { "@type": "Organization", "name": "MC Labs" },
+    "mainEntityOfPage": "https://chimasaki31-lab.github.io/mahjong-fu-keisan/"
+  }
+  </script>
+
+  <!-- FAQ schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "符と翻、どちらを先に覚えるべき？",
+        "acceptedAnswer": { "@type": "Answer", "text": "翻（役）を先に覚え、和了れるようになってから符を学ぶのが効率的です。点数を正確に出すには最終的に両方必要ですが、まずは和了れることが先決です。" }
+      },
+      {
+        "@type": "Question",
+        "name": "平和ツモはなぜ20符なの？",
+        "acceptedAnswer": { "@type": "Answer", "text": "平和は符の付かない形を条件にした役のため、ツモの+2符を付けると条件が崩れます。慣例として20符固定で計算します。" }
+      },
+      {
+        "@type": "Question",
+        "name": "シャンポン待ちで和了った刻子の符はどう数える？",
+        "acceptedAnswer": { "@type": "Answer", "text": "待ちとしては0符ですが、その刻子自体には刻子の符（中張なら明刻2符・暗刻4符など）が付きます。ロンで和了った刻子は明刻扱いになる点に注意してください。" }
+      },
+      {
+        "@type": "Question",
+        "name": "符計算を間違えると点数はどれくらいズレる？",
+        "acceptedAnswer": { "@type": "Answer", "text": "たとえば30符と40符では、同じ翻数でも点数が1.3倍ほど変わることがあります。符1段階のミスが精算額に直結するため、自信がなければ計算アプリの利用が安全です。" }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+      font-size: 17px;
+      color: #1a1a1a;
+      background: #fff;
+      line-height: 1.8;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== パンくず ===== */
+    .breadcrumb {
+      padding: 12px 20px;
+      font-size: 13px;
+      color: #888;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .breadcrumb a { color: #2e7d4f; }
+    .breadcrumb a:hover { opacity: 0.7; }
+
+    /* ===== ヒーロー ===== */
+    .hero {
+      background: linear-gradient(160deg, #1f5c3a 0%, #2e7d4f 55%, #3a9b63 100%);
+      color: #fff;
+      padding: 48px 20px 40px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.45);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 13px;
+      margin-bottom: 18px;
+      letter-spacing: 0.05em;
+    }
+    .hero h1 {
+      font-size: 25px;
+      font-weight: 800;
+      line-height: 1.45;
+      letter-spacing: -0.01em;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* ===== 本文 ===== */
+    article {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 32px 20px 16px;
+    }
+    .lead {
+      background: #f3f9f5;
+      border-left: 4px solid #2e7d4f;
+      padding: 16px 18px;
+      border-radius: 0 8px 8px 0;
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 32px;
+    }
+    article h2 {
+      font-size: 21px;
+      font-weight: 800;
+      margin: 40px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #2e7d4f;
+      color: #1f5c3a;
+    }
+    article h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 28px 0 12px;
+      color: #2e7d4f;
+    }
+    article p { margin-bottom: 16px; }
+    article ul, article ol { margin: 0 0 16px 1.4em; }
+    article li { margin-bottom: 6px; }
+
+    .note {
+      background: #fff8e6;
+      border-left: 4px solid #e0a800;
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      font-size: 15px;
+      margin: 16px 0;
+    }
+
+    /* ===== 表（横スクロール対応） ===== */
+    .table-wrap { overflow-x: auto; margin: 16px 0 20px; -webkit-overflow-scrolling: touch; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+      min-width: 360px;
+    }
+    th, td {
+      border: 1px solid #e0e6e2;
+      padding: 9px 12px;
+      text-align: left;
+    }
+    th { background: #eef6f1; font-weight: 700; color: #1f5c3a; }
+    tbody tr:nth-child(even) { background: #fafcfb; }
+
+    /* ===== コード ===== */
+    .formula {
+      background: #1f2d26;
+      color: #d6f5e3;
+      padding: 14px 18px;
+      border-radius: 8px;
+      font-family: 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 15px;
+      margin: 16px 0;
+      overflow-x: auto;
+    }
+
+    /* ===== CTA ===== */
+    .cta {
+      background: linear-gradient(160deg, #1f5c3a 0%, #2e7d4f 100%);
+      color: #fff;
+      border-radius: 16px;
+      padding: 28px 24px;
+      margin: 40px 0;
+      text-align: center;
+    }
+    .cta h2 { border: none; color: #fff; margin: 0 0 12px; font-size: 20px; }
+    .cta ul {
+      text-align: left;
+      max-width: 420px;
+      margin: 0 auto 22px;
+      list-style: none;
+    }
+    .cta li { margin-bottom: 8px; }
+    .cta-btn {
+      display: inline-block;
+      background: #fff;
+      color: #1f5c3a;
+      font-weight: 800;
+      padding: 14px 32px;
+      border-radius: 30px;
+      font-size: 16px;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+
+    /* ===== FAQ ===== */
+    .faq-item { border-bottom: 1px solid #eee; padding: 16px 0; }
+    .faq-q { font-weight: 700; color: #1f5c3a; margin-bottom: 6px; }
+
+    /* ===== フッター ===== */
+    footer {
+      background: #f7f7f7;
+      padding: 28px 20px;
+      text-align: center;
+      font-size: 13px;
+      color: #888;
+      margin-top: 40px;
+    }
+    .footer-links { margin-bottom: 12px; }
+    .footer-links a { color: #2e7d4f; margin: 0 8px; }
+    .footer-links a:hover { opacity: 0.7; }
+
+    @media (max-width: 600px) {
+      body { font-size: 16px; }
+      .hero h1 { font-size: 21px; }
+      article h2 { font-size: 19px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="breadcrumb">
+    <a href="../">MC Labs</a> &rsaquo; 麻雀の符計算・点数計算
+  </nav>
+
+  <header class="hero">
+    <span class="hero-badge">初心者向けガイド</span>
+    <h1>麻雀の符計算と点数計算を完全解説<br>―― 符の数え方・早見表・例題つき</h1>
+  </header>
+
+  <article>
+    <p class="lead">
+      麻雀で「ロン！」と言ったものの点数が分からず固まった経験はありませんか。
+      このページは、<strong>符の数え方から点数の出し方まで</strong>を、麻雀を覚えたての人でも迷わない順番で解説します。
+      計算が面倒な人のための「自動で計算する方法」も最後に紹介します。
+    </p>
+
+    <h2>この記事でわかること</h2>
+    <ul>
+      <li>点数は「符（ふ）」と「翻（はん）」の2つで決まること</li>
+      <li>符の数え方（基本符・面子・雀頭・待ち・和了り方の足し算）</li>
+      <li>翻数との掛け合わせで点数を出す計算式と早見表</li>
+      <li>初心者がよく間違える「平和」「七対子」「喰い平和」などの特例</li>
+      <li>例題で実際に計算する流れ／符計算を一切しなくていい方法</li>
+    </ul>
+
+    <h2>1. 点数は「符 × 翻」で決まる</h2>
+    <p>麻雀の点数は、ざっくり言うと次の2つの数字で決まります。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>要素</th><th>意味</th></tr></thead>
+        <tbody>
+          <tr><td>翻（はん）</td><td>役・ドラの大きさ。リーチ1翻、タンヤオ1翻…の合計</td></tr>
+          <tr><td>符（ふ）</td><td>手牌の「形の細かさ」を点数化したもの</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>翻数が小さいうち（1〜4翻）は、<strong>符の大小で点数が変わります</strong>。だから初心者がつまずくのは、たいてい「翻」ではなく「符」のほうです。逆に満貫（5翻〜）以上になると符は関係なくなり、点数は翻だけで決まります。</p>
+    <div class="note"><strong>まず覚えるべき結論：</strong>「翻」は役を数えるだけ。難しいのは「符」。この記事は符を最優先で解説します。</div>
+
+    <h2>2. 符の数え方 ―― 5つの足し算</h2>
+    <p>符は、次の5項目を<strong>すべて足して、最後に10の位へ切り上げる</strong>だけです。</p>
+    <ol>
+      <li>基本符（副底／ふうてい）</li>
+      <li>和了り方の符（門前ロン・ツモ）</li>
+      <li>面子（メンツ）の符（刻子・槓子）</li>
+      <li>雀頭（アタマ）の符</li>
+      <li>待ちの符</li>
+    </ol>
+
+    <h3>① 基本符（副底）＝必ず20符</h3>
+    <p>どんな手でも、まず<strong>20符</strong>からスタートします。これは固定です。</p>
+
+    <h3>② 和了り方の符</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>和了り方</th><th>符</th></tr></thead>
+        <tbody>
+          <tr><td>門前（鳴いていない）でロン</td><td><strong>+10符</strong>（門前ロン加符）</td></tr>
+          <tr><td>ツモ和了り</td><td><strong>+2符</strong>（※平和ツモを除く）</td></tr>
+          <tr><td>鳴いている手でロン</td><td>+0符</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>③ 面子（メンツ）の符 ―― 刻子・槓子だけ</h3>
+    <p><strong>順子（123のような並び）は0符</strong>です。符が付くのは<strong>刻子（同じ牌3枚）と槓子（4枚）</strong>だけ。さらに「中張牌（2〜8）か么九牌（1・9・字牌）か」「鳴いた（明）か自分で揃えた（暗）か」で変わります。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>面子の種類</th><th>中張牌（2〜8）</th><th>么九牌（1・9・字牌）</th></tr></thead>
+        <tbody>
+          <tr><td>明刻（鳴いた3枚）</td><td>2符</td><td>4符</td></tr>
+          <tr><td>暗刻（自分で揃えた3枚）</td><td>4符</td><td>8符</td></tr>
+          <tr><td>明槓（鳴いた4枚）</td><td>8符</td><td>16符</td></tr>
+          <tr><td>暗槓（自分で揃えた4枚）</td><td>16符</td><td>32符</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note"><strong>覚え方：</strong>「暗いほど・端っこ（么九）ほど・枚数が多い（槓）ほど高い」。基準は中張の明刻2符で、条件が1つ厳しくなるごとに倍々で増えます。</div>
+
+    <h3>④ 雀頭（アタマ）の符</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>アタマの種類</th><th>符</th></tr></thead>
+        <tbody>
+          <tr><td>役牌（三元牌＝白發中／自風牌／場風牌）</td><td><strong>+2符</strong></td></tr>
+          <tr><td>それ以外（数牌・役のない風牌）</td><td>+0符</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>※連風牌（場風かつ自風、例：東場の東家の東）は、2符とするルールと4符とするルールがあります。お使いの場のルールに合わせてください。</p>
+
+    <h3>⑤ 待ちの符</h3>
+    <p>「最後の1牌をどう待っていたか」で変わります。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>待ちの種類</th><th>符</th><th>例</th></tr></thead>
+        <tbody>
+          <tr><td>両面（リャンメン）待ち</td><td>0符</td><td>23 で 1-4 待ち</td></tr>
+          <tr><td>シャンポン（双碰）待ち</td><td>0符</td><td>11と99 でどちらかの3枚目</td></tr>
+          <tr><td>カンチャン（嵌張）待ち</td><td><strong>+2符</strong></td><td>13 で 2 待ち</td></tr>
+          <tr><td>ペンチャン（辺張）待ち</td><td><strong>+2符</strong></td><td>12 で 3 待ちのみ</td></tr>
+          <tr><td>単騎（タンキ）待ち</td><td><strong>+2符</strong></td><td>アタマ1枚待ち</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note"><strong>間違いやすいポイント：</strong>シャンポン待ちは「待ち」としては0符ですが、和了った刻子そのものには③の刻子符が付きます。二重に数えないよう注意。</div>
+
+    <h3>最後に「切り上げ」</h3>
+    <p>①〜⑤を足したら、<strong>1の位を切り上げて10符単位</strong>にします。たとえば32符 → 40符、44符 → 50符。</p>
+
+    <h2>3. 初心者が必ずつまずく特例</h2>
+    <p>ここが、市販アプリや人間の手計算でもミスが多発するポイントです。</p>
+    <h3>平和（ピンフ）の符</h3>
+    <ul>
+      <li><strong>平和ツモ ＝ 20符固定</strong>。ツモの+2符を付けません（付けると平和の定義が崩れるため）。</li>
+      <li><strong>平和ロン ＝ 30符</strong>。20符（基本）＋10符（門前ロン）で、ほかに符が付かない形。</li>
+    </ul>
+    <h3>七対子（チートイツ）＝25符固定</h3>
+    <p>七対子は符の足し算をせず、<strong>一律25符</strong>。切り上げもしません。</p>
+    <h3>喰い平和形（鳴き＋符ゼロ）＝30符として計算</h3>
+    <p>鳴いていて、かつ符の付く要素が一切なく合計が20符になってしまう形は、慣例として<strong>30符</strong>で計算します（20符の鳴き手は認めない）。</p>
+
+    <h2>4. 符が出たら、点数を計算する</h2>
+    <p>符が決まったら、点数は次の式で出ます。</p>
+    <div class="formula">基本点 = 符 × 2の(2 + 翻)乗</div>
+    <p>この「基本点」に、親か子か・ロンかツモかで倍率を掛けます。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>和了り</th><th>支払い</th></tr></thead>
+        <tbody>
+          <tr><td>子のロン</td><td>基本点 × 4</td></tr>
+          <tr><td>子のツモ</td><td>親＝基本点×2、子＝基本点×1 ずつ</td></tr>
+          <tr><td>親のロン</td><td>基本点 × 6</td></tr>
+          <tr><td>親のツモ</td><td>子＝基本点×2 ずつ</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>※実際の支払いは100点単位に切り上げます。</p>
+
+    <h3>例題1：子・リーチ＋ツモ＋平和＝3翻20符</h3>
+    <ul>
+      <li>符＝平和ツモなので<strong>20符</strong>、翻＝3翻</li>
+      <li>基本点 ＝ 20 × 2^(2+3) ＝ 20 × 32 ＝ 640</li>
+      <li>子ツモ：親が 640×2＝1280→<strong>1300点</strong>、子が 640×1＝640→<strong>700点</strong></li>
+      <li>合計 <strong>2700点</strong>（よく聞く「700・1300」の形）</li>
+    </ul>
+
+    <h3>例題2：子・リーチ＋ロン＝2翻40符</h3>
+    <ul>
+      <li>符＝40符、翻＝2翻</li>
+      <li>基本点 ＝ 40 × 2^(2+2) ＝ 40 × 16 ＝ 640</li>
+      <li>子ロン：640×4 ＝ 2560 → <strong>2600点</strong></li>
+    </ul>
+
+    <h3>よく使う点数早見表（子・ロン）</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>符＼翻</th><th>1翻</th><th>2翻</th><th>3翻</th><th>4翻</th></tr></thead>
+        <tbody>
+          <tr><td>30符</td><td>1000</td><td>2000</td><td>3900</td><td>7700</td></tr>
+          <tr><td>40符</td><td>1300</td><td>2600</td><td>5200</td><td>8000(満貫)</td></tr>
+          <tr><td>50符</td><td>1600</td><td>3200</td><td>6400</td><td>8000(満貫)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>5翻以上、または「3翻70符・4翻40符以上」は満貫（子8000／親12000）として扱われます（切り上げ満貫ルール採用時）。</p>
+
+    <div class="cta">
+      <h2>「毎回これを数えるのは無理」と思った人へ</h2>
+      <p>符計算はルールが多く特例も多いため、対局のたびに正確に数えるのは大きな負担です。<br>役を選ぶだけで符・翻・点数まで自動算出する <strong>麻雀点数ノート</strong> がおすすめです。</p>
+      <ul>
+        <li>🀄 符計算・点数計算を自動化（役を選ぶだけ）</li>
+        <li>✅ 47通りの単体テストで符計算を検証済み</li>
+        <li>💴 ¥490の買い切りで全機能・広告ゼロ・完全オフライン</li>
+        <li>📊 成績・収支・メンバー別の記録にも対応（四麻・三麻）</li>
+      </ul>
+      <a class="cta-btn" href="https://apps.apple.com/jp/app/id6776482540">App Storeで見る</a>
+    </div>
+
+    <h2>よくある質問（FAQ）</h2>
+    <div class="faq-item">
+      <p class="faq-q">Q. 符と翻、どちらを先に覚えるべき？</p>
+      <p>A. 翻（役）を先に覚え、和了れるようになってから符を学ぶのが効率的です。点数を正確に出すには最終的に両方必要ですが、まずは和了れることが先決です。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 平和ツモはなぜ20符なの？</p>
+      <p>A. 平和は符の付かない形を条件にした役のため、ツモの+2符を付けると条件が崩れます。慣例として20符固定で計算します。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. シャンポン待ちで和了った刻子の符はどう数える？</p>
+      <p>A. 待ちとしては0符ですが、その刻子自体には刻子の符（中張なら明刻2符・暗刻4符など）が付きます。ロンで和了った刻子は明刻扱いになる点に注意してください。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 符計算を間違えると点数はどれくらいズレる？</p>
+      <p>A. たとえば30符と40符では、同じ翻数でも点数が1.3倍ほど変わることがあります。符1段階のミスが精算額に直結するため、自信がなければ計算アプリの利用が安全です。</p>
+    </div>
+  </article>
+
+  <footer>
+    <div class="footer-links">
+      <a href="../">MC Labs トップへ</a>
+      <a href="https://apps.apple.com/jp/app/id6776482540">麻雀点数ノート（App Store）</a>
+    </div>
+    <p>© 2026 MC Labs. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
