@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>パンの型のサイズ換算｜丸型・角型・食パン型の容量計算と分量の合わせ方</title>
+  <meta name="description" content="違う型でパンを焼くときの分量換算を解説。丸型・角型・食パン型（パウンド型）の容量の出し方、型が変わったときに材料を容量比でスケールする方法、比容積の考え方を計算式と具体例つきで紹介。">
+
+  <!-- OGP -->
+  <meta property="og:title" content="パンの型のサイズ換算｜容量計算と分量の合わせ方">
+  <meta property="og:description" content="丸型・角型・食パン型の容量の出し方、型が変わったときに材料を容量比でスケールする方法を計算式と具体例で解説。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/pan-keisan/kata-kanzan/">
+  <meta property="og:locale" content="ja_JP">
+
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/pan-keisan/kata-kanzan/">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "パンの型のサイズ換算｜丸型・角型・食パン型の容量計算と分量の合わせ方",
+    "description": "違う型でパンを焼くときの分量換算を解説。丸型・角型・食パン型の容量の出し方、型が変わったときに材料を容量比でスケールする方法、比容積の考え方を計算式と具体例つきで紹介。",
+    "inLanguage": "ja",
+    "author": { "@type": "Organization", "name": "MC Labs" },
+    "publisher": { "@type": "Organization", "name": "MC Labs" },
+    "mainEntityOfPage": "https://chimasaki31-lab.github.io/pan-keisan/kata-kanzan/"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "違う型でパンを焼くとき、分量はどう合わせますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "型の容量の比で材料をスケールします。「焼きたい型の容量 ÷ 元の型の容量」を倍率として、すべての材料に同じ倍率を掛ければOKです。たとえば容量が1.5倍の型なら、粉も水も塩もすべて1.5倍にします。" }
+      },
+      {
+        "@type": "Question",
+        "name": "丸型・角型・食パン型の容量はどう計算しますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "丸型は半径×半径×3.14×高さ、角型は縦×横×高さ、食パン型（パウンド型）も縦×横×高さで体積（cm³＝mL）を求めます。台形に近い食パン型は上下の幅の平均を使うと近い値になります。" }
+      },
+      {
+        "@type": "Question",
+        "name": "食パンの「1斤」はどのくらいの容量ですか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "一般的な1斤型の容量はおおよそ1,700mL前後です。メーカーや型によって差があるため、正確には型の内寸（縦×横×高さ）から計算するのが確実です。" }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif; font-size: 17px; color: #2a2018; background: #fff; line-height: 1.8; }
+    a { color: inherit; text-decoration: none; }
+    .breadcrumb { padding: 12px 20px; font-size: 13px; color: #999; border-bottom: 1px solid #f3efe9; }
+    .breadcrumb a { color: #b5651d; }
+    .breadcrumb a:hover { opacity: 0.7; }
+    .hero { background: linear-gradient(160deg, #8a4b1c 0%, #b5651d 50%, #d98c3f 100%); color: #fff; padding: 48px 20px 40px; text-align: center; }
+    .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.45); border-radius: 20px; padding: 4px 14px; font-size: 13px; margin-bottom: 18px; letter-spacing: 0.05em; }
+    .hero h1 { font-size: 25px; font-weight: 800; line-height: 1.45; letter-spacing: -0.01em; max-width: 720px; margin: 0 auto; }
+    article { max-width: 760px; margin: 0 auto; padding: 32px 20px 16px; }
+    .lead { background: #faf3e8; border-left: 4px solid #b5651d; padding: 16px 18px; border-radius: 0 8px 8px 0; font-size: 16px; color: #333; margin-bottom: 32px; }
+    article h2 { font-size: 21px; font-weight: 800; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid #b5651d; color: #8a4b1c; }
+    article h3 { font-size: 18px; font-weight: 700; margin: 28px 0 12px; color: #b5651d; }
+    article p { margin-bottom: 16px; }
+    article ul, article ol { margin: 0 0 16px 1.4em; }
+    article li { margin-bottom: 6px; }
+    .note { background: #fff8e6; border-left: 4px solid #e0a800; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 15px; margin: 16px 0; }
+    .table-wrap { overflow-x: auto; margin: 16px 0 20px; -webkit-overflow-scrolling: touch; }
+    table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 360px; }
+    th, td { border: 1px solid #e7dccb; padding: 9px 12px; text-align: left; }
+    th { background: #f3e6d3; font-weight: 700; color: #8a4b1c; }
+    tbody tr:nth-child(even) { background: #fdfaf5; }
+    td.num { text-align: right; white-space: nowrap; }
+    .formula { background: #3a2a1c; color: #f3dcc0; padding: 14px 18px; border-radius: 8px; font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 15px; margin: 16px 0; overflow-x: auto; line-height: 1.7; }
+    .cta { background: linear-gradient(160deg, #8a4b1c 0%, #b5651d 100%); color: #fff; border-radius: 16px; padding: 28px 24px; margin: 40px 0; text-align: center; }
+    .cta h2 { border: none; color: #fff; margin: 0 0 12px; font-size: 20px; }
+    .cta ul { text-align: left; max-width: 440px; margin: 0 auto 22px; list-style: none; }
+    .cta li { margin-bottom: 8px; }
+    .cta-btn { display: inline-block; background: #fff; color: #8a4b1c; font-weight: 800; padding: 14px 32px; border-radius: 30px; font-size: 16px; transition: transform 0.15s, box-shadow 0.15s; }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .cta-note { font-size: 13px; opacity: 0.85; margin-top: 14px; margin-bottom: 0; }
+    .faq-item { border-bottom: 1px solid #eee; padding: 16px 0; }
+    .faq-q { font-weight: 700; color: #8a4b1c; margin-bottom: 6px; }
+    footer { background: #f7f4ef; padding: 28px 20px; text-align: center; font-size: 13px; color: #999; margin-top: 40px; }
+    .footer-links { margin-bottom: 12px; }
+    .footer-links a { color: #b5651d; margin: 0 8px; }
+    .footer-links a:hover { opacity: 0.7; }
+    @media (max-width: 600px) { body { font-size: 16px; } .hero h1 { font-size: 21px; } article h2 { font-size: 19px; } }
+  </style>
+</head>
+<body>
+
+  <nav class="breadcrumb">
+    <a href="../../">MC Labs</a> &rsaquo; <a href="../">パン計算ノート</a> &rsaquo; 型のサイズ換算
+  </nav>
+
+  <header class="hero">
+    <span class="hero-badge">パン作りの計算ガイド</span>
+    <h1>パンの型のサイズ換算<br>―― 容量計算と分量の合わせ方</h1>
+  </header>
+
+  <article>
+    <p class="lead">
+      「レシピは1斤型なのに、家にあるのは違うサイズの型……分量はどうすれば？」
+      パン作りで意外とつまずくのが、この<strong>型のサイズ違い</strong>です。
+      答えはシンプルで、<strong>型の容量の比で材料をスケールする</strong>だけ。
+      このページでは、型の容量の出し方と、分量の合わせ方を具体例つきで解説します。
+    </p>
+
+    <h2>1. 考え方：分量は「容量の比」で決まる</h2>
+    <p>パン生地は型の容量に対してちょうどよい量があります。型が変わったら、その<strong>容量の比</strong>を倍率にして、すべての材料を同じ倍率で増減させます。</p>
+    <div class="formula">倍率 ＝ 焼きたい型の容量 ÷ 元のレシピの型の容量</div>
+    <p>この倍率を、粉も水も塩もすべてに同じように掛ければ、配合バランスは崩れません（→ <a href="../bakers-percent/">ベーカーズパーセント</a> の考え方と同じ）。</p>
+
+    <h2>2. 型の容量（体積）を計算する</h2>
+    <p>型の容量は、内寸から体積を出します（cm³ ＝ mL）。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>型の種類</th><th>容量の計算式</th></tr></thead>
+        <tbody>
+          <tr><td>丸型</td><td>半径 × 半径 × 3.14 × 高さ</td></tr>
+          <tr><td>角型・スクエア型</td><td>縦 × 横 × 高さ</td></tr>
+          <tr><td>食パン型・パウンド型</td><td>縦 × 横 × 高さ</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note"><strong>食パン型のコツ：</strong>下より上が広い台形の型は、上の幅と下の幅の平均を「横」として使うと、近い容量になります。</div>
+
+    <h3>計算の例</h3>
+    <ul>
+      <li>丸型（直径18cm・高さ6cm）：9 × 9 × 3.14 × 6 ＝ 約1,526mL</li>
+      <li>角型（縦20 × 横20 × 高さ5cm）：20 × 20 × 5 ＝ 2,000mL</li>
+      <li>1斤食パン型（縦12.5 × 横9.5 × 高さ12cm）：約1,425〜1,700mL（型により差）</li>
+    </ul>
+
+    <h2>3. 分量を合わせる（具体例）</h2>
+    <p>「1斤型（容量1,700mL）のレシピを、容量2,000mLの角型で焼きたい」とします。</p>
+    <div class="formula">倍率 ＝ 2,000 ÷ 1,700 ＝ 約1.18倍</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>材料</th><th>元のレシピ</th><th>×1.18</th></tr></thead>
+        <tbody>
+          <tr><td>強力粉</td><td class="num">250g</td><td class="num">295g</td></tr>
+          <tr><td>水</td><td class="num">170g</td><td class="num">200g</td></tr>
+          <tr><td>塩</td><td class="num">5g</td><td class="num">6g</td></tr>
+          <tr><td>砂糖</td><td class="num">12g</td><td class="num">14g</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>このように全材料を同じ倍率で掛ければ、型に合った分量になります。逆に小さい型なら倍率が1未満になり、分量は減ります。</p>
+
+    <h2>4. 比容積（ふくらみ）も意識すると失敗しにくい</h2>
+    <p>より丁寧にやるなら「比容積（パンが焼き上がったときの、生地重量に対する体積）」を意識します。山食パンと角食パンでは膨らみ方が違うため、同じ容量でも狙う生地量が変わることがあります。</p>
+    <div class="note">まずは「容量比でスケール」で十分です。慣れてきたら、焼き上がりの詰まり具合を見て微調整しましょう。</div>
+
+    <div class="cta">
+      <h2>型の容量計算、アプリにまかせませんか</h2>
+      <p>型のサイズを入れるだけで容量を計算し、元の型との比から分量を自動スケール。<br>この「型換算」は <strong>パン計算ノート</strong> ならではの機能です。</p>
+      <ul>
+        <li>🍞 丸型・角型・食パン型の容量を自動計算</li>
+        <li>🔄 元の型との容量比で分量を自動スケール</li>
+        <li>🌾 ベーカーズ% ⇄ 実重量の双方向計算</li>
+        <li>💧 加水率の自動表示・レシピ保存</li>
+      </ul>
+      <a class="cta-btn" href="../">パン計算ノートを見る</a>
+      <p class="cta-note">⏳ 現在App Store審査中です</p>
+    </div>
+
+    <h2>よくある質問（FAQ）</h2>
+    <div class="faq-item">
+      <p class="faq-q">Q. 違う型でパンを焼くとき、分量はどう合わせますか？</p>
+      <p>A. 型の容量の比で材料をスケールします。「焼きたい型の容量 ÷ 元の型の容量」を倍率として、すべての材料に同じ倍率を掛ければOKです。たとえば容量が1.5倍の型なら、粉も水も塩もすべて1.5倍にします。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 丸型・角型・食パン型の容量はどう計算しますか？</p>
+      <p>A. 丸型は半径×半径×3.14×高さ、角型は縦×横×高さ、食パン型（パウンド型）も縦×横×高さで体積（cm³＝mL）を求めます。台形に近い食パン型は上下の幅の平均を使うと近い値になります。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 食パンの「1斤」はどのくらいの容量ですか？</p>
+      <p>A. 一般的な1斤型の容量はおおよそ1,700mL前後です。メーカーや型によって差があるため、正確には型の内寸（縦×横×高さ）から計算するのが確実です。</p>
+    </div>
+  </article>
+
+  <footer>
+    <div class="footer-links">
+      <a href="../">パン計算ノート</a>
+      <a href="../bakers-percent/">ベーカーズパーセントとは</a>
+      <a href="../kasui-ritsu/">加水率の計算と目安</a>
+      <a href="../../">MC Labs トップへ</a>
+    </div>
+    <p>© 2026 MC Labs. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

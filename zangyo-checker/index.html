@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>残業代チェッカー - 割増賃金をその場で自動計算｜未払い残業の検算アプリ</title>
+  <meta name="description" content="自分の残業代は正しく払われている？月給と残業時間を入れるだけで、平日25%・深夜・休日・月60時間超の割増を法律どおりに自動計算。記録不要・完全オフライン・広告なし。固定残業（みなし残業）の検算にも。">
+
+  <!-- OGP -->
+  <meta property="og:title" content="残業代チェッカー - 割増賃金をその場で自動計算">
+  <meta property="og:description" content="月給と残業時間を入れるだけで、平日25%・深夜・休日・月60時間超の割増を法律どおりに自動計算。記録不要・完全オフライン・広告なし。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/zangyo-checker/">
+  <meta property="og:locale" content="ja_JP">
+
+  <!-- canonical -->
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/zangyo-checker/">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+      font-size: 17px;
+      color: #1a1a1a;
+      background: #fff;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== パンくず ===== */
+    .breadcrumb {
+      padding: 12px 24px;
+      font-size: 13px;
+      color: #888;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .breadcrumb a { color: #2c4a7a; transition: opacity 0.2s; }
+    .breadcrumb a:hover { opacity: 0.7; }
+
+    /* ===== ヒーロー ===== */
+    .hero {
+      background: linear-gradient(160deg, #16233f 0%, #25426f 55%, #3a6fb0 100%);
+      color: #fff;
+      text-align: center;
+      padding: 60px 24px 48px;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 13px;
+      margin-bottom: 20px;
+      letter-spacing: 0.05em;
+    }
+    .hero h1 {
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.4;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .hero-sub {
+      font-size: 16px;
+      opacity: 0.92;
+      margin-bottom: 32px;
+      line-height: 1.65;
+    }
+
+    .app-store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #000;
+      color: #fff;
+      border-radius: 14px;
+      padding: 14px 28px;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 14px;
+      transition: opacity 0.2s;
+    }
+    .app-store-btn svg { width: 22px; height: 22px; fill: #fff; }
+    .app-store-btn.disabled { background: rgba(255,255,255,0.2); cursor: default; }
+    .review-note { font-size: 13px; opacity: 0.8; margin-bottom: 36px; }
+
+    .hero-screenshots {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      padding: 0 24px 12px;
+      scrollbar-width: none;
+    }
+    .hero-screenshots::-webkit-scrollbar { display: none; }
+    .screenshot-img {
+      width: 150px;
+      height: auto;
+      border-radius: 20px;
+      border: 2px solid rgba(255,255,255,0.25);
+      flex-shrink: 0;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      display: block;
+      scroll-snap-align: start;
+    }
+
+    /* ===== 課題提起 ===== */
+    .problem { background: #f6f8fb; padding: 56px 24px; text-align: center; }
+    .section-label {
+      display: inline-block;
+      color: #2c6cb0;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+    .section-title { font-size: 22px; font-weight: 800; line-height: 1.45; margin-bottom: 32px; }
+    .problem-list { list-style: none; max-width: 420px; margin: 0 auto 32px; text-align: left; }
+    .problem-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 14px 0; border-bottom: 1px solid #e6ebf2; font-size: 16px;
+    }
+    .problem-list li:last-child { border-bottom: none; }
+    .problem-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+    .problem-answer {
+      background: #fff; border: 2px solid #2c6cb0; border-radius: 16px;
+      padding: 24px 20px; max-width: 420px; margin: 0 auto;
+      font-size: 17px; font-weight: 600; line-height: 1.6; color: #1f4f86;
+    }
+
+    /* ===== 機能紹介 ===== */
+    .features { padding: 56px 24px; text-align: center; }
+    .feature-cards { display: flex; flex-direction: column; gap: 20px; max-width: 440px; margin: 0 auto; }
+    .feature-card {
+      background: #fff; border: 1px solid #eee; border-radius: 20px;
+      padding: 28px 24px; text-align: left; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .feature-icon-wrap {
+      width: 56px; height: 56px; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; margin-bottom: 16px;
+    }
+    .feature-icon-wrap.blue { background: #e6f0fd; }
+    .feature-icon-wrap.navy { background: #e4e9f3; }
+    .feature-icon-wrap.green { background: #e6f9ee; }
+    .feature-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+    .feature-card p { font-size: 15px; color: #555; line-height: 1.7; }
+    .sub-feature {
+      display: flex; align-items: flex-start; gap: 8px; margin-top: 14px;
+      padding: 12px 14px; background: #f0f5fc; border-radius: 10px;
+      font-size: 14px; color: #444; line-height: 1.6;
+    }
+    .sub-feature-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+    /* ===== 割増率テーブル ===== */
+    .rates { background: #f6f8fb; padding: 56px 24px; text-align: center; }
+    .rate-table-wrap { overflow-x: auto; max-width: 480px; margin: 0 auto; -webkit-overflow-scrolling: touch; }
+    .rate-table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 320px; }
+    .rate-table th, .rate-table td { border: 1px solid #dfe5ee; padding: 11px 12px; text-align: left; }
+    .rate-table th { background: #e9eff7; font-weight: 700; color: #1f4f86; }
+    .rate-table td:last-child { font-weight: 800; color: #2c6cb0; white-space: nowrap; }
+    .rates-note { font-size: 13px; color: #888; margin-top: 14px; }
+
+    /* ===== プレミアム ===== */
+    .premium {
+      background: linear-gradient(135deg, #16213e 0%, #1f3a5f 100%);
+      color: #fff; padding: 56px 24px; text-align: center;
+    }
+    .premium .section-label { color: #f9ca24; }
+    .premium .section-title { color: #fff; }
+    .premium-cards { display: flex; flex-direction: column; gap: 14px; max-width: 400px; margin: 0 auto 28px; }
+    .premium-card {
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 16px; padding: 20px; display: flex; align-items: center; gap: 16px; text-align: left;
+    }
+    .premium-card .emoji { font-size: 28px; flex-shrink: 0; }
+    .premium-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+    .premium-card p { font-size: 13px; opacity: 0.78; }
+    .price-box {
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px; padding: 22px 24px; max-width: 360px; margin: 0 auto 20px;
+    }
+    .price-row { display: flex; justify-content: space-between; align-items: center; }
+    .price-label { font-size: 15px; opacity: 0.85; }
+    .price-value { font-size: 22px; font-weight: 800; }
+    .price-tag { font-size: 12px; background: #f9ca24; color: #16213e; border-radius: 6px; padding: 2px 7px; font-weight: 700; margin-left: 6px; }
+    .free-note { font-size: 13px; opacity: 0.72; line-height: 1.6; }
+
+    /* ===== 関連ガイド ===== */
+    .guides { padding: 56px 24px; text-align: center; background: #fff; }
+    .guide-list { display: flex; flex-direction: column; gap: 14px; max-width: 480px; margin: 0 auto; }
+    .guide-card {
+      display: flex; align-items: center; gap: 14px; text-align: left;
+      background: #f6f8fb; border: 1px solid #e6ebf2; border-radius: 14px;
+      padding: 18px 20px; transition: border-color 0.2s, transform 0.2s;
+    }
+    .guide-card:hover { border-color: #2c6cb0; transform: translateY(-2px); }
+    .guide-emoji { font-size: 26px; flex-shrink: 0; }
+    .guide-text h4 { font-size: 16px; font-weight: 800; margin-bottom: 2px; color: #1f4f86; }
+    .guide-text p { font-size: 13px; color: #666; line-height: 1.5; }
+    .guide-arrow { margin-left: auto; color: #2c6cb0; font-weight: 800; flex-shrink: 0; }
+
+    /* ===== CTA ===== */
+    .cta { padding: 64px 24px; text-align: center; background: #f6f8fb; }
+    .cta .section-title { margin-bottom: 10px; }
+    .cta-sub { font-size: 15px; color: #666; margin-bottom: 28px; }
+    .cta .app-store-btn { font-size: 17px; padding: 18px 36px; border-radius: 16px; margin-bottom: 12px; }
+    .cta-note { font-size: 13px; color: #999; }
+
+    /* ===== フッター ===== */
+    footer { background: #1a1a1a; color: rgba(255,255,255,0.6); padding: 32px 24px; text-align: center; font-size: 13px; }
+    .footer-links { display: flex; justify-content: center; gap: 18px; margin-bottom: 16px; flex-wrap: wrap; }
+    .footer-links a { color: rgba(255,255,255,0.6); transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+    .disclaimer { font-size: 12px; opacity: 0.55; max-width: 600px; margin: 0 auto 16px; line-height: 1.6; }
+
+    @media (min-width: 600px) {
+      .hero h1 { font-size: 32px; }
+      .hero-screenshots { gap: 16px; }
+      .screenshot-img { width: 170px; }
+      .premium-cards { display: grid; grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 900px) {
+      .feature-cards { flex-direction: row; max-width: 860px; }
+      .feature-card { flex: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== パンくず ===== -->
+<nav class="breadcrumb">
+  <a href="../">MC Labs</a> &rsaquo; 残業代チェッカー
+</nav>
+
+<!-- ===== ヒーロー ===== -->
+<section class="hero">
+  <div class="hero-badge">💴 iPhone対応 · ファイナンス</div>
+  <h1>その残業代、<br>本当に正しく払われていますか？</h1>
+  <p class="hero-sub">
+    月給と残業時間を入れるだけ。<br>
+    平日25%・深夜・休日・月60時間超の割増を<br>
+    法律どおりに自動計算。記録は一切不要。
+  </p>
+  <span class="app-store-btn disabled">
+    <svg viewBox="0 0 814 1000"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.3 134.4-316.7 266.8-316.7 99.8 0 162.6 64.8 212.7 64.8 46.2 0 121.2-68.8 228.5-68.8zm-88-174c43.8-51.7 74.6-123.5 74.6-195.3 0-10.3-.6-20.7-2.6-29.2-70.7 2.6-154.7 47.1-204.7 107.2-38.4 44.4-75.9 116.2-75.9 189 0 11.6 1.9 23.2 2.6 26.9 4.5.6 11.6 1.9 18.7 1.9 63.5 0 143.9-42.5 187.3-100.5z"/></svg>
+    App Store 審査中
+  </span>
+  <p class="review-note">⏳ ただいまApp Store審査中です。公開までもう少しお待ちください。</p>
+  <div class="hero-screenshots">
+    <img class="screenshot-img" src="./images/01_home.png" alt="残業代チェッカー 入力画面">
+    <img class="screenshot-img" src="./images/02_result.png" alt="残業代チェッカー 計算結果画面">
+    <img class="screenshot-img" src="./images/03_breakdown.png" alt="残業代チェッカー 内訳・根拠画面">
+    <img class="screenshot-img" src="./images/04_records.png" alt="残業代チェッカー 月間記録画面">
+    <img class="screenshot-img" src="./images/05_trust.png" alt="残業代チェッカー 安心ポイント">
+  </div>
+</section>
+
+<!-- ===== 課題提起 ===== -->
+<section class="problem">
+  <div class="section-label">こんなモヤモヤありませんか？</div>
+  <h2 class="section-title">給与明細を見ても、<br>残業代が合っているか分からない</h2>
+  <ul class="problem-list">
+    <li><span class="problem-icon">🤔</span><span>固定残業代（みなし残業）で、本当に足りているのか確かめたい</span></li>
+    <li><span class="problem-icon">🧮</span><span>割増率（25%・深夜・休日・月60時間超）の計算が複雑でよく分からない</span></li>
+    <li><span class="problem-icon">📅</span><span>勤怠アプリのように毎日記録するのは面倒。今すぐ答えだけ知りたい</span></li>
+    <li><span class="problem-icon">💸</span><span>「1時間の残業がいくらか」を、自分で検算できる形で見たい</span></li>
+  </ul>
+  <div class="problem-answer">
+    残業代チェッカーが<br>その場で答えを出します。
+  </div>
+</section>
+
+<!-- ===== 機能紹介 ===== -->
+<section class="features">
+  <div class="section-label">主な機能</div>
+  <h2 class="section-title">記録ゼロ。<br>入れた瞬間に答えが出る</h2>
+  <div class="feature-cards">
+
+    <div class="feature-card">
+      <div class="feature-icon-wrap blue">⏱</div>
+      <h3>基礎時給を自動算出</h3>
+      <p>月給と所定労働時間を入れるだけで、残業代の単価になる「基礎時給」を自動計算。手当の扱いまで意識せずに、まず正しい土台が出ます。</p>
+      <div class="sub-feature">
+        <span class="sub-feature-icon">💡</span>
+        <span><strong>「あなたの1時間の残業＝◯◯円」</strong>をひと目で表示します。</span>
+      </div>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-wrap navy">⚖️</div>
+      <h3>法定の割増を正確に計算</h3>
+      <p>平日の残業（25%）、深夜（+25%）、法定休日（35%）、休日深夜の重複割増、月60時間超の追加割増（+25%）まで、2023年改正に対応して自動計算します。</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-wrap green">🔍</div>
+      <h3>根拠を展開して検算できる</h3>
+      <p>時給・割増率・内訳を展開して表示。「なぜこの金額になるか」が分かるので、給与明細と突き合わせて自分で検算できます。</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== 割増率テーブル ===== -->
+<section class="rates">
+  <div class="section-label">割増率の早見表</div>
+  <h2 class="section-title">法律で決まっている割増率</h2>
+  <div class="rate-table-wrap">
+    <table class="rate-table">
+      <thead><tr><th>労働の種類</th><th>割増率</th></tr></thead>
+      <tbody>
+        <tr><td>時間外労働（平日の残業）</td><td>25%以上</td></tr>
+        <tr><td>深夜労働（22時〜翌5時）</td><td>+25%以上</td></tr>
+        <tr><td>法定休日労働</td><td>35%以上</td></tr>
+        <tr><td>月60時間超の時間外労働</td><td>50%以上</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="rates-note">※ 2023年4月の改正（中小企業の月60時間超50%）に対応しています。</p>
+</section>
+
+<!-- ===== プレミアム ===== -->
+<section class="premium">
+  <div class="section-label">プレミアム（買い切り）</div>
+  <h2 class="section-title">毎月を記録して、<br>「もらえているはず」との差を見える化</h2>
+  <div class="premium-cards">
+    <div class="premium-card">
+      <span class="emoji">📈</span>
+      <div><h4>毎月の残業代を記録</h4><p>累計で残業代を見える化</p></div>
+    </div>
+    <div class="premium-card">
+      <span class="emoji">🧾</span>
+      <div><h4>差額を整理して把握</h4><p>「もらえているはず」との差を確認</p></div>
+    </div>
+    <div class="premium-card">
+      <span class="emoji">💾</span>
+      <div><h4>給与パターンを保存</h4><p>昇給・転職にも対応</p></div>
+    </div>
+    <div class="premium-card">
+      <span class="emoji">🚫</span>
+      <div><h4>広告なし・追加課金なし</h4><p>買い切りだから安心</p></div>
+    </div>
+  </div>
+  <div class="price-box">
+    <div class="price-row">
+      <span class="price-label">プレミアム（買い切り）</span>
+      <span class="price-value">¥600<span class="price-tag">一度きり</span></span>
+    </div>
+  </div>
+  <p class="free-note">※ 基礎時給の算出・割増計算・1時間あたりの残業代表示は<br>無料でご利用いただけます。</p>
+</section>
+
+<!-- ===== 関連ガイド ===== -->
+<section class="guides">
+  <div class="section-label">残業代がわかるガイド</div>
+  <h2 class="section-title">仕組みを知りたい方へ</h2>
+  <div class="guide-list">
+    <a href="./zandai-keisan/" class="guide-card">
+      <span class="guide-emoji">🧮</span>
+      <div class="guide-text">
+        <h4>残業代の正しい計算方法</h4>
+        <p>基礎時給の出し方から割増率の掛け方まで、計算式と具体例で解説</p>
+      </div>
+      <span class="guide-arrow">&rsaquo;</span>
+    </a>
+    <a href="./miharai-zangyo/" class="guide-card">
+      <span class="guide-emoji">🔎</span>
+      <div class="guide-text">
+        <h4>未払い残業代の見分け方</h4>
+        <p>固定残業（みなし残業）で「足りているか」を自分で確認する手順</p>
+      </div>
+      <span class="guide-arrow">&rsaquo;</span>
+    </a>
+    <a href="./kiso-jikyu/" class="guide-card">
+      <span class="guide-emoji">⏱</span>
+      <div class="guide-text">
+        <h4>基礎時給（残業単価）の計算方法</h4>
+        <p>月給のどこまでが対象？除外できる手当は？単価のミスを防ぐ基礎知識</p>
+      </div>
+      <span class="guide-arrow">&rsaquo;</span>
+    </a>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta">
+  <h2 class="section-title">公開をお待ちください</h2>
+  <p class="cta-sub">残業代チェッカーは現在App Store審査中です。<br>公開され次第、こちらからダウンロードいただけます。</p>
+  <span class="app-store-btn disabled">
+    <svg viewBox="0 0 814 1000" width="24" height="24" fill="white"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.3 134.4-316.7 266.8-316.7 99.8 0 162.6 64.8 212.7 64.8 46.2 0 121.2-68.8 228.5-68.8zm-88-174c43.8-51.7 74.6-123.5 74.6-195.3 0-10.3-.6-20.7-2.6-29.2-70.7 2.6-154.7 47.1-204.7 107.2-38.4 44.4-75.9 116.2-75.9 189 0 11.6 1.9 23.2 2.6 26.9 4.5.6 11.6 1.9 18.7 1.9 63.5 0 143.9-42.5 187.3-100.5z"/></svg>
+    App Store 審査中
+  </span>
+  <p class="cta-note">iPhone対応 · 完全オフライン · 広告なし</p>
+</section>
+
+<!-- ===== フッター ===== -->
+<footer>
+  <div class="footer-links">
+    <a href="../">MC Labs トップへ</a>
+    <a href="../ketsuatsu-ai/">血圧手帳AI</a>
+    <a href="../pan-keisan/">パン計算ノート</a>
+    <a href="../mahjong-fu-keisan/">麻雀点数ノート</a>
+    <a href="mailto:chimasaki31@gmail.com">お問い合わせ</a>
+  </div>
+  <p class="disclaimer">
+    ※ 残業代チェッカーは残業代の「計算と整理」を補助するアプリです。法的な助言や、未払い請求ができるかどうかの判断は行いません。実際の支給額は就業規則・手当の範囲・端数処理などにより異なる場合があります。正確な取り扱いは勤務先や専門家にご確認ください。
+  </p>
+  <p>© 2026 MC Labs. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

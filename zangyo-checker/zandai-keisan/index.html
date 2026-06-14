@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>残業代の計算方法を初心者向けに解説｜割増率25%・深夜・休日・月60時間超の出し方</title>
+  <meta name="description" content="残業代の正しい計算方法を初心者向けに解説。基礎時給の出し方、平日25%・深夜+25%・法定休日35%・月60時間超50%の割増率の掛け方を、計算式と具体例つきで紹介。固定残業の検算にも。">
+
+  <!-- OGP -->
+  <meta property="og:title" content="残業代の計算方法を初心者向けに解説｜割増率と具体例">
+  <meta property="og:description" content="基礎時給の出し方から割増率の掛け方まで、残業代の計算を計算式と具体例で解説。深夜・休日・月60時間超の割増にも対応。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/zangyo-checker/zandai-keisan/">
+  <meta property="og:locale" content="ja_JP">
+
+  <!-- canonical -->
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/zangyo-checker/zandai-keisan/">
+
+  <!-- Article schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "残業代の計算方法を初心者向けに解説｜割増率25%・深夜・休日・月60時間超の出し方",
+    "description": "残業代の正しい計算方法を初心者向けに解説。基礎時給の出し方、平日25%・深夜+25%・法定休日35%・月60時間超50%の割増率の掛け方を計算式と具体例つきで紹介。",
+    "inLanguage": "ja",
+    "author": { "@type": "Organization", "name": "MC Labs" },
+    "publisher": { "@type": "Organization", "name": "MC Labs" },
+    "mainEntityOfPage": "https://chimasaki31-lab.github.io/zangyo-checker/zandai-keisan/"
+  }
+  </script>
+
+  <!-- FAQ schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "残業代の計算で基礎時給に含めない手当はありますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "通勤手当・家族手当・住宅手当・別居手当・子女教育手当、臨時に支払われる賃金、1か月を超える期間ごとに支払われる賃金（賞与など）は、原則として基礎時給の計算から除外できます。これら以外の手当は基本給に含めて計算するのが原則です。" }
+      },
+      {
+        "@type": "Question",
+        "name": "深夜の残業は割増が二重にかかりますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "はい。22時〜翌5時の時間帯に時間外労働をした場合、時間外の25%と深夜の25%が合算され、合計50%以上の割増になります。法定休日の深夜なら35%+25%で60%以上です。" }
+      },
+      {
+        "@type": "Question",
+        "name": "月の所定労働時間はどう求めますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "「(365日 − 年間休日日数) × 1日の所定労働時間 ÷ 12か月」で1か月平均の所定労働時間が出ます。基礎時給は月給をこの平均所定労働時間で割って求めます。" }
+      },
+      {
+        "@type": "Question",
+        "name": "固定残業代があると残業代は出ませんか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "固定残業代は「あらかじめ一定時間分の残業代を払っておく」制度です。実際の残業がその時間を超えれば、超過分は追加で支払われる必要があります。まず実際の残業代を計算し、固定残業代の額と比べることで過不足を確認できます。" }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+      font-size: 17px; color: #1a1a1a; background: #fff; line-height: 1.8;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .breadcrumb { padding: 12px 20px; font-size: 13px; color: #888; border-bottom: 1px solid #f0f0f0; }
+    .breadcrumb a { color: #2c4a7a; }
+    .breadcrumb a:hover { opacity: 0.7; }
+
+    .hero {
+      background: linear-gradient(160deg, #16233f 0%, #25426f 55%, #3a6fb0 100%);
+      color: #fff; padding: 48px 20px 40px; text-align: center;
+    }
+    .hero-badge {
+      display: inline-block; background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.4); border-radius: 20px;
+      padding: 4px 14px; font-size: 13px; margin-bottom: 18px; letter-spacing: 0.05em;
+    }
+    .hero h1 { font-size: 25px; font-weight: 800; line-height: 1.45; letter-spacing: -0.01em; max-width: 720px; margin: 0 auto; }
+
+    article { max-width: 760px; margin: 0 auto; padding: 32px 20px 16px; }
+    .lead {
+      background: #f0f5fc; border-left: 4px solid #2c6cb0; padding: 16px 18px;
+      border-radius: 0 8px 8px 0; font-size: 16px; color: #333; margin-bottom: 32px;
+    }
+    article h2 { font-size: 21px; font-weight: 800; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid #2c6cb0; color: #1f4f86; }
+    article h3 { font-size: 18px; font-weight: 700; margin: 28px 0 12px; color: #2c6cb0; }
+    article p { margin-bottom: 16px; }
+    article ul, article ol { margin: 0 0 16px 1.4em; }
+    article li { margin-bottom: 6px; }
+
+    .note { background: #fff8e6; border-left: 4px solid #e0a800; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 15px; margin: 16px 0; }
+
+    .table-wrap { overflow-x: auto; margin: 16px 0 20px; -webkit-overflow-scrolling: touch; }
+    table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 360px; }
+    th, td { border: 1px solid #dfe5ee; padding: 9px 12px; text-align: left; }
+    th { background: #e9eff7; font-weight: 700; color: #1f4f86; }
+    tbody tr:nth-child(even) { background: #fafbfd; }
+
+    .formula {
+      background: #16233f; color: #cfe0f5; padding: 14px 18px; border-radius: 8px;
+      font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 15px; margin: 16px 0; overflow-x: auto; line-height: 1.7;
+    }
+
+    .cta {
+      background: linear-gradient(160deg, #16233f 0%, #25426f 100%);
+      color: #fff; border-radius: 16px; padding: 28px 24px; margin: 40px 0; text-align: center;
+    }
+    .cta h2 { border: none; color: #fff; margin: 0 0 12px; font-size: 20px; }
+    .cta ul { text-align: left; max-width: 440px; margin: 0 auto 22px; list-style: none; }
+    .cta li { margin-bottom: 8px; }
+    .cta-btn {
+      display: inline-block; background: #fff; color: #1f4f86; font-weight: 800;
+      padding: 14px 32px; border-radius: 30px; font-size: 16px; transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .cta-note { font-size: 13px; opacity: 0.8; margin-top: 14px; margin-bottom: 0; }
+
+    .faq-item { border-bottom: 1px solid #eee; padding: 16px 0; }
+    .faq-q { font-weight: 700; color: #1f4f86; margin-bottom: 6px; }
+
+    footer { background: #f7f7f7; padding: 28px 20px; text-align: center; font-size: 13px; color: #888; margin-top: 40px; }
+    .footer-links { margin-bottom: 12px; }
+    .footer-links a { color: #2c6cb0; margin: 0 8px; }
+    .footer-links a:hover { opacity: 0.7; }
+    .disclaimer { font-size: 12px; color: #aaa; max-width: 620px; margin: 0 auto 12px; line-height: 1.6; }
+
+    @media (max-width: 600px) {
+      body { font-size: 16px; }
+      .hero h1 { font-size: 21px; }
+      article h2 { font-size: 19px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="breadcrumb">
+    <a href="../../">MC Labs</a> &rsaquo; <a href="../">残業代チェッカー</a> &rsaquo; 残業代の計算方法
+  </nav>
+
+  <header class="hero">
+    <span class="hero-badge">残業代がわかるガイド</span>
+    <h1>残業代の計算方法を初心者向けに解説<br>―― 割増率・計算式・具体例つき</h1>
+  </header>
+
+  <article>
+    <p class="lead">
+      「自分の残業代って、ちゃんと払われているのかな？」と思っても、
+      いざ計算しようとすると割増率が複雑でよく分からない――。
+      このページは、<strong>残業代の計算を「基礎時給 → 割増率 → 時間」の3ステップ</strong>に分けて、
+      計算式と具体例でやさしく解説します。最後に、入力するだけで自動計算する方法も紹介します。
+    </p>
+
+    <h2>この記事でわかること</h2>
+    <ul>
+      <li>残業代は「基礎時給 × 割増率 × 残業時間」で決まること</li>
+      <li>基礎時給（残業の単価）の出し方</li>
+      <li>平日25%・深夜・休日・月60時間超50%の割増率の使い分け</li>
+      <li>深夜残業・休日残業で割増が重なるときの考え方</li>
+      <li>具体例で実際に計算する流れ／自動で計算する方法</li>
+    </ul>
+
+    <h2>1. 残業代は「単価 × 割増率 × 時間」で決まる</h2>
+    <p>残業代の基本の形は、とてもシンプルです。</p>
+    <div class="formula">残業代 ＝ 基礎時給 × 割増率 × 残業した時間</div>
+    <p>つまり、必要なのは次の3つだけです。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>要素</th><th>意味</th></tr></thead>
+        <tbody>
+          <tr><td>基礎時給</td><td>残業1時間あたりの「もとの単価」。月給から計算する</td></tr>
+          <tr><td>割増率</td><td>平日25%・深夜・休日・月60時間超など、労働の種類で変わる</td></tr>
+          <tr><td>残業した時間</td><td>その種類ごとに、何時間働いたか</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note"><strong>つまずきポイントは2つ：</strong>「基礎時給をいくらにするか」と「どの割増率を掛けるか」。この記事はこの2つを順番に解説します。</div>
+
+    <h2>2. 基礎時給（残業の単価）を出す</h2>
+    <p>残業代のもとになる時給は、月給をそのまま時間で割って求めます。</p>
+    <div class="formula">基礎時給 ＝ 月給（対象部分） ÷ 1か月の平均所定労働時間</div>
+    <p>「1か月の平均所定労働時間」は、次の式で求められます。</p>
+    <div class="formula">月平均所定労働時間 ＝ (365 − 年間休日日数) × 1日の所定労働時間 ÷ 12</div>
+
+    <h3>例：月給25万円・年間休日120日・1日8時間の場合</h3>
+    <ul>
+      <li>月平均所定労働時間 ＝ (365 − 120) × 8 ÷ 12 ＝ 約163.3時間</li>
+      <li>基礎時給 ＝ 250,000 ÷ 163.3 ＝ <strong>約1,531円</strong></li>
+    </ul>
+    <div class="note"><strong>注意：</strong>月給のうち、通勤手当・家族手当・住宅手当などは基礎時給の計算から除外できます（詳しくは <a href="../kiso-jikyu/">基礎時給の計算方法</a> を参照）。</div>
+
+    <h2>3. 割増率を正しく使い分ける</h2>
+    <p>残業の「種類」によって、掛ける割増率が変わります。法律で定められた最低ラインは次のとおりです。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>労働の種類</th><th>割増率</th><th>補足</th></tr></thead>
+        <tbody>
+          <tr><td>時間外労働（平日の残業）</td><td><strong>25%以上</strong></td><td>1日8時間・週40時間を超えた分</td></tr>
+          <tr><td>深夜労働</td><td><strong>+25%以上</strong></td><td>22時〜翌5時の時間帯</td></tr>
+          <tr><td>法定休日労働</td><td><strong>35%以上</strong></td><td>週1日の法定休日に働いた分</td></tr>
+          <tr><td>月60時間超の時間外労働</td><td><strong>50%以上</strong></td><td>2023年4月から中小企業も対象</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>割増は「重なる」ことがある</h3>
+    <p>深夜や休日は、時間外と<strong>重なって合算</strong>されます。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>状況</th><th>合計の割増率</th></tr></thead>
+        <tbody>
+          <tr><td>平日の残業（通常）</td><td>25%</td></tr>
+          <tr><td>平日の深夜残業（22時以降）</td><td>25% + 25% ＝ <strong>50%</strong></td></tr>
+          <tr><td>法定休日の労働</td><td>35%</td></tr>
+          <tr><td>法定休日の深夜労働</td><td>35% + 25% ＝ <strong>60%</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note"><strong>よくある誤解：</strong>「休日に残業したから25%＋35%」ではありません。法定休日労働はもともと35%で、時間外（25%）とは重ねません。重なるのは「休日＋深夜」「時間外＋深夜」の組み合わせです。</div>
+
+    <h2>4. 具体例で計算してみる</h2>
+    <p>基礎時給を「1,531円」として、いくつかのパターンを計算します。</p>
+
+    <h3>例1：平日の残業を10時間</h3>
+    <ul>
+      <li>1,531円 × 1.25 × 10時間 ＝ <strong>約19,138円</strong></li>
+    </ul>
+
+    <h3>例2：平日の深夜残業を5時間</h3>
+    <ul>
+      <li>1,531円 × 1.50 × 5時間 ＝ <strong>約11,483円</strong></li>
+    </ul>
+
+    <h3>例3：法定休日に8時間（うち深夜2時間）</h3>
+    <ul>
+      <li>昼間6時間：1,531円 × 1.35 × 6 ＝ 約12,401円</li>
+      <li>深夜2時間：1,531円 × 1.60 × 2 ＝ 約4,899円</li>
+      <li>合計 <strong>約17,300円</strong></li>
+    </ul>
+
+    <h3>月60時間を超えたら</h3>
+    <p>1か月の時間外労働が60時間を超えた場合、超えた分は割増率が<strong>50%</strong>に上がります。たとえば月70時間の残業なら、60時間までは25%、残り10時間は50%で計算します。</p>
+
+    <div class="cta">
+      <h2>「毎回これを計算するのは大変」と思った人へ</h2>
+      <p>割増の重なりや月60時間超の判定まで手で計算するのは大きな負担です。<br>月給と残業時間を入れるだけで、ここまでの計算をすべて自動で行う <strong>残業代チェッカー</strong> を作りました。</p>
+      <ul>
+        <li>💴 基礎時給を月給から自動算出</li>
+        <li>⚖️ 平日・深夜・休日・月60時間超の割増を自動計算</li>
+        <li>🔍 計算の根拠を展開表示。給与明細と突き合わせて検算できる</li>
+        <li>🚫 記録不要・完全オフライン・広告なし</li>
+      </ul>
+      <a class="cta-btn" href="../">残業代チェッカーを見る</a>
+      <p class="cta-note">⏳ 現在App Store審査中です</p>
+    </div>
+
+    <h2>よくある質問（FAQ）</h2>
+    <div class="faq-item">
+      <p class="faq-q">Q. 残業代の計算で基礎時給に含めない手当はありますか？</p>
+      <p>A. 通勤手当・家族手当・住宅手当・別居手当・子女教育手当、臨時に支払われる賃金、1か月を超える期間ごとに支払われる賃金（賞与など）は、原則として基礎時給の計算から除外できます。これら以外の手当は基本給に含めて計算するのが原則です。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 深夜の残業は割増が二重にかかりますか？</p>
+      <p>A. はい。22時〜翌5時の時間帯に時間外労働をした場合、時間外の25%と深夜の25%が合算され、合計50%以上の割増になります。法定休日の深夜なら35%+25%で60%以上です。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 月の所定労働時間はどう求めますか？</p>
+      <p>A. 「(365日 − 年間休日日数) × 1日の所定労働時間 ÷ 12か月」で1か月平均の所定労働時間が出ます。基礎時給は月給をこの平均所定労働時間で割って求めます。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 固定残業代があると残業代は出ませんか？</p>
+      <p>A. 固定残業代は「あらかじめ一定時間分の残業代を払っておく」制度です。実際の残業がその時間を超えれば、超過分は追加で支払われる必要があります。まず実際の残業代を計算し、固定残業代の額と比べることで過不足を確認できます（→ <a href="../miharai-zangyo/">未払い残業代の見分け方</a>）。</p>
+    </div>
+  </article>
+
+  <footer>
+    <div class="footer-links">
+      <a href="../">残業代チェッカー</a>
+      <a href="../miharai-zangyo/">未払い残業代の見分け方</a>
+      <a href="../kiso-jikyu/">基礎時給の計算方法</a>
+      <a href="../../">MC Labs トップへ</a>
+    </div>
+    <p class="disclaimer">
+      ※ 本記事は残業代の計算の考え方を一般的に解説するものです。法的な助言ではありません。実際の取り扱いは就業規則・手当の範囲・端数処理などにより異なる場合があります。正確な金額や請求の可否は勤務先や専門家にご確認ください。
+    </p>
+    <p>© 2026 MC Labs. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>未払い残業代の見分け方｜固定残業・みなし残業で「足りているか」を自分で確認する手順</title>
+  <meta name="description" content="固定残業代（みなし残業）で本当に足りている？未払い残業の有無を自分で確認するための手順を解説。給与明細の見方、固定残業時間の確認、実際の残業代との比較のしかたを具体例つきで紹介。">
+
+  <!-- OGP -->
+  <meta property="og:title" content="未払い残業代の見分け方｜自分で確認する手順">
+  <meta property="og:description" content="固定残業代で足りているかを自分で確認する手順。給与明細の見方、固定残業時間の確認、実際の残業代との比較を具体例つきで解説。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/zangyo-checker/miharai-zangyo/">
+  <meta property="og:locale" content="ja_JP">
+
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/zangyo-checker/miharai-zangyo/">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "未払い残業代の見分け方｜固定残業・みなし残業で「足りているか」を自分で確認する手順",
+    "description": "固定残業代（みなし残業）で本当に足りているか、未払い残業の有無を自分で確認するための手順を解説。給与明細の見方、固定残業時間の確認、実際の残業代との比較を具体例つきで紹介。",
+    "inLanguage": "ja",
+    "author": { "@type": "Organization", "name": "MC Labs" },
+    "publisher": { "@type": "Organization", "name": "MC Labs" },
+    "mainEntityOfPage": "https://chimasaki31-lab.github.io/zangyo-checker/miharai-zangyo/"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "固定残業代（みなし残業）があれば、それ以上は払われないのですか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "いいえ。固定残業代は「一定時間分の残業代を前払いしておく」制度です。実際の残業がその時間を超えた場合、超過分は別途支払われるのが原則です。まず固定残業が何時間分なのかを確認し、実際の残業時間と比べることが出発点になります。" }
+      },
+      {
+        "@type": "Question",
+        "name": "給与明細のどこを見れば固定残業時間がわかりますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "「固定残業手当」「みなし残業手当」「営業手当（◯時間分）」などの名称で記載されることが多いです。雇用契約書や就業規則に『◯時間分の時間外手当を含む』と書かれている場合もあります。金額と対応する時間数の両方を確認しましょう。" }
+      },
+      {
+        "@type": "Question",
+        "name": "自分で計算した残業代と給与明細が合いません。どうすればいいですか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "まずは基礎時給の対象範囲や割増率の適用、残業時間の集計に行き違いがないかを確認します。それでも差がある場合は、計算の根拠を整理したうえで、勤務先の担当部署や労働基準監督署、専門家に相談するのが確実です。" }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif; font-size: 17px; color: #1a1a1a; background: #fff; line-height: 1.8; }
+    a { color: inherit; text-decoration: none; }
+    .breadcrumb { padding: 12px 20px; font-size: 13px; color: #888; border-bottom: 1px solid #f0f0f0; }
+    .breadcrumb a { color: #2c4a7a; }
+    .breadcrumb a:hover { opacity: 0.7; }
+    .hero { background: linear-gradient(160deg, #16233f 0%, #25426f 55%, #3a6fb0 100%); color: #fff; padding: 48px 20px 40px; text-align: center; }
+    .hero-badge { display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.4); border-radius: 20px; padding: 4px 14px; font-size: 13px; margin-bottom: 18px; letter-spacing: 0.05em; }
+    .hero h1 { font-size: 25px; font-weight: 800; line-height: 1.45; letter-spacing: -0.01em; max-width: 720px; margin: 0 auto; }
+    article { max-width: 760px; margin: 0 auto; padding: 32px 20px 16px; }
+    .lead { background: #f0f5fc; border-left: 4px solid #2c6cb0; padding: 16px 18px; border-radius: 0 8px 8px 0; font-size: 16px; color: #333; margin-bottom: 32px; }
+    article h2 { font-size: 21px; font-weight: 800; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid #2c6cb0; color: #1f4f86; }
+    article h3 { font-size: 18px; font-weight: 700; margin: 28px 0 12px; color: #2c6cb0; }
+    article p { margin-bottom: 16px; }
+    article ul, article ol { margin: 0 0 16px 1.4em; }
+    article li { margin-bottom: 6px; }
+    .note { background: #fff8e6; border-left: 4px solid #e0a800; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 15px; margin: 16px 0; }
+    .table-wrap { overflow-x: auto; margin: 16px 0 20px; -webkit-overflow-scrolling: touch; }
+    table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 360px; }
+    th, td { border: 1px solid #dfe5ee; padding: 9px 12px; text-align: left; }
+    th { background: #e9eff7; font-weight: 700; color: #1f4f86; }
+    tbody tr:nth-child(even) { background: #fafbfd; }
+    .formula { background: #16233f; color: #cfe0f5; padding: 14px 18px; border-radius: 8px; font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 15px; margin: 16px 0; overflow-x: auto; line-height: 1.7; }
+    .steps { counter-reset: step; list-style: none; margin: 16px 0 20px 0; padding: 0; }
+    .steps li { position: relative; padding: 4px 0 16px 44px; margin: 0; }
+    .steps li::before { counter-increment: step; content: counter(step); position: absolute; left: 0; top: 2px; width: 30px; height: 30px; background: #2c6cb0; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; }
+    .cta { background: linear-gradient(160deg, #16233f 0%, #25426f 100%); color: #fff; border-radius: 16px; padding: 28px 24px; margin: 40px 0; text-align: center; }
+    .cta h2 { border: none; color: #fff; margin: 0 0 12px; font-size: 20px; }
+    .cta ul { text-align: left; max-width: 440px; margin: 0 auto 22px; list-style: none; }
+    .cta li { margin-bottom: 8px; }
+    .cta-btn { display: inline-block; background: #fff; color: #1f4f86; font-weight: 800; padding: 14px 32px; border-radius: 30px; font-size: 16px; transition: transform 0.15s, box-shadow 0.15s; }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .cta-note { font-size: 13px; opacity: 0.8; margin-top: 14px; margin-bottom: 0; }
+    .faq-item { border-bottom: 1px solid #eee; padding: 16px 0; }
+    .faq-q { font-weight: 700; color: #1f4f86; margin-bottom: 6px; }
+    footer { background: #f7f7f7; padding: 28px 20px; text-align: center; font-size: 13px; color: #888; margin-top: 40px; }
+    .footer-links { margin-bottom: 12px; }
+    .footer-links a { color: #2c6cb0; margin: 0 8px; }
+    .footer-links a:hover { opacity: 0.7; }
+    .disclaimer { font-size: 12px; color: #aaa; max-width: 620px; margin: 0 auto 12px; line-height: 1.6; }
+    @media (max-width: 600px) { body { font-size: 16px; } .hero h1 { font-size: 21px; } article h2 { font-size: 19px; } }
+  </style>
+</head>
+<body>
+
+  <nav class="breadcrumb">
+    <a href="../../">MC Labs</a> &rsaquo; <a href="../">残業代チェッカー</a> &rsaquo; 未払い残業代の見分け方
+  </nav>
+
+  <header class="hero">
+    <span class="hero-badge">残業代がわかるガイド</span>
+    <h1>未払い残業代の見分け方<br>―― 「足りているか」を自分で確認する手順</h1>
+  </header>
+
+  <article>
+    <p class="lead">
+      「固定残業代がついているから、残業代はこれで全部だよね？」
+      ――そう思い込んだまま、実際には<strong>残業が固定分を超えている</strong>ケースは珍しくありません。
+      このページは、未払い残業の有無を<strong>自分で確認・整理するための手順</strong>を、給与明細の見方から順に解説します。
+    </p>
+
+    <div class="note">
+      <strong>はじめに：</strong>この記事は「計算して整理する」ための考え方を紹介するものです。請求できるかどうかの法的判断は行いません。気になる点があれば、勤務先の担当部署・労働基準監督署・専門家にご相談ください。
+    </div>
+
+    <h2>未払いが起きやすい3つのパターン</h2>
+    <ul>
+      <li><strong>固定残業（みなし残業）の超過分が払われていない</strong>：固定分は◯時間まで。それを超えた残業が別途支払われていない</li>
+      <li><strong>割増率の取り違え</strong>：深夜や休日の重なり（合算）が反映されていない</li>
+      <li><strong>残業時間の集計漏れ</strong>：始業前の準備時間や持ち帰り作業などが時間に入っていない</li>
+    </ul>
+
+    <h2>確認の手順</h2>
+    <ol class="steps">
+      <li><strong>給与明細・契約書で「固定残業の時間数」を確認する</strong><br>「固定残業手当」「みなし残業」「営業手当（◯時間分）」などの記載と、その金額・対応時間を確認します。</li>
+      <li><strong>その月に実際に何時間残業したかを集計する</strong><br>平日・深夜・休日に分けて、種類ごとの時間を出します。</li>
+      <li><strong>実際の残業代を計算する</strong><br>「基礎時給 × 割増率 × 時間」で、種類ごとに合計します（→ <a href="../zandai-keisan/">残業代の計算方法</a>）。</li>
+      <li><strong>固定残業代の額と比べる</strong><br>実際の残業代が固定分を上回っていれば、その差が「本来追加で支払われるはずの目安」になります。</li>
+    </ol>
+
+    <h2>具体例で比べてみる</h2>
+    <p>基礎時給1,531円、固定残業手当が「20時間分＝30,620円」と仮定します。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>項目</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td>固定残業（契約）</td><td>20時間分 ＝ 30,620円（1,531 × 1.25 × 20）</td></tr>
+          <tr><td>今月の実際の残業</td><td>平日35時間</td></tr>
+          <tr><td>実際の残業代</td><td>1,531 × 1.25 × 35 ＝ 約66,981円</td></tr>
+          <tr><td>差額の目安</td><td>66,981 − 30,620 ＝ <strong>約36,361円</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>このように、固定残業の「時間数」を超えた分は、本来別途計算されるべき金額として浮かび上がります。まずは<strong>事実を数字で整理する</strong>ことが第一歩です。</p>
+
+    <div class="note"><strong>ポイント：</strong>固定残業代は「払わなくていい」という制度ではなく、「先に一定時間分を払っておく」制度です。超えた分まで含まれているわけではない、という点を押さえておきましょう。</div>
+
+    <div class="cta">
+      <h2>まずは「実際の残業代」を数字にしてみる</h2>
+      <p>差額を確認するには、実際の残業代を正確に出すのが出発点です。<br>月給と残業時間を入れるだけで自動計算し、根拠まで展開できる <strong>残業代チェッカー</strong> が役立ちます。</p>
+      <ul>
+        <li>⚖️ 平日・深夜・休日・月60時間超の割増を自動計算</li>
+        <li>📈 毎月の残業代を記録して、固定分との差を見える化（プレミアム）</li>
+        <li>🔍 計算の根拠を展開。給与明細と突き合わせて確認できる</li>
+        <li>🚫 完全オフライン・広告なし・買い切り</li>
+      </ul>
+      <a class="cta-btn" href="../">残業代チェッカーを見る</a>
+      <p class="cta-note">⏳ 現在App Store審査中です</p>
+    </div>
+
+    <h2>よくある質問（FAQ）</h2>
+    <div class="faq-item">
+      <p class="faq-q">Q. 固定残業代（みなし残業）があれば、それ以上は払われないのですか？</p>
+      <p>A. いいえ。固定残業代は「一定時間分の残業代を前払いしておく」制度です。実際の残業がその時間を超えた場合、超過分は別途支払われるのが原則です。まず固定残業が何時間分なのかを確認し、実際の残業時間と比べることが出発点になります。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 給与明細のどこを見れば固定残業時間がわかりますか？</p>
+      <p>A. 「固定残業手当」「みなし残業手当」「営業手当（◯時間分）」などの名称で記載されることが多いです。雇用契約書や就業規則に『◯時間分の時間外手当を含む』と書かれている場合もあります。金額と対応する時間数の両方を確認しましょう。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 自分で計算した残業代と給与明細が合いません。どうすればいいですか？</p>
+      <p>A. まずは基礎時給の対象範囲や割増率の適用、残業時間の集計に行き違いがないかを確認します。それでも差がある場合は、計算の根拠を整理したうえで、勤務先の担当部署や労働基準監督署、専門家に相談するのが確実です。</p>
+    </div>
+  </article>
+
+  <footer>
+    <div class="footer-links">
+      <a href="../">残業代チェッカー</a>
+      <a href="../zandai-keisan/">残業代の計算方法</a>
+      <a href="../kiso-jikyu/">基礎時給の計算方法</a>
+      <a href="../../">MC Labs トップへ</a>
+    </div>
+    <p class="disclaimer">
+      ※ 本記事は残業代を自分で整理・確認するための一般的な考え方を解説するものです。法的な助言や、未払い請求ができるかどうかの判断を行うものではありません。具体的な対応は勤務先・労働基準監督署・専門家にご確認ください。
+    </p>
+    <p>© 2026 MC Labs. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

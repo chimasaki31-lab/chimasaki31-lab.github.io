@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ベーカーズパーセントとは？計算方法を初心者向けに解説｜粉量を変えても崩れない配合</title>
+  <meta name="description" content="ベーカーズパーセント（ベーカーズ%）とは何かと計算方法を初心者向けに解説。粉を100%とする考え方、実重量への変換、粉量を変えても配合が崩れない理由、逆算のやり方を計算式と早見表つきで紹介。">
+
+  <!-- OGP -->
+  <meta property="og:title" content="ベーカーズパーセントとは？計算方法を初心者向けに解説">
+  <meta property="og:description" content="粉を100%とする考え方、実重量への変換、粉量を変えても崩れない理由を計算式と早見表つきで解説。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/pan-keisan/bakers-percent/">
+  <meta property="og:locale" content="ja_JP">
+
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/pan-keisan/bakers-percent/">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "ベーカーズパーセントとは？計算方法を初心者向けに解説｜粉量を変えても崩れない配合",
+    "description": "ベーカーズパーセントとは何かと計算方法を初心者向けに解説。粉を100%とする考え方、実重量への変換、粉量を変えても配合が崩れない理由、逆算のやり方を計算式と早見表つきで紹介。",
+    "inLanguage": "ja",
+    "author": { "@type": "Organization", "name": "MC Labs" },
+    "publisher": { "@type": "Organization", "name": "MC Labs" },
+    "mainEntityOfPage": "https://chimasaki31-lab.github.io/pan-keisan/bakers-percent/"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "ベーカーズパーセントの合計はなぜ100%を超えるのですか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "ベーカーズパーセントは「全材料の合計を100%」にするのではなく、「粉だけを100%」とする方式だからです。水や塩などの割合を粉に上乗せしていくため、合計は170〜180%程度になるのが普通です。" }
+      },
+      {
+        "@type": "Question",
+        "name": "粉が数種類あるときはどう計算しますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "使う粉の合計を100%とします。たとえば強力粉80%・全粒粉20%のように配分し、その合計重量を基準に水や塩の割合を計算します。" }
+      },
+      {
+        "@type": "Question",
+        "name": "材料の重さからベーカーズパーセントを逆算できますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "できます。各材料の重さを粉の重さで割って100を掛ければ割合が出ます。たとえば粉300g・水204gなら、204 ÷ 300 × 100 = 68%です。" }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif; font-size: 17px; color: #2a2018; background: #fff; line-height: 1.8; }
+    a { color: inherit; text-decoration: none; }
+    .breadcrumb { padding: 12px 20px; font-size: 13px; color: #999; border-bottom: 1px solid #f3efe9; }
+    .breadcrumb a { color: #b5651d; }
+    .breadcrumb a:hover { opacity: 0.7; }
+    .hero { background: linear-gradient(160deg, #8a4b1c 0%, #b5651d 50%, #d98c3f 100%); color: #fff; padding: 48px 20px 40px; text-align: center; }
+    .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.45); border-radius: 20px; padding: 4px 14px; font-size: 13px; margin-bottom: 18px; letter-spacing: 0.05em; }
+    .hero h1 { font-size: 25px; font-weight: 800; line-height: 1.45; letter-spacing: -0.01em; max-width: 720px; margin: 0 auto; }
+    article { max-width: 760px; margin: 0 auto; padding: 32px 20px 16px; }
+    .lead { background: #faf3e8; border-left: 4px solid #b5651d; padding: 16px 18px; border-radius: 0 8px 8px 0; font-size: 16px; color: #333; margin-bottom: 32px; }
+    article h2 { font-size: 21px; font-weight: 800; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid #b5651d; color: #8a4b1c; }
+    article h3 { font-size: 18px; font-weight: 700; margin: 28px 0 12px; color: #b5651d; }
+    article p { margin-bottom: 16px; }
+    article ul, article ol { margin: 0 0 16px 1.4em; }
+    article li { margin-bottom: 6px; }
+    .note { background: #fff8e6; border-left: 4px solid #e0a800; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 15px; margin: 16px 0; }
+    .table-wrap { overflow-x: auto; margin: 16px 0 20px; -webkit-overflow-scrolling: touch; }
+    table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 360px; }
+    th, td { border: 1px solid #e7dccb; padding: 9px 12px; text-align: left; }
+    th { background: #f3e6d3; font-weight: 700; color: #8a4b1c; }
+    tbody tr:nth-child(even) { background: #fdfaf5; }
+    td.num { text-align: right; white-space: nowrap; }
+    .formula { background: #3a2a1c; color: #f3dcc0; padding: 14px 18px; border-radius: 8px; font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 15px; margin: 16px 0; overflow-x: auto; line-height: 1.7; }
+    .cta { background: linear-gradient(160deg, #8a4b1c 0%, #b5651d 100%); color: #fff; border-radius: 16px; padding: 28px 24px; margin: 40px 0; text-align: center; }
+    .cta h2 { border: none; color: #fff; margin: 0 0 12px; font-size: 20px; }
+    .cta ul { text-align: left; max-width: 440px; margin: 0 auto 22px; list-style: none; }
+    .cta li { margin-bottom: 8px; }
+    .cta-btn { display: inline-block; background: #fff; color: #8a4b1c; font-weight: 800; padding: 14px 32px; border-radius: 30px; font-size: 16px; transition: transform 0.15s, box-shadow 0.15s; }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .cta-note { font-size: 13px; opacity: 0.85; margin-top: 14px; margin-bottom: 0; }
+    .faq-item { border-bottom: 1px solid #eee; padding: 16px 0; }
+    .faq-q { font-weight: 700; color: #8a4b1c; margin-bottom: 6px; }
+    footer { background: #f7f4ef; padding: 28px 20px; text-align: center; font-size: 13px; color: #999; margin-top: 40px; }
+    .footer-links { margin-bottom: 12px; }
+    .footer-links a { color: #b5651d; margin: 0 8px; }
+    .footer-links a:hover { opacity: 0.7; }
+    @media (max-width: 600px) { body { font-size: 16px; } .hero h1 { font-size: 21px; } article h2 { font-size: 19px; } }
+  </style>
+</head>
+<body>
+
+  <nav class="breadcrumb">
+    <a href="../../">MC Labs</a> &rsaquo; <a href="../">パン計算ノート</a> &rsaquo; ベーカーズパーセントとは
+  </nav>
+
+  <header class="hero">
+    <span class="hero-badge">パン作りの計算ガイド</span>
+    <h1>ベーカーズパーセントとは？<br>計算方法を初心者向けに完全解説</h1>
+  </header>
+
+  <article>
+    <p class="lead">
+      レシピで見かける「ベーカーズ%」や「加水率68%」。
+      これは<strong>粉の量を100%の基準にして、他の材料を割合で表す</strong>パン作り独自の表し方です。
+      この仕組みがわかると、<strong>粉の量を変えても配合が崩れません</strong>。
+      このページでは、ベーカーズパーセントの考え方と計算方法を、具体例つきでやさしく解説します。
+    </p>
+
+    <h2>この記事でわかること</h2>
+    <ul>
+      <li>ベーカーズパーセントの基本（粉＝100%）</li>
+      <li>％から実重量（グラム）への変換のしかた</li>
+      <li>粉量を変えても配合が崩れない理由</li>
+      <li>材料の重さから％を逆算する方法</li>
+      <li>よく使う配合の早見表／自動計算する方法</li>
+    </ul>
+
+    <h2>1. ベーカーズパーセントは「粉＝100%」</h2>
+    <p>ふつうの割合（％）は全体を100%としますが、ベーカーズパーセントは違います。</p>
+    <div class="formula">材料のベーカーズ% ＝ その材料の重さ ÷ 粉の重さ × 100</div>
+    <p>粉だけを100%の基準にして、水や塩などを「粉に対して何%か」で表します。だから合計は100%を超え、170〜180%くらいになるのが普通です。</p>
+    <div class="note"><strong>ここが大事：</strong>「合計100%」ではありません。粉が基準（100%）で、そこに各材料を上乗せしていくイメージです。</div>
+
+    <h2>2. ％から実重量（グラム）に変換する</h2>
+    <p>レシピの％が決まっていれば、粉の量を決めるだけで全材料のグラムが出ます。</p>
+    <div class="formula">材料の重さ ＝ 粉の重さ × その材料の% ÷ 100</div>
+
+    <h3>例：粉300gの基本の配合</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>材料</th><th>ベーカーズ%</th><th>計算</th><th>実重量</th></tr></thead>
+        <tbody>
+          <tr><td>強力粉</td><td class="num">100%</td><td class="num">基準</td><td class="num">300g</td></tr>
+          <tr><td>水</td><td class="num">68%</td><td class="num">300×0.68</td><td class="num">204g</td></tr>
+          <tr><td>塩</td><td class="num">2%</td><td class="num">300×0.02</td><td class="num">6g</td></tr>
+          <tr><td>砂糖</td><td class="num">5%</td><td class="num">300×0.05</td><td class="num">15g</td></tr>
+          <tr><td>ドライイースト</td><td class="num">1%</td><td class="num">300×0.01</td><td class="num">3g</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>3. 粉量を変えても配合が崩れない理由</h2>
+    <p>％は粉に対する比率なので、<strong>粉の量を変えても％はそのまま</strong>。実重量だけを計算し直せば、同じ配合バランスを保てます。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>材料</th><th>%</th><th>粉300gのとき</th><th>粉450gのとき</th></tr></thead>
+        <tbody>
+          <tr><td>強力粉</td><td class="num">100%</td><td class="num">300g</td><td class="num">450g</td></tr>
+          <tr><td>水</td><td class="num">68%</td><td class="num">204g</td><td class="num">306g</td></tr>
+          <tr><td>塩</td><td class="num">2%</td><td class="num">6g</td><td class="num">9g</td></tr>
+          <tr><td>砂糖</td><td class="num">5%</td><td class="num">15g</td><td class="num">22.5g</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>「粉を1.5倍にしたから、他も全部1.5倍」と同じことですが、％で管理しておくと毎回この掛け算をしなくて済みます。</p>
+
+    <h2>4. 材料の重さから％を逆算する</h2>
+    <p>手元のレシピがグラム表記でも、％に直せば応用が利きます。</p>
+    <div class="formula">ベーカーズ% ＝ 材料の重さ ÷ 粉の重さ × 100</div>
+    <p>例：粉300g・水204gなら、204 ÷ 300 × 100 ＝ <strong>加水率68%</strong>。逆に「水が250gある。加水率70%にしたい」なら、250 ÷ 0.70 ＝ <strong>粉357g</strong>と逆算できます。</p>
+
+    <div class="cta">
+      <h2>この計算、毎回やるのは大変</h2>
+      <p>％⇄グラムの変換や逆算を手でやると、ミスも増えます。<br>粉量を入れるだけで全材料を自動計算する <strong>パン計算ノート</strong> なら、配合がいつも崩れません。</p>
+      <ul>
+        <li>🌾 ベーカーズ% ⇄ 実重量の双方向計算</li>
+        <li>🍞 型のサイズに合わせた分量換算</li>
+        <li>💧 加水率の自動表示</li>
+        <li>💾 お気に入りの配合を保存・呼び出し</li>
+      </ul>
+      <a class="cta-btn" href="../">パン計算ノートを見る</a>
+      <p class="cta-note">⏳ 現在App Store審査中です</p>
+    </div>
+
+    <h2>よくある質問（FAQ）</h2>
+    <div class="faq-item">
+      <p class="faq-q">Q. ベーカーズパーセントの合計はなぜ100%を超えるのですか？</p>
+      <p>A. ベーカーズパーセントは「全材料の合計を100%」にするのではなく、「粉だけを100%」とする方式だからです。水や塩などの割合を粉に上乗せしていくため、合計は170〜180%程度になるのが普通です。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 粉が数種類あるときはどう計算しますか？</p>
+      <p>A. 使う粉の合計を100%とします。たとえば強力粉80%・全粒粉20%のように配分し、その合計重量を基準に水や塩の割合を計算します。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 材料の重さからベーカーズパーセントを逆算できますか？</p>
+      <p>A. できます。各材料の重さを粉の重さで割って100を掛ければ割合が出ます。たとえば粉300g・水204gなら、204 ÷ 300 × 100 ＝ 68%です。</p>
+    </div>
+  </article>
+
+  <footer>
+    <div class="footer-links">
+      <a href="../">パン計算ノート</a>
+      <a href="../kasui-ritsu/">加水率の計算と目安</a>
+      <a href="../kata-kanzan/">型のサイズ換算</a>
+      <a href="../../">MC Labs トップへ</a>
+    </div>
+    <p>© 2026 MC Labs. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

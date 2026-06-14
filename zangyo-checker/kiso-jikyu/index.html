@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>基礎時給の計算方法｜残業代の単価の出し方・除外できる手当・月平均所定労働時間</title>
+  <meta name="description" content="残業代の単価になる「基礎時給」の計算方法を解説。月給を月平均所定労働時間で割る式、基礎時給から除外できる手当（通勤・家族・住宅など）、年間休日からの所定労働時間の求め方を具体例つきで紹介。">
+
+  <!-- OGP -->
+  <meta property="og:title" content="基礎時給の計算方法｜残業代の単価の出し方">
+  <meta property="og:description" content="月給を月平均所定労働時間で割る式、除外できる手当、年間休日からの所定労働時間の求め方を具体例つきで解説。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/zangyo-checker/kiso-jikyu/">
+  <meta property="og:locale" content="ja_JP">
+
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/zangyo-checker/kiso-jikyu/">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "基礎時給の計算方法｜残業代の単価の出し方・除外できる手当・月平均所定労働時間",
+    "description": "残業代の単価になる基礎時給の計算方法を解説。月給を月平均所定労働時間で割る式、除外できる手当、年間休日からの所定労働時間の求め方を具体例つきで紹介。",
+    "inLanguage": "ja",
+    "author": { "@type": "Organization", "name": "MC Labs" },
+    "publisher": { "@type": "Organization", "name": "MC Labs" },
+    "mainEntityOfPage": "https://chimasaki31-lab.github.io/zangyo-checker/kiso-jikyu/"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "基礎時給から除外できる手当は何ですか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "通勤手当・家族手当・住宅手当・別居手当・子女教育手当、臨時に支払われる賃金、1か月を超える期間ごとに支払われる賃金（賞与など）は、原則として基礎時給の計算から除外できます。逆に役職手当や資格手当など、これらに当たらない手当は基本給に含めて計算するのが原則です。" }
+      },
+      {
+        "@type": "Question",
+        "name": "月平均所定労働時間はなぜ使うのですか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "月によって日数や休日数が違うと時給がぶれてしまうため、1年を平均した所定労働時間を使って単価を一定にします。式は「(365 − 年間休日日数) × 1日の所定労働時間 ÷ 12」です。" }
+      },
+      {
+        "@type": "Question",
+        "name": "時給制や日給制でも基礎時給は計算しますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "時給制ならその時給がそのまま基礎時給になります。日給制は「日給 ÷ 1日の所定労働時間」、月給制は「月給 ÷ 月平均所定労働時間」で求めます。賃金の形に応じて分母が変わる点に注意してください。" }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif; font-size: 17px; color: #1a1a1a; background: #fff; line-height: 1.8; }
+    a { color: inherit; text-decoration: none; }
+    .breadcrumb { padding: 12px 20px; font-size: 13px; color: #888; border-bottom: 1px solid #f0f0f0; }
+    .breadcrumb a { color: #2c4a7a; }
+    .breadcrumb a:hover { opacity: 0.7; }
+    .hero { background: linear-gradient(160deg, #16233f 0%, #25426f 55%, #3a6fb0 100%); color: #fff; padding: 48px 20px 40px; text-align: center; }
+    .hero-badge { display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.4); border-radius: 20px; padding: 4px 14px; font-size: 13px; margin-bottom: 18px; letter-spacing: 0.05em; }
+    .hero h1 { font-size: 25px; font-weight: 800; line-height: 1.45; letter-spacing: -0.01em; max-width: 720px; margin: 0 auto; }
+    article { max-width: 760px; margin: 0 auto; padding: 32px 20px 16px; }
+    .lead { background: #f0f5fc; border-left: 4px solid #2c6cb0; padding: 16px 18px; border-radius: 0 8px 8px 0; font-size: 16px; color: #333; margin-bottom: 32px; }
+    article h2 { font-size: 21px; font-weight: 800; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid #2c6cb0; color: #1f4f86; }
+    article h3 { font-size: 18px; font-weight: 700; margin: 28px 0 12px; color: #2c6cb0; }
+    article p { margin-bottom: 16px; }
+    article ul, article ol { margin: 0 0 16px 1.4em; }
+    article li { margin-bottom: 6px; }
+    .note { background: #fff8e6; border-left: 4px solid #e0a800; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 15px; margin: 16px 0; }
+    .table-wrap { overflow-x: auto; margin: 16px 0 20px; -webkit-overflow-scrolling: touch; }
+    table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 360px; }
+    th, td { border: 1px solid #dfe5ee; padding: 9px 12px; text-align: left; }
+    th { background: #e9eff7; font-weight: 700; color: #1f4f86; }
+    tbody tr:nth-child(even) { background: #fafbfd; }
+    .formula { background: #16233f; color: #cfe0f5; padding: 14px 18px; border-radius: 8px; font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 15px; margin: 16px 0; overflow-x: auto; line-height: 1.7; }
+    .cta { background: linear-gradient(160deg, #16233f 0%, #25426f 100%); color: #fff; border-radius: 16px; padding: 28px 24px; margin: 40px 0; text-align: center; }
+    .cta h2 { border: none; color: #fff; margin: 0 0 12px; font-size: 20px; }
+    .cta ul { text-align: left; max-width: 440px; margin: 0 auto 22px; list-style: none; }
+    .cta li { margin-bottom: 8px; }
+    .cta-btn { display: inline-block; background: #fff; color: #1f4f86; font-weight: 800; padding: 14px 32px; border-radius: 30px; font-size: 16px; transition: transform 0.15s, box-shadow 0.15s; }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .cta-note { font-size: 13px; opacity: 0.8; margin-top: 14px; margin-bottom: 0; }
+    .faq-item { border-bottom: 1px solid #eee; padding: 16px 0; }
+    .faq-q { font-weight: 700; color: #1f4f86; margin-bottom: 6px; }
+    footer { background: #f7f7f7; padding: 28px 20px; text-align: center; font-size: 13px; color: #888; margin-top: 40px; }
+    .footer-links { margin-bottom: 12px; }
+    .footer-links a { color: #2c6cb0; margin: 0 8px; }
+    .footer-links a:hover { opacity: 0.7; }
+    .disclaimer { font-size: 12px; color: #aaa; max-width: 620px; margin: 0 auto 12px; line-height: 1.6; }
+    @media (max-width: 600px) { body { font-size: 16px; } .hero h1 { font-size: 21px; } article h2 { font-size: 19px; } }
+  </style>
+</head>
+<body>
+
+  <nav class="breadcrumb">
+    <a href="../../">MC Labs</a> &rsaquo; <a href="../">残業代チェッカー</a> &rsaquo; 基礎時給の計算方法
+  </nav>
+
+  <header class="hero">
+    <span class="hero-badge">残業代がわかるガイド</span>
+    <h1>基礎時給の計算方法<br>―― 残業代の「単価」を正しく出す</h1>
+  </header>
+
+  <article>
+    <p class="lead">
+      残業代は「基礎時給 × 割増率 × 時間」で決まります。
+      この最初の<strong>「基礎時給」を間違える</strong>と、その後の計算がすべてズレてしまいます。
+      このページは、残業代の単価になる基礎時給の出し方を、<strong>除外できる手当</strong>と<strong>月平均所定労働時間</strong>の2点を中心に解説します。
+    </p>
+
+    <h2>基礎時給の基本式</h2>
+    <div class="formula">基礎時給 ＝ 月給（対象部分） ÷ 月平均所定労働時間</div>
+    <p>ポイントは2つ。「月給のうちどこまでを対象にするか」と「分母の所定労働時間をどう出すか」です。順に見ていきます。</p>
+
+    <h2>1. 月給から「除外できる手当」を引く</h2>
+    <p>残業代の単価を計算するとき、次の手当は<strong>原則として基礎時給の計算から除外</strong>できます。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>除外できるもの</th><th>例</th></tr></thead>
+        <tbody>
+          <tr><td>通勤手当</td><td>定期代・ガソリン代相当</td></tr>
+          <tr><td>家族手当</td><td>扶養家族に応じて支給</td></tr>
+          <tr><td>住宅手当</td><td>家賃・住宅費に応じて支給</td></tr>
+          <tr><td>別居手当・子女教育手当</td><td>個人の事情で支給</td></tr>
+          <tr><td>臨時に支払われる賃金</td><td>結婚祝い金など</td></tr>
+          <tr><td>1か月を超える期間ごとの賃金</td><td>賞与（ボーナス）など</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note"><strong>注意：</strong>除外できるのは上記のように「個人的な事情」で決まる手当などに限られます。役職手当・資格手当・営業手当など、これらに当たらない手当は<strong>基本給に含めて</strong>計算するのが原則です。「手当だから全部引ける」わけではありません。</div>
+
+    <h2>2. 月平均所定労働時間を出す</h2>
+    <p>月によって日数や休日数が違うと時給がぶれるため、1年を平均した所定労働時間を分母に使います。</p>
+    <div class="formula">月平均所定労働時間 ＝ (365 − 年間休日日数) × 1日の所定労働時間 ÷ 12</div>
+
+    <h3>例：年間休日120日・1日8時間</h3>
+    <ul>
+      <li>(365 − 120) × 8 ÷ 12 ＝ 245 × 8 ÷ 12 ＝ <strong>約163.3時間</strong></li>
+    </ul>
+    <div class="note">年間休日が多い（労働日が少ない）ほど分母は小さくなり、同じ月給でも基礎時給は<strong>高く</strong>なります。</div>
+
+    <h2>3. 実際に計算してみる</h2>
+    <p>対象となる月給を25万円、月平均所定労働時間を163.3時間とします。</p>
+    <div class="formula">基礎時給 ＝ 250,000 ÷ 163.3 ＝ 約1,531円</div>
+    <p>この1,531円が、残業代を計算するときの「1時間の単価」です。あとは割増率と時間を掛けるだけ（→ <a href="../zandai-keisan/">残業代の計算方法</a>）。</p>
+
+    <h3>賃金の形ごとの分母の違い</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>賃金の形</th><th>基礎時給の出し方</th></tr></thead>
+        <tbody>
+          <tr><td>時給制</td><td>その時給がそのまま基礎時給</td></tr>
+          <tr><td>日給制</td><td>日給 ÷ 1日の所定労働時間</td></tr>
+          <tr><td>月給制</td><td>月給（対象部分）÷ 月平均所定労働時間</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cta">
+      <h2>基礎時給の計算、自動でやりませんか</h2>
+      <p>除外手当の判断や月平均所定労働時間の計算は、手でやると間違えやすいところ。<br>月給と労働条件を入れるだけで基礎時給を自動算出する <strong>残業代チェッカー</strong> なら、単価のミスを防げます。</p>
+      <ul>
+        <li>⏱ 月給と所定労働時間から基礎時給を自動算出</li>
+        <li>⚖️ そのまま割増率・残業時間を掛けて残業代まで計算</li>
+        <li>🔍 計算の根拠を展開表示。検算できる</li>
+        <li>🚫 完全オフライン・広告なし・買い切り</li>
+      </ul>
+      <a class="cta-btn" href="../">残業代チェッカーを見る</a>
+      <p class="cta-note">⏳ 現在App Store審査中です</p>
+    </div>
+
+    <h2>よくある質問（FAQ）</h2>
+    <div class="faq-item">
+      <p class="faq-q">Q. 基礎時給から除外できる手当は何ですか？</p>
+      <p>A. 通勤手当・家族手当・住宅手当・別居手当・子女教育手当、臨時に支払われる賃金、1か月を超える期間ごとに支払われる賃金（賞与など）は、原則として基礎時給の計算から除外できます。逆に役職手当や資格手当など、これらに当たらない手当は基本給に含めて計算するのが原則です。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 月平均所定労働時間はなぜ使うのですか？</p>
+      <p>A. 月によって日数や休日数が違うと時給がぶれてしまうため、1年を平均した所定労働時間を使って単価を一定にします。式は「(365 − 年間休日日数) × 1日の所定労働時間 ÷ 12」です。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 時給制や日給制でも基礎時給は計算しますか？</p>
+      <p>A. 時給制ならその時給がそのまま基礎時給になります。日給制は「日給 ÷ 1日の所定労働時間」、月給制は「月給 ÷ 月平均所定労働時間」で求めます。賃金の形に応じて分母が変わる点に注意してください。</p>
+    </div>
+  </article>
+
+  <footer>
+    <div class="footer-links">
+      <a href="../">残業代チェッカー</a>
+      <a href="../zandai-keisan/">残業代の計算方法</a>
+      <a href="../miharai-zangyo/">未払い残業代の見分け方</a>
+      <a href="../../">MC Labs トップへ</a>
+    </div>
+    <p class="disclaimer">
+      ※ 本記事は基礎時給の計算の一般的な考え方を解説するものです。法的な助言ではありません。手当の取り扱いや端数処理は就業規則・賃金規程により異なる場合があります。正確な取り扱いは勤務先や専門家にご確認ください。
+    </p>
+    <p>© 2026 MC Labs. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
