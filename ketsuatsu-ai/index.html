@@ -625,6 +625,20 @@
     @media (min-width: 600px) {
       .demo-video-inner { max-width: 340px; }
     }
+
+    /* ===== 関連ガイド ===== */
+    .guides { padding: 56px 24px; text-align: center; background: #fff; }
+    .guide-list { display: flex; flex-direction: column; gap: 14px; max-width: 480px; margin: 0 auto; }
+    .guide-card {
+      display: flex; align-items: center; gap: 14px; text-align: left;
+      background: #fdf3f2; border: 1px solid #f5dad6; border-radius: 14px;
+      padding: 18px 20px; transition: border-color 0.2s, transform 0.2s;
+    }
+    .guide-card:hover { border-color: #e74c3c; transform: translateY(-2px); }
+    .guide-emoji { font-size: 26px; flex-shrink: 0; }
+    .guide-text h4 { font-size: 16px; font-weight: 800; margin-bottom: 2px; color: #c0392b; }
+    .guide-text p { font-size: 13px; color: #666; line-height: 1.5; }
+    .guide-arrow { margin-left: auto; color: #e74c3c; font-weight: 800; flex-shrink: 0; }
   </style>
 </head>
 <body>
@@ -853,6 +867,38 @@
   <p class="free-note">※ 無料でも記録・グラフ・リマインダー・<br>服薬チェック・病院モードはご利用いただけます</p>
 </section>
 
+<!-- ===== 関連ガイド ===== -->
+<section class="guides">
+  <div class="section-label">血圧がわかるガイド</div>
+  <h2 class="section-title">血圧のことを<br>もっと知りたい方へ</h2>
+  <div class="guide-list">
+    <a href="./katei-ketsuatsu-hakarikata/" class="guide-card">
+      <span class="guide-emoji">🩺</span>
+      <div class="guide-text">
+        <h4>家庭血圧の正しい測り方</h4>
+        <p>朝晩のタイミング・姿勢・カフの位置・平均の取り方をやさしく解説</p>
+      </div>
+      <span class="guide-arrow">&rsaquo;</span>
+    </a>
+    <a href="./ketsuatsu-seijouchi/" class="guide-card">
+      <span class="guide-emoji">📈</span>
+      <div class="guide-text">
+        <h4>血圧の正常値・基準値</h4>
+        <p>家庭血圧と診察室血圧の違い、上・下の血圧の意味、高血圧の区分</p>
+      </div>
+      <span class="guide-arrow">&rsaquo;</span>
+    </a>
+    <a href="./kouketsuatsu-seikatsu/" class="guide-card">
+      <span class="guide-emoji">🥗</span>
+      <div class="guide-text">
+        <h4>高血圧を下げる生活習慣</h4>
+        <p>減塩・運動・体重・お酒・睡眠の工夫と、記録で流れを見る大切さ</p>
+      </div>
+      <span class="guide-arrow">&rsaquo;</span>
+    </a>
+  </div>
+</section>
+
 <!-- ===== ダウンロードCTAセクション ===== -->
 <section class="cta">
   <h2 class="section-title">今すぐダウンロード</h2>
@@ -868,6 +914,9 @@
 <footer>
   <div class="footer-links">
     <a href="../">MC Labs トップへ</a>
+    <a href="./katei-ketsuatsu-hakarikata/">家庭血圧の測り方</a>
+    <a href="./ketsuatsu-seijouchi/">血圧の正常値</a>
+    <a href="./kouketsuatsu-seikatsu/">高血圧と生活習慣</a>
     <a href="https://chimasaki31-lab.github.io/bakusoku-vocab-lp/">爆速英単語</a>
     <a href="https://chimasaki31-lab.github.io/bakusoku-keisan-drill-lp/">爆速計算ドリル</a>
     <a href="https://chimasaki31-lab.github.io/shunnsoku-keisan-lp/">瞬速計算マスター</a>

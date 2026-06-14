@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>麻雀点数ノート - 符計算・点数計算を初心者でも｜その場で点数がわかるアプリ</title>
+  <meta name="description" content="麻雀の点数計算が苦手な初心者へ。符と翻を選ぶだけで点数を自動計算、親子・ツモ・ロンの支払いまでひと目でわかる。点数表を覚えなくても卓上で確認できる、点数計算に特化したノートアプリ。">
+
+  <!-- OGP -->
+  <meta property="og:title" content="麻雀点数ノート - 符計算・点数計算を初心者でも">
+  <meta property="og:description" content="符と翻を選ぶだけで点数を自動計算。親子・ツモ・ロンの支払いまでひと目でわかる、点数計算に特化したアプリ。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/mahjong-note/">
+  <meta property="og:locale" content="ja_JP">
+
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/mahjong-note/">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+      font-size: 17px; color: #1a1a1a; background: #fff; line-height: 1.7;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .breadcrumb { padding: 12px 24px; font-size: 13px; color: #888; border-bottom: 1px solid #f0f0f0; }
+    .breadcrumb a { color: #2e7d4f; transition: opacity 0.2s; }
+    .breadcrumb a:hover { opacity: 0.7; }
+
+    .hero {
+      background: linear-gradient(160deg, #1f5c3a 0%, #2e7d4f 55%, #3a9b63 100%);
+      color: #fff; text-align: center; padding: 60px 24px 56px;
+    }
+    .hero-badge {
+      display: inline-block; background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.4); border-radius: 20px;
+      padding: 4px 14px; font-size: 13px; margin-bottom: 20px; letter-spacing: 0.05em;
+    }
+    .hero h1 { font-size: 26px; font-weight: 800; line-height: 1.4; margin-bottom: 12px; letter-spacing: -0.02em; }
+    .hero-sub { font-size: 16px; opacity: 0.92; margin-bottom: 32px; line-height: 1.65; }
+
+    .app-store-btn {
+      display: inline-flex; align-items: center; gap: 10px; background: #000; color: #fff;
+      border-radius: 14px; padding: 14px 28px; font-size: 15px; font-weight: 600; transition: opacity 0.2s;
+    }
+    .app-store-btn:hover { opacity: 0.85; }
+    .app-store-btn svg { width: 22px; height: 22px; fill: #fff; }
+    .hero-note { font-size: 13px; opacity: 0.8; margin-top: 14px; }
+
+    .problem { background: #f3f8f5; padding: 56px 24px; text-align: center; }
+    .section-label { display: inline-block; color: #2e7d4f; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; margin-bottom: 10px; }
+    .section-title { font-size: 22px; font-weight: 800; line-height: 1.45; margin-bottom: 32px; }
+    .problem-list { list-style: none; max-width: 420px; margin: 0 auto 32px; text-align: left; }
+    .problem-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 14px 0; border-bottom: 1px solid #dceadf; font-size: 16px;
+    }
+    .problem-list li:last-child { border-bottom: none; }
+    .problem-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+    .problem-answer {
+      background: #fff; border: 2px solid #2e7d4f; border-radius: 16px;
+      padding: 24px 20px; max-width: 420px; margin: 0 auto;
+      font-size: 17px; font-weight: 600; line-height: 1.6; color: #1f5c3a;
+    }
+
+    .features { padding: 56px 24px; text-align: center; }
+    .feature-cards { display: flex; flex-direction: column; gap: 20px; max-width: 440px; margin: 0 auto; }
+    .feature-card {
+      background: #fff; border: 1px solid #eee; border-radius: 20px;
+      padding: 28px 24px; text-align: left; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .feature-icon-wrap { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 16px; background: #e6f4ec; }
+    .feature-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+    .feature-card p { font-size: 15px; color: #555; line-height: 1.7; }
+
+    .guides { padding: 56px 24px; text-align: center; background: #f3f8f5; }
+    .guide-list { display: flex; flex-direction: column; gap: 14px; max-width: 480px; margin: 0 auto; }
+    .guide-card {
+      display: flex; align-items: center; gap: 14px; text-align: left;
+      background: #fff; border: 1px solid #dceadf; border-radius: 14px;
+      padding: 18px 20px; transition: border-color 0.2s, transform 0.2s;
+    }
+    .guide-card:hover { border-color: #2e7d4f; transform: translateY(-2px); }
+    .guide-emoji { font-size: 26px; flex-shrink: 0; }
+    .guide-text h4 { font-size: 16px; font-weight: 800; margin-bottom: 2px; color: #1f5c3a; }
+    .guide-text p { font-size: 13px; color: #666; line-height: 1.5; }
+    .guide-arrow { margin-left: auto; color: #2e7d4f; font-weight: 800; flex-shrink: 0; }
+
+    .cta { padding: 64px 24px; text-align: center; background: #fff; }
+    .cta .section-title { margin-bottom: 10px; }
+    .cta-sub { font-size: 15px; color: #666; margin-bottom: 28px; }
+    .cta .app-store-btn { font-size: 17px; padding: 18px 36px; border-radius: 16px; }
+    .cta-note { font-size: 13px; color: #999; margin-top: 14px; }
+
+    footer { background: #1a1a1a; color: rgba(255,255,255,0.6); padding: 32px 24px; text-align: center; font-size: 13px; }
+    .footer-links { display: flex; justify-content: center; gap: 18px; margin-bottom: 16px; flex-wrap: wrap; }
+    .footer-links a { color: rgba(255,255,255,0.6); transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+
+    @media (min-width: 600px) { .hero h1 { font-size: 32px; } }
+    @media (min-width: 900px) {
+      .feature-cards { flex-direction: row; max-width: 860px; }
+      .feature-card { flex: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="breadcrumb">
+  <a href="../">MC Labs</a> &rsaquo; 麻雀点数ノート
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">🀄 iPhone対応 · ゲーム</div>
+  <h1>その手、<br>何点になるか分かりますか？</h1>
+  <p class="hero-sub">
+    符と翻を選ぶだけ。<br>
+    親子・ツモ・ロンの支払いまで自動計算。<br>
+    点数表を覚えなくても、卓上でその場で確認。
+  </p>
+  <a class="app-store-btn" href="https://apps.apple.com/jp/app/id6776482540">
+    <svg viewBox="0 0 814 1000"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.3 134.4-316.7 266.8-316.7 99.8 0 162.6 64.8 212.7 64.8 46.2 0 121.2-68.8 228.5-68.8zm-88-174c43.8-51.7 74.6-123.5 74.6-195.3 0-10.3-.6-20.7-2.6-29.2-70.7 2.6-154.7 47.1-204.7 107.2-38.4 44.4-75.9 116.2-75.9 189 0 11.6 1.9 23.2 2.6 26.9 4.5.6 11.6 1.9 18.7 1.9 63.5 0 143.9-42.5 187.3-100.5z"/></svg>
+    App Store でダウンロード
+  </a>
+  <p class="hero-note">基本機能は無料 · 完全オフライン · 広告控えめ</p>
+</section>
+
+<section class="problem">
+  <div class="section-label">こんなモヤモヤありませんか？</div>
+  <h2 class="section-title">アガったのに、<br>点数が分からなくて固まる</h2>
+  <ul class="problem-list">
+    <li><span class="problem-icon">🤔</span><span>符の数え方が分からず、点数が出せない</span></li>
+    <li><span class="problem-icon">🧮</span><span>点数表を覚えられない。親と子で何が変わるの？</span></li>
+    <li><span class="problem-icon">🀙</span><span>ツモのとき、誰がいくら払うのか毎回迷う</span></li>
+    <li><span class="problem-icon">😅</span><span>同卓の人に点数を聞くのが、ちょっと恥ずかしい</span></li>
+  </ul>
+  <div class="problem-answer">
+    麻雀点数ノートが<br>その場で点数を出します。
+  </div>
+</section>
+
+<section class="features">
+  <div class="section-label">主な機能</div>
+  <h2 class="section-title">覚えなくていい。<br>選ぶだけで点数が出る</h2>
+  <div class="feature-cards">
+    <div class="feature-card">
+      <div class="feature-icon-wrap">🧮</div>
+      <h3>符と翻を選ぶだけ</h3>
+      <p>符と翻をタップで選ぶだけで、点数を自動計算。複雑な点数表を暗記しなくても、その場で答えが出ます。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon-wrap">🀄</div>
+      <h3>親子・ツモ・ロンに対応</h3>
+      <p>親と子、ツモとロンで変わる支払いを自動で振り分け。「誰がいくら払うか」までひと目でわかります。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon-wrap">📒</div>
+      <h3>点数計算の練習にも</h3>
+      <p>符の数え方や点数の仕組みを確認しながら使えるので、遊びながら点数計算が身につきます。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 関連ガイド ===== -->
+<section class="guides">
+  <div class="section-label">点数計算がわかるガイド</div>
+  <h2 class="section-title">仕組みを知りたい方へ</h2>
+  <div class="guide-list">
+    <a href="../mahjong-fu-keisan/" class="guide-card">
+      <span class="guide-emoji">🧮</span>
+      <div class="guide-text">
+        <h4>符計算と点数計算の完全解説</h4>
+        <p>符の数え方から点数の出し方まで、早見表と例題でわかりやすく</p>
+      </div>
+      <span class="guide-arrow">&rsaquo;</span>
+    </a>
+    <a href="./tensuu-keisan/" class="guide-card">
+      <span class="guide-emoji">📊</span>
+      <div class="guide-text">
+        <h4>点数計算の覚え方</h4>
+        <p>早見表の読み方・親子の違い・ツモ/ロンの配分をやさしく整理</p>
+      </div>
+      <span class="guide-arrow">&rsaquo;</span>
+    </a>
+    <a href="./yaku-han/" class="guide-card">
+      <span class="guide-emoji">🎴</span>
+      <div class="guide-text">
+        <h4>役と翻数の一覧</h4>
+        <p>よく出る役の翻数と、翻が点数にどうつながるかを一覧で</p>
+      </div>
+      <span class="guide-arrow">&rsaquo;</span>
+    </a>
+  </div>
+</section>
+
+<section class="cta">
+  <h2 class="section-title">点数計算を、もう怖がらない</h2>
+  <p class="cta-sub">麻雀点数ノートはApp Storeで無料ダウンロードできます。</p>
+  <a class="app-store-btn" href="https://apps.apple.com/jp/app/id6776482540">
+    <svg viewBox="0 0 814 1000" width="24" height="24" fill="white"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.3 134.4-316.7 266.8-316.7 99.8 0 162.6 64.8 212.7 64.8 46.2 0 121.2-68.8 228.5-68.8zm-88-174c43.8-51.7 74.6-123.5 74.6-195.3 0-10.3-.6-20.7-2.6-29.2-70.7 2.6-154.7 47.1-204.7 107.2-38.4 44.4-75.9 116.2-75.9 189 0 11.6 1.9 23.2 2.6 26.9 4.5.6 11.6 1.9 18.7 1.9 63.5 0 143.9-42.5 187.3-100.5z"/></svg>
+    App Store でダウンロード
+  </a>
+  <p class="cta-note">iPhone対応 · 完全オフライン</p>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="../">MC Labs トップへ</a>
+    <a href="../mahjong-fu-keisan/">符計算の解説</a>
+    <a href="./tensuu-keisan/">点数計算の覚え方</a>
+    <a href="./yaku-han/">役と翻数の一覧</a>
+    <a href="mailto:chimasaki31@gmail.com">お問い合わせ</a>
+  </div>
+  <p>© 2026 MC Labs. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

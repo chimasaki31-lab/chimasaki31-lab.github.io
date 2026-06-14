@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>麻雀の役と翻数の一覧を初心者向けに解説｜よく出る役の翻数と点数のつながり</title>
+  <meta name="description" content="麻雀の役と翻数を初心者向けに一覧で解説。リーチ・タンヤオ・役牌などの1翻役から、三色・一気通貫・混一色・清一色、そして役満まで、翻数と点数のつながりをやさしく整理します。">
+
+  <!-- OGP -->
+  <meta property="og:title" content="麻雀の役と翻数の一覧｜よく出る役と点数のつながり">
+  <meta property="og:description" content="1翻役から役満まで、よく出る役の翻数と点数のつながりを初心者向けに一覧で解説。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/mahjong-note/yaku-han/">
+  <meta property="og:locale" content="ja_JP">
+
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/mahjong-note/yaku-han/">
+
+  <!-- Article schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "麻雀の役と翻数の一覧を初心者向けに解説｜よく出る役の翻数と点数のつながり",
+    "description": "麻雀の役と翻数を初心者向けに一覧で解説。1翻役から役満まで、翻数と点数のつながりをやさしく整理します。",
+    "inLanguage": "ja",
+    "author": { "@type": "Organization", "name": "MC Labs" },
+    "publisher": { "@type": "Organization", "name": "MC Labs" },
+    "mainEntityOfPage": "https://chimasaki31-lab.github.io/mahjong-note/yaku-han/"
+  }
+  </script>
+
+  <!-- FAQ schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "翻が増えると点数も上がりますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "はい。翻が増えるほど点数は大きくなります。役を複数重ねると翻数が合算され、5翻ほどで満貫になります。役と翻数を知ることが、点数を上げる第一歩です。" }
+      },
+      {
+        "@type": "Question",
+        "name": "「食い下がり」とは何ですか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "鳴いて（ポン・チーして）アガると翻数が下がる役のことです。たとえば三色同順は門前で2翻ですが、鳴くと1翻になります。一方リーチやタンヤオなど食い下がりのない役もあります。" }
+      },
+      {
+        "@type": "Question",
+        "name": "まずどの役を覚えればよいですか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "リーチ・タンヤオ・役牌（飜牌）の1翻役から覚えるのがおすすめです。出やすく作りやすいので、これだけでアガれる場面が多くなります。慣れてきたら2翻役を足していきましょう。" }
+      },
+      {
+        "@type": "Question",
+        "name": "役満はどのくらいの点数ですか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "役満は子32000点・親48000点です。国士無双・大三元・四暗刻などが代表的な役満で、通常の手とは別格の点数になります。" }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif; font-size: 17px; color: #1a1a1a; background: #fff; line-height: 1.8; }
+    a { color: inherit; text-decoration: none; }
+
+    .breadcrumb { padding: 12px 20px; font-size: 13px; color: #888; border-bottom: 1px solid #f0f0f0; }
+    .breadcrumb a { color: #2e7d4f; }
+    .breadcrumb a:hover { opacity: 0.7; }
+
+    .hero { background: linear-gradient(160deg, #1f5c3a 0%, #2e7d4f 55%, #3a9b63 100%); color: #fff; padding: 48px 20px 40px; text-align: center; }
+    .hero-badge { display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.4); border-radius: 20px; padding: 4px 14px; font-size: 13px; margin-bottom: 18px; letter-spacing: 0.05em; }
+    .hero h1 { font-size: 25px; font-weight: 800; line-height: 1.45; letter-spacing: -0.01em; max-width: 720px; margin: 0 auto; }
+
+    article { max-width: 760px; margin: 0 auto; padding: 32px 20px 16px; }
+    .lead { background: #eef6f1; border-left: 4px solid #2e7d4f; padding: 16px 18px; border-radius: 0 8px 8px 0; font-size: 16px; color: #333; margin-bottom: 32px; }
+    article h2 { font-size: 21px; font-weight: 800; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid #2e7d4f; color: #1f5c3a; }
+    article h3 { font-size: 18px; font-weight: 700; margin: 28px 0 12px; color: #2e7d4f; }
+    article p { margin-bottom: 16px; }
+    article ul, article ol { margin: 0 0 16px 1.4em; }
+    article li { margin-bottom: 6px; }
+
+    .note { background: #fff8e6; border-left: 4px solid #e0a800; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 15px; margin: 16px 0; }
+
+    .table-wrap { overflow-x: auto; margin: 16px 0 20px; -webkit-overflow-scrolling: touch; }
+    table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 360px; }
+    th, td { border: 1px solid #d9e8df; padding: 9px 12px; text-align: left; }
+    th { background: #eef6f1; font-weight: 700; color: #1f5c3a; }
+    tbody tr:nth-child(even) { background: #fafdfb; }
+
+    .cta { background: linear-gradient(160deg, #1f5c3a 0%, #2e7d4f 100%); color: #fff; border-radius: 16px; padding: 28px 24px; margin: 40px 0; text-align: center; }
+    .cta h2 { border: none; color: #fff; margin: 0 0 12px; font-size: 20px; }
+    .cta ul { text-align: left; max-width: 440px; margin: 0 auto 22px; list-style: none; }
+    .cta li { margin-bottom: 8px; }
+    .cta-btn { display: inline-block; background: #fff; color: #1f5c3a; font-weight: 800; padding: 14px 32px; border-radius: 30px; font-size: 16px; transition: transform 0.15s, box-shadow 0.15s; }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .cta-note { font-size: 13px; opacity: 0.85; margin-top: 14px; margin-bottom: 0; }
+
+    .faq-item { border-bottom: 1px solid #eee; padding: 16px 0; }
+    .faq-q { font-weight: 700; color: #1f5c3a; margin-bottom: 6px; }
+
+    footer { background: #f7f7f7; padding: 28px 20px; text-align: center; font-size: 13px; color: #888; margin-top: 40px; }
+    .footer-links { margin-bottom: 12px; }
+    .footer-links a { color: #2e7d4f; margin: 0 8px; }
+    .footer-links a:hover { opacity: 0.7; }
+    .disclaimer { font-size: 12px; color: #aaa; max-width: 620px; margin: 0 auto 12px; line-height: 1.6; }
+
+    @media (max-width: 600px) { body { font-size: 16px; } .hero h1 { font-size: 21px; } article h2 { font-size: 19px; } }
+  </style>
+</head>
+<body>
+
+  <nav class="breadcrumb">
+    <a href="../../">MC Labs</a> &rsaquo; <a href="../">麻雀点数ノート</a> &rsaquo; 役と翻数の一覧
+  </nav>
+
+  <header class="hero">
+    <span class="hero-badge">点数計算がわかるガイド</span>
+    <h1>麻雀の役と翻数の一覧<br>―― よく出る役と点数のつながり</h1>
+  </header>
+
+  <article>
+    <p class="lead">
+      点数は「符」と「翻」で決まりますが、その<strong>翻を生み出すのが「役」</strong>です。
+      このページでは、初心者がまず覚えたい1翻役から、2翻・3翻役、そして役満までを一覧で整理します。
+      役と翻数がつながると、「この手は何点くらいか」の見当がつくようになります。
+    </p>
+
+    <h2>この記事でわかること</h2>
+    <ul>
+      <li>まず覚えるべき1翻役</li>
+      <li>2翻・3翻のよく出る役</li>
+      <li>「食い下がり」の意味</li>
+      <li>役満の代表例</li>
+      <li>翻数が点数にどうつながるか</li>
+    </ul>
+
+    <h2>1. まず覚えたい1翻役</h2>
+    <p>出やすく作りやすい役です。これだけでもアガれる場面がぐっと増えます。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>役</th><th>翻</th><th>ひとこと</th></tr></thead>
+        <tbody>
+          <tr><td>リーチ</td><td>1翻</td><td>門前でテンパイ宣言。食い下がりなし</td></tr>
+          <tr><td>タンヤオ</td><td>1翻</td><td>2〜8の数牌だけで作る</td></tr>
+          <tr><td>役牌（飜牌）</td><td>1翻</td><td>三元牌・自風・場風の刻子</td></tr>
+          <tr><td>平和（ピンフ）</td><td>1翻</td><td>門前・条件あり。食い下がりなし</td></tr>
+          <tr><td>一盃口</td><td>1翻</td><td>同じ順子2組。門前のみ</td></tr>
+          <tr><td>ツモ（門前清自摸和）</td><td>1翻</td><td>門前でツモアガり</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note"><strong>最初の一歩：</strong>「リーチ・タンヤオ・役牌」の3つを覚えれば、多くの局でアガり役を作れます。</div>
+
+    <h2>2. 2翻・3翻のよく出る役</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>役</th><th>門前</th><th>鳴き（食い下がり）</th></tr></thead>
+        <tbody>
+          <tr><td>三色同順</td><td>2翻</td><td>1翻</td></tr>
+          <tr><td>一気通貫</td><td>2翻</td><td>1翻</td></tr>
+          <tr><td>チャンタ</td><td>2翻</td><td>1翻</td></tr>
+          <tr><td>七対子</td><td>2翻（25符固定）</td><td>—（門前のみ）</td></tr>
+          <tr><td>対々和</td><td>2翻</td><td>2翻</td></tr>
+          <tr><td>混一色</td><td>3翻</td><td>2翻</td></tr>
+          <tr><td>純チャン</td><td>3翻</td><td>2翻</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>「食い下がり」とは</h3>
+    <p>鳴いて（ポン・チーして）アガると翻数が下がる役のことです。三色同順は門前で2翻ですが、鳴くと1翻になります。一方、リーチやタンヤオのように食い下がりがない（または鳴けない）役もあります。</p>
+
+    <h2>3. 高い手・清一色と役満</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>役</th><th>翻</th></tr></thead>
+        <tbody>
+          <tr><td>清一色（門前）</td><td>6翻（鳴き5翻）</td></tr>
+          <tr><td>二盃口</td><td>3翻（門前のみ）</td></tr>
+          <tr><td>国士無双・大三元・四暗刻 など</td><td>役満</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>役満は子32,000点・親48,000点と別格の点数です。</p>
+
+    <h2>4. 翻が点数につながる</h2>
+    <p>役を重ねるほど翻数が合算され、点数が上がります。おおよその目安は次のとおりです。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>合計翻</th><th>点数の目安（子ロン）</th></tr></thead>
+        <tbody>
+          <tr><td>1〜2翻</td><td>1,000〜2,600点ほど</td></tr>
+          <tr><td>3〜4翻</td><td>3,900〜8,000点ほど</td></tr>
+          <tr><td>5翻</td><td>満貫＝8,000点</td></tr>
+          <tr><td>6翻以上</td><td>跳満・倍満…と上昇</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>翻と点数の対応をくわしく見たい方は <a href="../tensuu-keisan/">点数計算の覚え方</a> を参考にしてください。</p>
+
+    <div class="cta">
+      <h2>役を覚えたら、点数もその場で確認</h2>
+      <p>役で翻数が分かっても、符との組み合わせで点数を出すのは大変です。<strong>麻雀点数ノート</strong> なら符と翻を選ぶだけで点数を自動計算します。</p>
+      <ul>
+        <li>🧮 符と翻を選ぶだけで点数を自動計算</li>
+        <li>🀄 親子・ツモ・ロンの支払いも自動</li>
+        <li>🎴 役を確認しながら点数感覚が身につく</li>
+        <li>📴 完全オフラインで卓上でもすぐ使える</li>
+      </ul>
+      <a class="cta-btn" href="https://apps.apple.com/jp/app/id6776482540">麻雀点数ノートを見る</a>
+      <p class="cta-note">iPhone対応 · 基本機能は無料</p>
+    </div>
+
+    <h2>よくある質問（FAQ）</h2>
+    <div class="faq-item">
+      <p class="faq-q">Q. 翻が増えると点数も上がりますか？</p>
+      <p>A. はい。翻が増えるほど点数は大きくなります。役を複数重ねると翻数が合算され、5翻ほどで満貫になります。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 「食い下がり」とは何ですか？</p>
+      <p>A. 鳴いてアガると翻数が下がる役のことです。三色同順は門前で2翻ですが、鳴くと1翻になります。リーチやタンヤオのように食い下がりのない役もあります。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. まずどの役を覚えればよいですか？</p>
+      <p>A. リーチ・タンヤオ・役牌の1翻役から覚えるのがおすすめです。出やすく作りやすいので、これだけでアガれる場面が多くなります。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 役満はどのくらいの点数ですか？</p>
+      <p>A. 役満は子32,000点・親48,000点です。国士無双・大三元・四暗刻などが代表的で、通常の手とは別格の点数になります。</p>
+    </div>
+  </article>
+
+  <footer>
+    <div class="footer-links">
+      <a href="../">麻雀点数ノート</a>
+      <a href="../../mahjong-fu-keisan/">符計算の解説</a>
+      <a href="../tensuu-keisan/">点数計算の覚え方</a>
+      <a href="../../">MC Labs トップへ</a>
+    </div>
+    <p class="disclaimer">
+      ※ 本記事は麻雀の役と翻数を一般的に解説するものです。役の翻数や採用の有無（ローカル役など）は、遊ぶ場やルールによって異なる場合があります。
+    </p>
+    <p>© 2026 MC Labs. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

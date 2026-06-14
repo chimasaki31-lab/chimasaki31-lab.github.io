@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>麻雀の点数計算の覚え方を初心者向けに解説｜早見表・親子の違い・ツモとロンの配分</title>
+  <meta name="description" content="麻雀の点数計算を初心者向けにやさしく解説。基本点の出し方、符×翻の早見表、親と子の違い、ツモ・ロンの支払いの配分、満貫以上の点数までを具体例つきで紹介します。点数表を覚えるコツも。">
+
+  <!-- OGP -->
+  <meta property="og:title" content="麻雀の点数計算の覚え方｜早見表・親子・ツモとロンの配分">
+  <meta property="og:description" content="基本点の出し方、符×翻の早見表、親子の違い、ツモ・ロンの配分、満貫以上の点数を具体例つきで解説。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/mahjong-note/tensuu-keisan/">
+  <meta property="og:locale" content="ja_JP">
+
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/mahjong-note/tensuu-keisan/">
+
+  <!-- Article schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "麻雀の点数計算の覚え方を初心者向けに解説｜早見表・親子の違い・ツモとロンの配分",
+    "description": "麻雀の点数計算を初心者向けに解説。基本点の出し方、符×翻の早見表、親子の違い、ツモ・ロンの配分、満貫以上の点数を紹介します。",
+    "inLanguage": "ja",
+    "author": { "@type": "Organization", "name": "MC Labs" },
+    "publisher": { "@type": "Organization", "name": "MC Labs" },
+    "mainEntityOfPage": "https://chimasaki31-lab.github.io/mahjong-note/tensuu-keisan/"
+  }
+  </script>
+
+  <!-- FAQ schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "親と子で点数はどう違いますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "親は子の1.5倍の点数をもらえます。たとえば同じ手でも、子のロンが基本点×4なのに対し、親のロンは基本点×6です。そのぶん親が振り込んだり放銃したときの支払いも大きくなります。" }
+      },
+      {
+        "@type": "Question",
+        "name": "ツモとロンで支払いはどう変わりますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "ロンは振り込んだ1人がまとめて払います。ツモは全員で分担し、子のツモなら親が2倍・他の子が1倍ずつ、親のツモなら子全員が同額ずつ払います。合計の点数はどちらも同じ考え方で計算します。" }
+      },
+      {
+        "@type": "Question",
+        "name": "満貫は何翻からですか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "おおよそ5翻から満貫になります（4翻でも符が多いと満貫になることがあります）。満貫は子8000点・親12000点で、以降は跳満・倍満・三倍満・役満と点数が上がっていきます。" }
+      },
+      {
+        "@type": "Question",
+        "name": "点数表は丸暗記しないといけませんか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "丸暗記は必須ではありません。よく出る『30符・40符』の数翻ぶんだけ覚え、それ以外はアプリや早見表で確認するのが現実的です。使ううちに自然と覚えていきます。" }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif; font-size: 17px; color: #1a1a1a; background: #fff; line-height: 1.8; }
+    a { color: inherit; text-decoration: none; }
+
+    .breadcrumb { padding: 12px 20px; font-size: 13px; color: #888; border-bottom: 1px solid #f0f0f0; }
+    .breadcrumb a { color: #2e7d4f; }
+    .breadcrumb a:hover { opacity: 0.7; }
+
+    .hero { background: linear-gradient(160deg, #1f5c3a 0%, #2e7d4f 55%, #3a9b63 100%); color: #fff; padding: 48px 20px 40px; text-align: center; }
+    .hero-badge { display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.4); border-radius: 20px; padding: 4px 14px; font-size: 13px; margin-bottom: 18px; letter-spacing: 0.05em; }
+    .hero h1 { font-size: 25px; font-weight: 800; line-height: 1.45; letter-spacing: -0.01em; max-width: 720px; margin: 0 auto; }
+
+    article { max-width: 760px; margin: 0 auto; padding: 32px 20px 16px; }
+    .lead { background: #eef6f1; border-left: 4px solid #2e7d4f; padding: 16px 18px; border-radius: 0 8px 8px 0; font-size: 16px; color: #333; margin-bottom: 32px; }
+    article h2 { font-size: 21px; font-weight: 800; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid #2e7d4f; color: #1f5c3a; }
+    article h3 { font-size: 18px; font-weight: 700; margin: 28px 0 12px; color: #2e7d4f; }
+    article p { margin-bottom: 16px; }
+    article ul, article ol { margin: 0 0 16px 1.4em; }
+    article li { margin-bottom: 6px; }
+
+    .note { background: #fff8e6; border-left: 4px solid #e0a800; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 15px; margin: 16px 0; }
+
+    .table-wrap { overflow-x: auto; margin: 16px 0 20px; -webkit-overflow-scrolling: touch; }
+    table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 360px; }
+    th, td { border: 1px solid #d9e8df; padding: 9px 12px; text-align: left; }
+    th { background: #eef6f1; font-weight: 700; color: #1f5c3a; }
+    tbody tr:nth-child(even) { background: #fafdfb; }
+
+    .formula { background: #1f5c3a; color: #d6f5e3; padding: 14px 18px; border-radius: 8px; font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 15px; margin: 16px 0; overflow-x: auto; line-height: 1.7; }
+
+    .cta { background: linear-gradient(160deg, #1f5c3a 0%, #2e7d4f 100%); color: #fff; border-radius: 16px; padding: 28px 24px; margin: 40px 0; text-align: center; }
+    .cta h2 { border: none; color: #fff; margin: 0 0 12px; font-size: 20px; }
+    .cta ul { text-align: left; max-width: 440px; margin: 0 auto 22px; list-style: none; }
+    .cta li { margin-bottom: 8px; }
+    .cta-btn { display: inline-block; background: #fff; color: #1f5c3a; font-weight: 800; padding: 14px 32px; border-radius: 30px; font-size: 16px; transition: transform 0.15s, box-shadow 0.15s; }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .cta-note { font-size: 13px; opacity: 0.85; margin-top: 14px; margin-bottom: 0; }
+
+    .faq-item { border-bottom: 1px solid #eee; padding: 16px 0; }
+    .faq-q { font-weight: 700; color: #1f5c3a; margin-bottom: 6px; }
+
+    footer { background: #f7f7f7; padding: 28px 20px; text-align: center; font-size: 13px; color: #888; margin-top: 40px; }
+    .footer-links { margin-bottom: 12px; }
+    .footer-links a { color: #2e7d4f; margin: 0 8px; }
+    .footer-links a:hover { opacity: 0.7; }
+    .disclaimer { font-size: 12px; color: #aaa; max-width: 620px; margin: 0 auto 12px; line-height: 1.6; }
+
+    @media (max-width: 600px) { body { font-size: 16px; } .hero h1 { font-size: 21px; } article h2 { font-size: 19px; } }
+  </style>
+</head>
+<body>
+
+  <nav class="breadcrumb">
+    <a href="../../">MC Labs</a> &rsaquo; <a href="../">麻雀点数ノート</a> &rsaquo; 点数計算の覚え方
+  </nav>
+
+  <header class="hero">
+    <span class="hero-badge">点数計算がわかるガイド</span>
+    <h1>麻雀の点数計算の覚え方<br>―― 早見表・親子・ツモとロンの配分</h1>
+  </header>
+
+  <article>
+    <p class="lead">
+      「アガったのに点数が分からない」――麻雀でいちばん最初につまずくのが点数計算です。
+      でも、点数表を丸暗記する必要はありません。
+      このページでは、<strong>基本点 → 親子の違い → ツモ／ロンの配分</strong>の順に、
+      点数の仕組みを早見表と具体例でやさしく整理します。
+    </p>
+
+    <h2>この記事でわかること</h2>
+    <ul>
+      <li>点数のもとになる「基本点」の考え方</li>
+      <li>親と子で点数が変わる理由</li>
+      <li>ツモ・ロンで支払いがどう分かれるか</li>
+      <li>よく出る符×翻の早見表</li>
+      <li>満貫以上の点数</li>
+    </ul>
+
+    <h2>1. 点数は「符」と「翻」から決まる</h2>
+    <p>麻雀の点数は、<strong>符（ふ）</strong>と<strong>翻（はん）</strong>の2つから計算されます。基本となる「基本点」は次の式で求められます。</p>
+    <div class="formula">基本点 ＝ 符 × 2 の (翻数 + 2) 乗</div>
+    <p>この基本点に、親か子か・ツモかロンかに応じた倍率を掛けて、実際の点数が決まります。符の数え方そのものは <a href="../../mahjong-fu-keisan/">符計算の解説</a> にまとめています。</p>
+    <div class="note"><strong>まずはここだけ：</strong>「符×翻で基本点が出て、それを親子・ツモロンで振り分ける」という流れだけつかめば十分です。</div>
+
+    <h2>2. 親と子で点数が変わる</h2>
+    <p>同じ手でも、<strong>親は子の1.5倍</strong>の点数になります。支払い側の倍率は次のとおりです。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>アガり方</th><th>基本点にかける倍率</th></tr></thead>
+        <tbody>
+          <tr><td>子のロン</td><td>×4</td></tr>
+          <tr><td>親のロン</td><td>×6</td></tr>
+          <tr><td>子のツモ</td><td>親が×2／他の子が×1（合計×4）</td></tr>
+          <tr><td>親のツモ</td><td>子が全員×2（合計×6）</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>※ 実際の支払いは100点未満を切り上げます。</p>
+
+    <h2>3. ツモとロンの配分</h2>
+    <h3>ロンの場合</h3>
+    <p>振り込んだ1人が、点数をまとめて支払います。考え方はシンプルです。</p>
+    <h3>ツモの場合</h3>
+    <p>全員で分担します。<strong>子のツモ</strong>なら「親：他の子＝2：1：1」、<strong>親のツモ</strong>なら「子全員が同額」です。</p>
+    <div class="note"><strong>覚え方のコツ：</strong>ツモは「親が多めに払う」と覚えると迷いません。子ツモなら親が2倍、子は1倍ずつです。</div>
+
+    <h2>4. よく出る点数の早見表</h2>
+    <p>実戦でよく出る符×翻の点数です（子／親）。まずはこのあたりを目安に覚えると実用的です。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>符 / 翻</th><th>3翻</th><th>4翻</th></tr></thead>
+        <tbody>
+          <tr><td>30符</td><td>3,900 / 5,800</td><td>7,700 / 11,600</td></tr>
+          <tr><td>40符</td><td>5,200 / 7,700</td><td>8,000 / 12,000（満貫）</td></tr>
+          <tr><td>20符（平和ツモ等）</td><td>2,000 / 3,900※</td><td>5,200 / 7,700</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">※ 表はロン時のおおよその合計点です。ツモ時は配分が変わります。20符はツモ限定など条件があります。</p>
+
+    <h2>5. 満貫以上の点数</h2>
+    <p>翻が増えると、符に関係なく決まった点数になります。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>呼び名</th><th>翻の目安</th><th>子</th><th>親</th></tr></thead>
+        <tbody>
+          <tr><td>満貫</td><td>5翻（4翻でも符が多いと）</td><td>8,000</td><td>12,000</td></tr>
+          <tr><td>跳満</td><td>6〜7翻</td><td>12,000</td><td>18,000</td></tr>
+          <tr><td>倍満</td><td>8〜10翻</td><td>16,000</td><td>24,000</td></tr>
+          <tr><td>三倍満</td><td>11〜12翻</td><td>24,000</td><td>36,000</td></tr>
+          <tr><td>役満</td><td>13翻（役満役）</td><td>32,000</td><td>48,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cta">
+      <h2>「毎回これを計算するのは大変」と思った人へ</h2>
+      <p>基本点・親子・ツモロンの配分まで手で計算するのは大変です。<strong>麻雀点数ノート</strong> なら、符と翻を選ぶだけで点数と支払いを自動で出します。</p>
+      <ul>
+        <li>🧮 符と翻を選ぶだけで点数を自動計算</li>
+        <li>🀄 親子・ツモ・ロンの支払いを自動で振り分け</li>
+        <li>📒 点数の仕組みを確認しながら練習できる</li>
+        <li>📴 完全オフラインで卓上でもすぐ使える</li>
+      </ul>
+      <a class="cta-btn" href="https://apps.apple.com/jp/app/id6776482540">麻雀点数ノートを見る</a>
+      <p class="cta-note">iPhone対応 · 基本機能は無料</p>
+    </div>
+
+    <h2>よくある質問（FAQ）</h2>
+    <div class="faq-item">
+      <p class="faq-q">Q. 親と子で点数はどう違いますか？</p>
+      <p>A. 親は子の1.5倍の点数をもらえます。たとえば同じ手でも、子のロンが基本点×4なのに対し、親のロンは基本点×6です。そのぶん親の支払いも大きくなります。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. ツモとロンで支払いはどう変わりますか？</p>
+      <p>A. ロンは振り込んだ1人がまとめて払います。ツモは全員で分担し、子ツモなら親が2倍・他の子が1倍ずつ、親ツモなら子全員が同額ずつ払います。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 満貫は何翻からですか？</p>
+      <p>A. おおよそ5翻から満貫です（4翻でも符が多いと満貫になることがあります）。満貫は子8000点・親12000点で、以降は跳満・倍満・三倍満・役満と上がります。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 点数表は丸暗記しないといけませんか？</p>
+      <p>A. 丸暗記は必須ではありません。よく出る「30符・40符」の数翻ぶんだけ覚え、それ以外はアプリや早見表で確認するのが現実的です（→ <a href="../yaku-han/">役と翻数の一覧</a>）。</p>
+    </div>
+  </article>
+
+  <footer>
+    <div class="footer-links">
+      <a href="../">麻雀点数ノート</a>
+      <a href="../../mahjong-fu-keisan/">符計算の解説</a>
+      <a href="../yaku-han/">役と翻数の一覧</a>
+      <a href="../../">MC Labs トップへ</a>
+    </div>
+    <p class="disclaimer">
+      ※ 本記事は麻雀の点数計算の考え方を一般的に解説するものです。点数の呼称や細かいルール（切り上げ満貫・ローカルルールなど）は、遊ぶ場やルールによって異なる場合があります。
+    </p>
+    <p>© 2026 MC Labs. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
