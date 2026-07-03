@@ -278,13 +278,14 @@
       .hero h1 { font-size: 32px; }
       .hero-screenshots { gap: 16px; }
       .screenshot-img { width: 170px; }
-      .premium-cards { display: grid; grid-template-columns: 1fr 1fr; }
+      .premium-cards { display: grid; grid-template-columns: 1fr 1fr; max-width: 640px; }
       .privacy-cols { flex-direction: row; max-width: 700px; }
       .privacy-item { flex: 1; }
     }
     @media (min-width: 900px) {
       .feature-grid { grid-template-columns: 1fr 1fr; max-width: 780px; }
-      .step-row { flex-direction: row; }
+      .step-row { flex-direction: row; max-width: 780px; align-items: flex-start; }
+      .step-item { flex: 1; }
       .step-arrow { display: flex; align-items: center; }
     }
   </style>
