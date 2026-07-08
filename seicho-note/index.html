@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>成長曲線ノート - 子供の身長・体重をグラフで記録｜日本の標準値対応</title>
+  <meta name="description" content="学校や健診で測った身長・体重を入れるだけで、母子手帳と同じ日本の標準値（0歳〜17歳6ヶ月）の成長曲線に重ねて表示。SDスコア・パーセンタイル自動計算。完全オフライン・登録不要・広告なし。">
+
+  <!-- OGP -->
+  <meta property="og:title" content="成長曲線ノート - 子供の身長・体重をグラフで記録">
+  <meta property="og:description" content="学校や健診の測定結果を入れるだけで、日本の標準値の成長曲線に重ねて表示。うちの子の伸びが標準の帯に入っているかが一目でわかります。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/seicho-note/">
+  <meta property="og:locale" content="ja_JP">
+
+  <!-- canonical -->
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/seicho-note/">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+      font-size: 17px;
+      color: #1a1a1a;
+      background: #fff;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== パンくず ===== */
+    .breadcrumb {
+      padding: 12px 24px;
+      font-size: 13px;
+      color: #888;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .breadcrumb a { color: #1d6b57; transition: opacity 0.2s; }
+    .breadcrumb a:hover { opacity: 0.7; }
+
+    /* ===== ヒーロー ===== */
+    .hero {
+      background: linear-gradient(160deg, #0f3d33 0%, #1d6b57 55%, #2ea183 100%);
+      color: #fff;
+      text-align: center;
+      padding: 60px 24px 48px;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 13px;
+      margin-bottom: 20px;
+      letter-spacing: 0.05em;
+    }
+    .hero h1 {
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.4;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .hero-sub {
+      font-size: 16px;
+      opacity: 0.92;
+      margin-bottom: 28px;
+      line-height: 1.65;
+    }
+
+    .app-store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #000;
+      color: #fff;
+      border-radius: 14px;
+      padding: 14px 28px;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 14px;
+      transition: opacity 0.2s;
+    }
+    .app-store-btn svg { width: 22px; height: 22px; fill: #fff; }
+    .review-note { font-size: 13px; opacity: 0.8; margin-bottom: 36px; }
+
+    .hero-screenshots {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      padding: 0 24px 12px;
+      scrollbar-width: none;
+    }
+    .hero-screenshots::-webkit-scrollbar { display: none; }
+    .screenshot-img {
+      width: 150px;
+      height: auto;
+      border-radius: 20px;
+      border: 2px solid rgba(255,255,255,0.25);
+      flex-shrink: 0;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      display: block;
+      scroll-snap-align: start;
+    }
+
+    /* ===== stats strip ===== */
+    .stats-strip {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      background: #0b2d26;
+      color: #fff;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      flex: 1;
+      min-width: 110px;
+      text-align: center;
+      padding: 18px 12px;
+      border-right: 1px solid rgba(255,255,255,0.12);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-size: 20px; font-weight: 800; color: #ffe27a; }
+    .stat-label { font-size: 12px; opacity: 0.75; margin-top: 2px; }
+
+    /* ===== 課題提起 ===== */
+    .problem { background: #f4faf7; padding: 56px 24px; text-align: center; }
+    .section-label {
+      display: inline-block;
+      color: #1d6b57;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+    .section-title { font-size: 22px; font-weight: 800; line-height: 1.45; margin-bottom: 32px; }
+    .problem-list { list-style: none; max-width: 420px; margin: 0 auto 32px; text-align: left; }
+    .problem-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 14px 0; border-bottom: 1px solid #e2ede8; font-size: 16px;
+    }
+    .problem-list li:last-child { border-bottom: none; }
+    .problem-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+    .problem-answer {
+      background: #fff; border: 2px solid #1d6b57; border-radius: 16px;
+      padding: 24px 20px; max-width: 420px; margin: 0 auto;
+      font-size: 17px; font-weight: 600; line-height: 1.6; color: #145244;
+    }
+
+    /* ===== 3ステップ ===== */
+    .steps { padding: 56px 24px; text-align: center; }
+    .step-row { display: flex; flex-direction: column; gap: 24px; max-width: 420px; margin: 0 auto; }
+    .step-item { display: flex; align-items: flex-start; gap: 16px; text-align: left; }
+    .step-num {
+      width: 36px; height: 36px; border-radius: 50%; background: #1d6b57; color: #fff;
+      display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px;
+      flex-shrink: 0;
+    }
+    .step-item h4 { font-size: 16px; font-weight: 800; margin-bottom: 2px; }
+    .step-item p { font-size: 14px; color: #666; }
+
+    /* ===== 機能紹介 2x2グリッド ===== */
+    .features { padding: 56px 24px; text-align: center; background: #f4faf7; }
+    .feature-grid {
+      display: grid; grid-template-columns: 1fr; gap: 16px; max-width: 440px; margin: 0 auto;
+    }
+    .feature-card {
+      background: #fff; border: 1px solid #eee; border-radius: 20px;
+      padding: 24px 20px; text-align: left; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .feature-icon-wrap {
+      width: 48px; height: 48px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; margin-bottom: 14px;
+    }
+    .feature-icon-wrap.green { background: #e6f6ef; }
+    .feature-icon-wrap.blue { background: #e6f0fd; }
+    .feature-icon-wrap.navy { background: #e4e9f3; }
+    .feature-icon-wrap.amber { background: #fdf3d9; }
+    .feature-card h3 { font-size: 16px; font-weight: 800; margin-bottom: 6px; }
+    .feature-card p { font-size: 14px; color: #555; line-height: 1.6; }
+
+    /* ===== 基準（出典） ===== */
+    .source { background: #fff; padding: 56px 24px; text-align: center; }
+    .source-box {
+      background: #f4faf7; border: 1px solid #d8eae2; border-radius: 16px;
+      padding: 24px 20px; max-width: 480px; margin: 0 auto; text-align: left;
+      font-size: 14px; color: #444; line-height: 1.8;
+    }
+    .source-box a { color: #1d6b57; text-decoration: underline; word-break: break-all; }
+
+    /* ===== プレミアム ===== */
+    .premium {
+      background: linear-gradient(135deg, #10332b 0%, #1a5244 100%);
+      color: #fff; padding: 56px 24px; text-align: center;
+    }
+    .premium .section-label { color: #f9ca24; }
+    .premium .section-title { color: #fff; }
+    .premium-cards { display: flex; flex-direction: column; gap: 14px; max-width: 400px; margin: 0 auto 28px; }
+    .premium-card {
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 16px; padding: 20px; display: flex; align-items: center; gap: 16px; text-align: left;
+    }
+    .premium-card .emoji { font-size: 28px; flex-shrink: 0; }
+    .premium-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+    .premium-card p { font-size: 13px; opacity: 0.78; }
+    .price-box {
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px; padding: 22px 24px; max-width: 360px; margin: 0 auto 20px;
+    }
+    .price-row { display: flex; justify-content: space-between; align-items: center; }
+    .price-label { font-size: 15px; opacity: 0.85; }
+    .price-value { font-size: 22px; font-weight: 800; }
+    .price-tag { font-size: 12px; background: #f9ca24; color: #16213e; border-radius: 6px; padding: 2px 7px; font-weight: 700; margin-left: 6px; }
+    .free-note { font-size: 13px; opacity: 0.72; line-height: 1.6; }
+
+    /* ===== プライバシー3列 ===== */
+    .privacy { padding: 56px 24px; text-align: center; background: #fff; }
+    .privacy-cols { display: flex; flex-direction: column; gap: 20px; max-width: 380px; margin: 0 auto; }
+    .privacy-item { text-align: center; }
+    .privacy-icon { font-size: 30px; margin-bottom: 8px; }
+    .privacy-item h4 { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
+    .privacy-item p { font-size: 13px; color: #666; }
+
+    /* ===== CTA (amber) ===== */
+    .cta { padding: 64px 24px; text-align: center; background: linear-gradient(160deg, #f9ca24 0%, #f5b400 100%); }
+    .cta .section-label { color: #6b4c00; }
+    .cta .section-title { margin-bottom: 10px; color: #201400; }
+    .cta-sub { font-size: 15px; color: #4a3400; margin-bottom: 28px; }
+    .cta .app-store-btn { font-size: 17px; padding: 18px 36px; border-radius: 16px; margin-bottom: 12px; background: #10332b; }
+    .cta-note { font-size: 13px; color: #5c4200; }
+
+    /* ===== フッター ===== */
+    footer { background: #1a1a1a; color: rgba(255,255,255,0.6); padding: 32px 24px; text-align: center; font-size: 13px; }
+    .footer-links { display: flex; justify-content: center; gap: 18px; margin-bottom: 16px; flex-wrap: wrap; }
+    .footer-links a { color: rgba(255,255,255,0.6); transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+    .disclaimer { font-size: 12px; opacity: 0.55; max-width: 600px; margin: 0 auto 16px; line-height: 1.6; }
+
+    @media (min-width: 600px) {
+      .hero h1 { font-size: 32px; }
+      .hero-screenshots { gap: 16px; }
+      .screenshot-img { width: 170px; }
+      .premium-cards { display: grid; grid-template-columns: 1fr 1fr; max-width: 640px; }
+      .privacy-cols { flex-direction: row; max-width: 700px; }
+      .privacy-item { flex: 1; }
+    }
+    @media (min-width: 900px) {
+      .feature-grid { grid-template-columns: 1fr 1fr; max-width: 780px; }
+      .step-row { flex-direction: row; max-width: 780px; align-items: flex-start; }
+      .step-item { flex: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== パンくず ===== -->
+<nav class="breadcrumb">
+  <a href="../">MC Labs</a> &rsaquo; 成長曲線ノート
+</nav>
+
+<!-- ===== ヒーロー ===== -->
+<section class="hero">
+  <div class="hero-badge">📏 iPhone対応 · ヘルスケア</div>
+  <h1>うちの子の身長、<br>ちゃんと伸びているのかな？</h1>
+  <p class="hero-sub">
+    学校や健診の測定結果をメモするだけで、<br>
+    母子手帳と同じ日本の標準値の成長曲線に<br>
+    重ねてグラフで確認できます。
+  </p>
+
+  <a href="https://apps.apple.com/jp/app/id6787705254" target="_blank" rel="noopener" class="app-store-btn">
+    <svg viewBox="0 0 814 1000"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.3 134.4-316.7 266.8-316.7 99.8 0 162.6 64.8 212.7 64.8 46.2 0 121.2-68.8 228.5-68.8zm-88-174c43.8-51.7 74.6-123.5 74.6-195.3 0-10.3-.6-20.7-2.6-29.2-70.7 2.6-154.7 47.1-204.7 107.2-38.4 44.4-75.9 116.2-75.9 189 0 11.6 1.9 23.2 2.6 26.9 4.5.6 11.6 1.9 18.7 1.9 63.5 0 143.9-42.5 187.3-100.5z"/></svg>
+    App Storeで無料ダウンロード
+  </a>
+  <div class="hero-screenshots">
+    <img class="screenshot-img" src="./images/01_curve.png" alt="成長曲線ノート 成長曲線グラフ画面">
+    <img class="screenshot-img" src="./images/02_input.png" alt="成長曲線ノート 身長・体重の入力画面">
+    <img class="screenshot-img" src="./images/04_sd.png" alt="成長曲線ノート SDスコア表示画面">
+    <img class="screenshot-img" src="./images/05_records.png" alt="成長曲線ノート 記録一覧画面">
+    <img class="screenshot-img" src="./images/03_backup.png" alt="成長曲線ノート バックアップ画面">
+  </div>
+</section>
+
+<!-- ===== stats strip ===== -->
+<div class="stats-strip">
+  <div class="stat-item"><div class="stat-num">0〜17歳半</div><div class="stat-label">日本の標準値に対応</div></div>
+  <div class="stat-item"><div class="stat-num">三重</div><div class="stat-label">の「消えない」記録設計</div></div>
+  <div class="stat-item"><div class="stat-num">完全</div><div class="stat-label">オフライン・登録不要</div></div>
+</div>
+
+<!-- ===== 課題提起 ===== -->
+<section class="problem">
+  <div class="section-label">こんな心配ありませんか？</div>
+  <h2 class="section-title">測定結果のプリント、<br>もらったまま眠っていませんか</h2>
+  <ul class="problem-list">
+    <li><span class="problem-icon">📄</span><span>学校の身体測定の結果を、いつもそのまましまい込んでしまう</span></li>
+    <li><span class="problem-icon">📈</span><span>「成長曲線のカーブに乗っているか」を自分で確かめる方法がわからない</span></li>
+    <li><span class="problem-icon">☁️</span><span>子どもの体のデータを、外部のサーバーに預けるのは気が引ける</span></li>
+    <li><span class="problem-icon">😨</span><span>何年分もためた成長の記録が、機種変更やアプリ終了で消えるのが怖い</span></li>
+  </ul>
+  <div class="problem-answer">
+    成長曲線ノートが、<br>測定結果を「見える安心」に変えます。
+  </div>
+</section>
+
+<!-- ===== 3ステップ ===== -->
+<section class="steps">
+  <div class="section-label">使い方</div>
+  <h2 class="section-title">記録は3ステップ。<br>むずかしい設定はありません</h2>
+  <div class="step-row">
+    <div class="step-item">
+      <span class="step-num">1</span>
+      <div><h4>測定日と身長・体重を入力</h4><p>学校や健診でもらった数字をそのまま</p></div>
+    </div>
+    <div class="step-item">
+      <span class="step-num">2</span>
+      <div><h4>成長曲線に自動で重なる</h4><p>日本の標準値の帯（-2SD〜+2SD）の上に表示</p></div>
+    </div>
+    <div class="step-item">
+      <span class="step-num">3</span>
+      <div><h4>伸びをひと目で確認</h4><p>SDスコアとおおよそのパーセンタイルを自動計算</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 機能紹介 2x2グリッド ===== -->
+<section class="features">
+  <div class="section-label">主な機能</div>
+  <h2 class="section-title">母子手帳の成長曲線を、<br>そのままポケットに</h2>
+  <div class="feature-grid">
+
+    <div class="feature-card">
+      <div class="feature-icon-wrap green">📈</div>
+      <h3>日本の標準値の成長曲線</h3>
+      <p>母子手帳や学校保健で使われている日本の標準値（0歳〜17歳6ヶ月）に、お子さんの記録を重ねて表示します。</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-wrap blue">🧮</div>
+      <h3>SDスコアを自動計算</h3>
+      <p>標準の帯のどのあたりを通っているかを、SDスコアとおおよそのパーセンタイルで数値でも確認できます。</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-wrap navy">🛡</div>
+      <h3>三重の「消えない」設計</h3>
+      <p>保存のたびの検証・日ごとの自動スナップショット・自動復旧の三重のしくみで、何年分の記録も守ります。</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-wrap amber">📝</div>
+      <h3>記録の一覧・メモ・修正</h3>
+      <p>件数無制限で記録でき、あとからの修正やメモの追記も自由。ファイル書き出しで機種変更にも対応します。</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== 基準（出典） ===== -->
+<section class="source">
+  <div class="section-label">成長曲線の基準について</div>
+  <h2 class="section-title">公的な調査にもとづく標準値</h2>
+  <div class="source-box">
+    本アプリの成長曲線・SDスコアは、日本小児内分泌学会が公表する「日本人小児の体格標準値（2000年度）」（基礎データ：厚生労働省 乳幼児身体発育調査・文部科学省 学校保健統計調査）に基づいています。<br>
+    出典：<a href="http://jspe.umin.jp/medical/taikaku.html" target="_blank" rel="noopener">http://jspe.umin.jp/medical/taikaku.html</a>
+  </div>
+</section>
+
+<!-- ===== プレミアム ===== -->
+<section class="premium">
+  <div class="section-label">プレミアム（買い切り）</div>
+  <h2 class="section-title">兄弟・姉妹の分も、<br>まとめて1冊に</h2>
+  <div class="premium-cards">
+    <div class="premium-card">
+      <span class="emoji">👧👦</span>
+      <div><h4>兄弟・姉妹の追加</h4><p>2人目以降のお子さんも記録できます</p></div>
+    </div>
+    <div class="premium-card">
+      <span class="emoji">🧾</span>
+      <div><h4>SDスコア付きCSV書き出し</h4><p>健診・受診時の持参や印刷に</p></div>
+    </div>
+    <div class="premium-card">
+      <span class="emoji">🎯</span>
+      <div><h4>目標身長（参考値）の表示</h4><p>両親の身長から一般式で計算します</p></div>
+    </div>
+  </div>
+  <div class="price-box">
+    <div class="price-row">
+      <span class="price-label">プレミアム（買い切り）</span>
+      <span class="price-value">¥600<span class="price-tag">一度きり</span></span>
+    </div>
+  </div>
+  <p class="free-note">※ 1人分の記録・成長曲線グラフ・SDスコア・自動バックアップは<br>無料でご利用いただけます。月額課金はありません。</p>
+</section>
+
+<!-- ===== プライバシー3列 ===== -->
+<section class="privacy">
+  <div class="section-label">安心してお使いいただけます</div>
+  <h2 class="section-title">子どもの体のデータだからこそ、<br>外に出さない設計に</h2>
+  <div class="privacy-cols">
+    <div class="privacy-item">
+      <div class="privacy-icon">🔒</div>
+      <h4>完全オフライン</h4>
+      <p>名前・生年月日・身長・体重はすべて端末内にのみ保存されます</p>
+    </div>
+    <div class="privacy-item">
+      <div class="privacy-icon">📵</div>
+      <h4>広告なし</h4>
+      <p>広告表示のためのトラッキングもありません</p>
+    </div>
+    <div class="privacy-item">
+      <div class="privacy-icon">🚫</div>
+      <h4>アカウント登録不要</h4>
+      <p>サーバーへの送信は一切ありません</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA (amber) ===== -->
+<section class="cta">
+  <div class="section-label">今日の記録からはじめる</div>
+  <h2 class="section-title">次の身体測定の結果を、<br>そのまま成長曲線に</h2>
+  <p class="cta-sub">無料でダウンロードして、これまでの記録もまとめて入れられます。</p>
+  <a href="https://apps.apple.com/jp/app/id6787705254" target="_blank" rel="noopener" class="app-store-btn">
+    <svg viewBox="0 0 814 1000" width="24" height="24" fill="white"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.3 134.4-316.7 266.8-316.7 99.8 0 162.6 64.8 212.7 64.8 46.2 0 121.2-68.8 228.5-68.8zm-88-174c43.8-51.7 74.6-123.5 74.6-195.3 0-10.3-.6-20.7-2.6-29.2-70.7 2.6-154.7 47.1-204.7 107.2-38.4 44.4-75.9 116.2-75.9 189 0 11.6 1.9 23.2 2.6 26.9 4.5.6 11.6 1.9 18.7 1.9 63.5 0 143.9-42.5 187.3-100.5z"/></svg>
+    App Storeで無料ダウンロード
+  </a>
+  <p class="cta-note">iPhone対応 · 完全オフライン · 広告なし</p>
+</section>
+
+<!-- ===== フッター ===== -->
+<footer>
+  <div class="footer-links">
+    <a href="../">MC Labs トップへ</a>
+    <a href="./privacy/">プライバシーポリシー</a>
+    <a href="../ketsuatsu-ai/">血圧手帳AI</a>
+    <a href="../ooya-note/">家賃ノート</a>
+    <a href="mailto:chimasaki31@gmail.com">お問い合わせ</a>
+  </div>
+  <p class="disclaimer">
+    ※ 成長曲線ノートの表示は記録と計算の補助のための目安であり、発育の診断や医学的な助言を行うものではありません。お子さんの発育について気になることがある場合は、医療機関や健診でご相談ください。
+  </p>
+  <p>© 2026 MC Labs. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

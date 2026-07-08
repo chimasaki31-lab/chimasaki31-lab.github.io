@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>家賃ノート - 大家さんの賃貸経営・入金管理｜確定申告の集計まで</title>
+  <meta name="description" content="自主管理の大家さんのための家賃入金チェックと収支記録アプリ。毎月の家賃をタップだけで記帳、未入金は赤く表示。経費は収支内訳書（不動産所得用）準拠の科目で記録し、確定申告の集計まで。完全オフライン・営業ゼロ。">
+
+  <!-- OGP -->
+  <meta property="og:title" content="家賃ノート - 大家さんの賃貸経営・入金管理">
+  <meta property="og:description" content="毎月の家賃入金をタップでチェック、未入金は赤く表示。経費は収支内訳書準拠の科目で記録し、確定申告の集計まで。完全オフライン・営業ゼロ。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/ooya-note/">
+  <meta property="og:locale" content="ja_JP">
+
+  <!-- canonical -->
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/ooya-note/">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+      font-size: 17px;
+      color: #1a1a1a;
+      background: #fff;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== パンくず ===== */
+    .breadcrumb {
+      padding: 12px 24px;
+      font-size: 13px;
+      color: #888;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .breadcrumb a { color: #1f5233; transition: opacity 0.2s; }
+    .breadcrumb a:hover { opacity: 0.7; }
+
+    /* ===== ヒーロー ===== */
+    .hero {
+      background: linear-gradient(160deg, #14301f 0%, #1f5233 55%, #2e7d4f 100%);
+      color: #fff;
+      text-align: center;
+      padding: 60px 24px 48px;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 13px;
+      margin-bottom: 20px;
+      letter-spacing: 0.05em;
+    }
+    .hero h1 {
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.4;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .hero-sub {
+      font-size: 16px;
+      opacity: 0.92;
+      margin-bottom: 28px;
+      line-height: 1.65;
+    }
+
+    /* ===== 比較カード ===== */
+    .compare-card {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 20px;
+      max-width: 340px;
+      margin: 0 auto 28px;
+      padding: 20px;
+    }
+    .compare-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; gap: 12px; }
+    .compare-label { font-size: 13px; opacity: 0.8; text-align: left; }
+    .compare-value { font-size: 17px; font-weight: 800; white-space: nowrap; }
+    .compare-value.wrong { color: #ff8a8a; }
+    .compare-value.right { color: #ffe27a; }
+    .compare-divider { border-top: 1px dashed rgba(255,255,255,0.25); margin: 4px 0; }
+    .compare-note { font-size: 12px; opacity: 0.7; margin-top: 10px; text-align: left; }
+
+    .app-store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #000;
+      color: #fff;
+      border-radius: 14px;
+      padding: 14px 28px;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 14px;
+      transition: opacity 0.2s;
+    }
+    .app-store-btn svg { width: 22px; height: 22px; fill: #fff; }
+
+    .hero-screenshots {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      padding: 0 24px 12px;
+      scrollbar-width: none;
+    }
+    .hero-screenshots::-webkit-scrollbar { display: none; }
+    .screenshot-img {
+      width: 150px;
+      height: auto;
+      border-radius: 20px;
+      border: 2px solid rgba(255,255,255,0.25);
+      flex-shrink: 0;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      display: block;
+      scroll-snap-align: start;
+    }
+
+    /* ===== stats strip ===== */
+    .stats-strip {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      background: #0e2417;
+      color: #fff;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      flex: 1;
+      min-width: 110px;
+      text-align: center;
+      padding: 18px 12px;
+      border-right: 1px solid rgba(255,255,255,0.12);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-size: 20px; font-weight: 800; color: #ffe27a; }
+    .stat-label { font-size: 12px; opacity: 0.75; margin-top: 2px; }
+
+    /* ===== 課題提起 ===== */
+    .problem { background: #f4faf6; padding: 56px 24px; text-align: center; }
+    .section-label {
+      display: inline-block;
+      color: #1f5233;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+    .section-title { font-size: 22px; font-weight: 800; line-height: 1.45; margin-bottom: 32px; }
+    .problem-list { list-style: none; max-width: 420px; margin: 0 auto 32px; text-align: left; }
+    .problem-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 14px 0; border-bottom: 1px solid #e2ede6; font-size: 16px;
+    }
+    .problem-list li:last-child { border-bottom: none; }
+    .problem-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+    .problem-answer {
+      background: #fff; border: 2px solid #1f5233; border-radius: 16px;
+      padding: 24px 20px; max-width: 420px; margin: 0 auto;
+      font-size: 17px; font-weight: 600; line-height: 1.6; color: #164028;
+    }
+
+    /* ===== 3ステップ ===== */
+    .steps { padding: 56px 24px; text-align: center; }
+    .step-row { display: flex; flex-direction: column; gap: 24px; max-width: 420px; margin: 0 auto; }
+    .step-item { display: flex; align-items: flex-start; gap: 16px; text-align: left; }
+    .step-num {
+      width: 36px; height: 36px; border-radius: 50%; background: #1f5233; color: #fff;
+      display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px;
+      flex-shrink: 0;
+    }
+    .step-item h4 { font-size: 16px; font-weight: 800; margin-bottom: 2px; }
+    .step-item p { font-size: 14px; color: #666; }
+
+    /* ===== 機能紹介 2x2グリッド ===== */
+    .features { padding: 56px 24px; text-align: center; background: #f4faf6; }
+    .feature-grid {
+      display: grid; grid-template-columns: 1fr; gap: 16px; max-width: 440px; margin: 0 auto;
+    }
+    .feature-card {
+      background: #fff; border: 1px solid #eee; border-radius: 20px;
+      padding: 24px 20px; text-align: left; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .feature-icon-wrap {
+      width: 48px; height: 48px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; margin-bottom: 14px;
+    }
+    .feature-icon-wrap.green { background: #e6f6ec; }
+    .feature-icon-wrap.blue { background: #e6f0fd; }
+    .feature-icon-wrap.navy { background: #e4e9f3; }
+    .feature-icon-wrap.amber { background: #fdf3d9; }
+    .feature-card h3 { font-size: 16px; font-weight: 800; margin-bottom: 6px; }
+    .feature-card p { font-size: 14px; color: #555; line-height: 1.6; }
+
+    /* ===== プレミアム ===== */
+    .premium {
+      background: linear-gradient(135deg, #10281a 0%, #1c4a2f 100%);
+      color: #fff; padding: 56px 24px; text-align: center;
+    }
+    .premium .section-label { color: #f9ca24; }
+    .premium .section-title { color: #fff; }
+    .premium-cards { display: flex; flex-direction: column; gap: 14px; max-width: 400px; margin: 0 auto 28px; }
+    .premium-card {
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 16px; padding: 20px; display: flex; align-items: center; gap: 16px; text-align: left;
+    }
+    .premium-card .emoji { font-size: 28px; flex-shrink: 0; }
+    .premium-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+    .premium-card p { font-size: 13px; opacity: 0.78; }
+    .price-box {
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px; padding: 22px 24px; max-width: 360px; margin: 0 auto 20px;
+    }
+    .price-row { display: flex; justify-content: space-between; align-items: center; }
+    .price-label { font-size: 15px; opacity: 0.85; }
+    .price-value { font-size: 22px; font-weight: 800; }
+    .price-tag { font-size: 12px; background: #f9ca24; color: #16213e; border-radius: 6px; padding: 2px 7px; font-weight: 700; margin-left: 6px; }
+    .free-note { font-size: 13px; opacity: 0.72; line-height: 1.6; }
+
+    /* ===== プライバシー3列 ===== */
+    .privacy { padding: 56px 24px; text-align: center; background: #fff; }
+    .privacy-cols { display: flex; flex-direction: column; gap: 20px; max-width: 380px; margin: 0 auto; }
+    .privacy-item { text-align: center; }
+    .privacy-icon { font-size: 30px; margin-bottom: 8px; }
+    .privacy-item h4 { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
+    .privacy-item p { font-size: 13px; color: #666; }
+
+    /* ===== CTA (amber) ===== */
+    .cta { padding: 64px 24px; text-align: center; background: linear-gradient(160deg, #f9ca24 0%, #f5b400 100%); }
+    .cta .section-label { color: #6b4c00; }
+    .cta .section-title { margin-bottom: 10px; color: #201400; }
+    .cta-sub { font-size: 15px; color: #4a3400; margin-bottom: 28px; }
+    .cta .app-store-btn { font-size: 17px; padding: 18px 36px; border-radius: 16px; margin-bottom: 12px; background: #14301f; }
+    .cta-note { font-size: 13px; color: #5c4200; }
+
+    /* ===== フッター ===== */
+    footer { background: #1a1a1a; color: rgba(255,255,255,0.6); padding: 32px 24px; text-align: center; font-size: 13px; }
+    .footer-links { display: flex; justify-content: center; gap: 18px; margin-bottom: 16px; flex-wrap: wrap; }
+    .footer-links a { color: rgba(255,255,255,0.6); transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+    .disclaimer { font-size: 12px; opacity: 0.55; max-width: 600px; margin: 0 auto 16px; line-height: 1.6; }
+
+    @media (min-width: 600px) {
+      .hero h1 { font-size: 32px; }
+      .hero-screenshots { gap: 16px; }
+      .screenshot-img { width: 170px; }
+      .premium-cards { display: grid; grid-template-columns: 1fr 1fr; max-width: 640px; }
+      .privacy-cols { flex-direction: row; max-width: 700px; }
+      .privacy-item { flex: 1; }
+    }
+    @media (min-width: 900px) {
+      .feature-grid { grid-template-columns: 1fr 1fr; max-width: 780px; }
+      .step-row { flex-direction: row; max-width: 780px; align-items: flex-start; }
+      .step-item { flex: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== パンくず ===== -->
+<nav class="breadcrumb">
+  <a href="../">MC Labs</a> &rsaquo; 家賃ノート
+</nav>
+
+<!-- ===== ヒーロー ===== -->
+<section class="hero">
+  <div class="hero-badge">🏠 iPhone対応 · ファイナンス</div>
+  <h1>毎月の家賃、<br>どの部屋が未入金かすぐ言えますか？</h1>
+  <p class="hero-sub">
+    自主管理の大家さんのための、<br>
+    タップだけの入金チェックと収支記録。<br>
+    確定申告の集計まで、これ1冊で。
+  </p>
+
+  <div class="compare-card">
+    <div class="compare-row">
+      <span class="compare-label">通帳×紙の台帳・Excelの突き合わせ</span>
+      <span class="compare-value wrong">見逃しがち</span>
+    </div>
+    <div class="compare-divider"></div>
+    <div class="compare-row">
+      <span class="compare-label">家賃ノートの月別部屋一覧</span>
+      <span class="compare-value right">未入金は赤</span>
+    </div>
+    <p class="compare-note">※ 月ごとの部屋一覧をタップするだけ。未入金・一部入金はその場で赤く表示されます。</p>
+  </div>
+
+  <a href="https://apps.apple.com/jp/app/id6787886522" target="_blank" rel="noopener" class="app-store-btn">
+    <svg viewBox="0 0 814 1000"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.3 134.4-316.7 266.8-316.7 99.8 0 162.6 64.8 212.7 64.8 46.2 0 121.2-68.8 228.5-68.8zm-88-174c43.8-51.7 74.6-123.5 74.6-195.3 0-10.3-.6-20.7-2.6-29.2-70.7 2.6-154.7 47.1-204.7 107.2-38.4 44.4-75.9 116.2-75.9 189 0 11.6 1.9 23.2 2.6 26.9 4.5.6 11.6 1.9 18.7 1.9 63.5 0 143.9-42.5 187.3-100.5z"/></svg>
+    App Storeで無料ダウンロード
+  </a>
+  <div class="hero-screenshots">
+    <img class="screenshot-img" src="./images/01_check.png" alt="家賃ノート 入金チェック画面">
+    <img class="screenshot-img" src="./images/02_cash.png" alt="家賃ノート 入金記帳画面">
+    <img class="screenshot-img" src="./images/03_report.png" alt="家賃ノート 確定申告モードの科目別集計画面">
+    <img class="screenshot-img" src="./images/04_analysis.png" alt="家賃ノート 年間収支レポート画面">
+    <img class="screenshot-img" src="./images/05_backup.png" alt="家賃ノート バックアップ画面">
+  </div>
+</section>
+
+<!-- ===== stats strip ===== -->
+<div class="stats-strip">
+  <div class="stat-item"><div class="stat-num">タップ1回</div><div class="stat-label">で家賃を記帳</div></div>
+  <div class="stat-item"><div class="stat-num">内訳書準拠</div><div class="stat-label">の科目で経費を記録</div></div>
+  <div class="stat-item"><div class="stat-num">営業ゼロ</div><div class="stat-label">完全オフライン・登録不要</div></div>
+</div>
+
+<!-- ===== 課題提起 ===== -->
+<section class="problem">
+  <div class="section-label">こんな手間ありませんか？</div>
+  <h2 class="section-title">入金確認と確定申告が、<br>毎回こんなに大変</h2>
+  <ul class="problem-list">
+    <li><span class="problem-icon">🏦</span><span>毎月、通帳と紙の台帳やExcelを突き合わせて入金確認をしている</span></li>
+    <li><span class="problem-icon">😰</span><span>未入金にひと月以上たってから気づいたことがある</span></li>
+    <li><span class="problem-icon">🧾</span><span>確定申告のたびに、1年分の領収書と通帳を掘り返している</span></li>
+    <li><span class="problem-icon">📞</span><span>不動産アプリは、登録すると営業の連絡が来そうで使いたくない</span></li>
+  </ul>
+  <div class="problem-answer">
+    家賃ノートは「営業ゼロの実務帳簿」。<br>記帳から申告の集計までこれ1冊です。
+  </div>
+</section>
+
+<!-- ===== 3ステップ ===== -->
+<section class="steps">
+  <div class="section-label">使い方</div>
+  <h2 class="section-title">はじめかたは3ステップ</h2>
+  <div class="step-row">
+    <div class="step-item">
+      <span class="step-num">1</span>
+      <div><h4>物件と部屋を登録</h4><p>家賃と入居状況を設定するだけ</p></div>
+    </div>
+    <div class="step-item">
+      <span class="step-num">2</span>
+      <div><h4>毎月タップで入金チェック</h4><p>未入金・一部入金は赤く表示。滞納を見逃しません</p></div>
+    </div>
+    <div class="step-item">
+      <span class="step-num">3</span>
+      <div><h4>経費も科目つきで記録</h4><p>申告時期には科目別に自動集計されます</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 機能紹介 2x2グリッド ===== -->
+<section class="features">
+  <div class="section-label">主な機能（無料）</div>
+  <h2 class="section-title">紙とExcelの家賃台帳を、<br>そのままポケットに</h2>
+  <div class="feature-grid">
+
+    <div class="feature-card">
+      <div class="feature-icon-wrap green">✅</div>
+      <h3>タップだけの入金チェック</h3>
+      <p>月ごとの部屋一覧をタップするだけで記帳完了。入金額・入金日・一部入金・空室・メモも残せます。</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-wrap blue">🧾</div>
+      <h3>収支内訳書に沿った経費記録</h3>
+      <p>修繕費・固定資産税・損害保険料・借入金利子など、収支内訳書（不動産所得用）の科目で記録できます。</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-wrap amber">⏰</div>
+      <h3>期限リマインド</h3>
+      <p>契約満了・火災保険の期限が90日前からホーム画面に表示されます。更新の出し忘れを防ぎます。</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-wrap navy">🛡</div>
+      <h3>消えないバックアップ</h3>
+      <p>保存のたびの検証と日ごとの自動スナップショット（最大30世代）で、大切な帳簿を守ります。</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== プレミアム ===== -->
+<section class="premium">
+  <div class="section-label">プレミアム（買い切り）</div>
+  <h2 class="section-title">確定申告モードと物件分析で、<br>賃貸経営を数字で把握</h2>
+  <div class="premium-cards">
+    <div class="premium-card">
+      <span class="emoji">🏢</span>
+      <div><h4>物件の追加</h4><p>2棟目以降の物件も1冊で管理</p></div>
+    </div>
+    <div class="premium-card">
+      <span class="emoji">🧾</span>
+      <div><h4>確定申告モード</h4><p>収支内訳書の科目に沿った年別集計・前年比較</p></div>
+    </div>
+    <div class="premium-card">
+      <span class="emoji">📄</span>
+      <div><h4>CSV出力（3種）</h4><p>家賃台帳・経費一覧・科目別集計を書き出し</p></div>
+    </div>
+    <div class="premium-card">
+      <span class="emoji">📊</span>
+      <div><h4>物件分析</h4><p>表面・実質利回り、ローン返済表、年間キャッシュフローの概算</p></div>
+    </div>
+  </div>
+  <div class="price-box">
+    <div class="price-row">
+      <span class="price-label">プレミアム（買い切り）</span>
+      <span class="price-value">¥1,500<span class="price-tag">一度きり</span></span>
+    </div>
+  </div>
+  <p class="free-note">※ 1物件の入金チェック・経費記録・期限リマインド・バックアップは<br>無料でご利用いただけます。月額課金はありません。</p>
+</section>
+
+<!-- ===== プライバシー3列 ===== -->
+<section class="privacy">
+  <div class="section-label">安心してお使いいただけます</div>
+  <h2 class="section-title">物件と収入のデータだからこそ、<br>外に出さない設計に</h2>
+  <div class="privacy-cols">
+    <div class="privacy-item">
+      <div class="privacy-icon">🔒</div>
+      <h4>完全オフライン</h4>
+      <p>物件・入居者・家賃・経費のデータは端末内にのみ保存されます</p>
+    </div>
+    <div class="privacy-item">
+      <div class="privacy-icon">📵</div>
+      <h4>営業ゼロ</h4>
+      <p>不動産や投資のご案内が届くことは一切ありません</p>
+    </div>
+    <div class="privacy-item">
+      <div class="privacy-icon">🚫</div>
+      <h4>アカウント登録不要</h4>
+      <p>広告もトラッキングもありません</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA (amber) ===== -->
+<section class="cta">
+  <div class="section-label">今月の入金から</div>
+  <h2 class="section-title">来月の入金確認を、<br>タップ1回にしませんか</h2>
+  <p class="cta-sub">無料でダウンロードして、お持ちの物件を登録するだけで始められます。</p>
+  <a href="https://apps.apple.com/jp/app/id6787886522" target="_blank" rel="noopener" class="app-store-btn">
+    <svg viewBox="0 0 814 1000" width="24" height="24" fill="white"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.3 134.4-316.7 266.8-316.7 99.8 0 162.6 64.8 212.7 64.8 46.2 0 121.2-68.8 228.5-68.8zm-88-174c43.8-51.7 74.6-123.5 74.6-195.3 0-10.3-.6-20.7-2.6-29.2-70.7 2.6-154.7 47.1-204.7 107.2-38.4 44.4-75.9 116.2-75.9 189 0 11.6 1.9 23.2 2.6 26.9 4.5.6 11.6 1.9 18.7 1.9 63.5 0 143.9-42.5 187.3-100.5z"/></svg>
+    App Storeで無料ダウンロード
+  </a>
+  <p class="cta-note">iPhone対応 · 完全オフライン · 営業ゼロ</p>
+</section>
+
+<!-- ===== フッター ===== -->
+<footer>
+  <div class="footer-links">
+    <a href="../">MC Labs トップへ</a>
+    <a href="./privacy/">プライバシーポリシー</a>
+    <a href="../zangyo-checker/">残業代チェッカー</a>
+    <a href="../seicho-note/">成長曲線ノート</a>
+    <a href="mailto:chimasaki31@gmail.com">お問い合わせ</a>
+  </div>
+  <p class="disclaimer">
+    ※ 家賃ノートの科目別集計は収支内訳書への転記の参考のためのもので、税務助言を行うものではありません。白色申告・簡易な記帳の範囲を想定しており、青色申告の複式簿記・貸借対照表には対応していません。利回り・返済額・キャッシュフローは概算です。正確な金額は金融機関・税理士・税務署にご確認ください。
+  </p>
+  <p>© 2026 MC Labs. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
