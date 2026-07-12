@@ -233,6 +233,20 @@
     .privacy-item h4 { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
     .privacy-item p { font-size: 13px; color: #666; }
 
+    /* ===== 関連ガイド ===== */
+    .guides { padding: 56px 24px; text-align: center; background: #fff; }
+    .guide-list { display: flex; flex-direction: column; gap: 14px; max-width: 480px; margin: 0 auto; }
+    .guide-card {
+      display: flex; align-items: center; gap: 14px; text-align: left;
+      background: #f4faf6; border: 1px solid #dcecdf; border-radius: 14px;
+      padding: 18px 20px; transition: border-color 0.2s, transform 0.2s;
+    }
+    .guide-card:hover { border-color: #1f5233; transform: translateY(-2px); }
+    .guide-emoji { font-size: 26px; flex-shrink: 0; }
+    .guide-text h4 { font-size: 16px; font-weight: 800; margin-bottom: 2px; color: #1f5233; }
+    .guide-text p { font-size: 13px; color: #666; line-height: 1.5; }
+    .guide-arrow { margin-left: auto; color: #1f5233; font-weight: 800; flex-shrink: 0; }
+
     /* ===== CTA (amber) ===== */
     .cta { padding: 64px 24px; text-align: center; background: linear-gradient(160deg, #f9ca24 0%, #f5b400 100%); }
     .cta .section-label { color: #6b4c00; }
@@ -406,7 +420,7 @@
   <div class="price-box">
     <div class="price-row">
       <span class="price-label">プレミアム（買い切り）</span>
-      <span class="price-value">¥1,500<span class="price-tag">一度きり</span></span>
+      <span class="price-value">¥3,000<span class="price-tag">一度きり</span></span>
     </div>
   </div>
   <p class="free-note">※ 1物件の入金チェック・経費記録・期限リマインド・バックアップは<br>無料でご利用いただけます。月額課金はありません。</p>
@@ -432,6 +446,38 @@
       <h4>アカウント登録不要</h4>
       <p>広告もトラッキングもありません</p>
     </div>
+  </div>
+</section>
+
+<!-- ===== 関連ガイド ===== -->
+<section class="guides">
+  <div class="section-label">大家さんの実務ガイド</div>
+  <h2 class="section-title">賃貸経営のことを<br>もっと知りたい方へ</h2>
+  <div class="guide-list">
+    <a href="./yachin-tainou-taisho/" class="guide-card">
+      <span class="guide-emoji">📮</span>
+      <div class="guide-text">
+        <h4>家賃滞納・未入金への対処法</h4>
+        <p>気づく仕組み・督促の段階・記録の残し方・感情的にならないコツ</p>
+      </div>
+      <span class="guide-arrow">&rsaquo;</span>
+    </a>
+    <a href="./fudousan-kakutei-shinkoku/" class="guide-card">
+      <span class="guide-emoji">🧾</span>
+      <div class="guide-text">
+        <h4>不動産所得の確定申告のやり方</h4>
+        <p>不動産所得の考え方、白色・青色の違い、必要経費、申告の流れ</p>
+      </div>
+      <span class="guide-arrow">&rsaquo;</span>
+    </a>
+    <a href="./shuushi-uchiwakesho-kakikata/" class="guide-card">
+      <span class="guide-emoji">📋</span>
+      <div class="guide-text">
+        <h4>収支内訳書（不動産所得用）の書き方</h4>
+        <p>収入金額欄の書き方と、必要経費の主な科目ごとの記入ポイント</p>
+      </div>
+      <span class="guide-arrow">&rsaquo;</span>
+    </a>
   </div>
 </section>
 

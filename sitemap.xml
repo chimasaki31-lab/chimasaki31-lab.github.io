@@ -95,4 +95,39 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://chimasaki31-lab.github.io/enjoy-camera/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://chimasaki31-lab.github.io/seicho-note/seicho-kyokusen-mikata/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://chimasaki31-lab.github.io/seicho-note/sd-score-toha/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://chimasaki31-lab.github.io/seicho-note/kodomo-shinchou-heikin/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://chimasaki31-lab.github.io/ooya-note/yachin-tainou-taisho/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://chimasaki31-lab.github.io/ooya-note/fudousan-kakutei-shinkoku/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://chimasaki31-lab.github.io/ooya-note/shuushi-uchiwakesho-kakikata/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

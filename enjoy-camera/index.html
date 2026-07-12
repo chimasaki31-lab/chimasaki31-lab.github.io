@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>おあそびカメラ - 子どもと遊べる無料カメラアプリ｜光のお絵かき・ピタッととめる・はやおくり</title>
+  <meta name="description" content="子どもと一緒に「見たことのない写真」で遊べる、親子向けの無料カメラアプリ。ふつう撮影に加え、光のお絵かき（長時間露光）・ピタッととめる（瞬間撮影）・はやおくり（タイムラプス）の4モード。全機能ずっと無料・広告なし。">
+
+  <!-- OGP -->
+  <meta property="og:title" content="おあそびカメラ - 子どもと遊べる無料カメラアプリ">
+  <meta property="og:description" content="光のお絵かき・ピタッととめる・はやおくりなど、子どもと一緒に「見たことのない写真」で遊べる親子向けの無料カメラ。広告なし・全機能無料。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/enjoy-camera/">
+  <meta property="og:locale" content="ja_JP">
+
+  <!-- canonical -->
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/enjoy-camera/">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+      font-size: 17px;
+      color: #1a1a1a;
+      background: #fff;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== パンくず ===== */
+    .breadcrumb {
+      padding: 12px 24px;
+      font-size: 13px;
+      color: #888;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .breadcrumb a { color: #e8792f; transition: opacity 0.2s; }
+    .breadcrumb a:hover { opacity: 0.7; }
+
+    /* ===== ヒーロー：アイコン＋タイトルパネル ===== */
+    .hero-photo {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background: linear-gradient(160deg, #ffb14e 0%, #ff8a3d 45%, #ff5e7a 100%);
+    }
+    .hero-photo-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 24px 32px;
+      text-align: center;
+      color: #fff;
+    }
+    .hero-icon {
+      width: 88px;
+      height: 88px;
+      border-radius: 22px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      margin-bottom: 18px;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.22);
+      border: 1px solid rgba(255,255,255,0.45);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 13px;
+      margin-bottom: 16px;
+      letter-spacing: 0.05em;
+      align-self: center;
+    }
+    .hero-headline {
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1.45;
+      letter-spacing: -0.02em;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.2);
+    }
+
+    /* ===== ヒーロー：内容パネル ===== */
+    .hero-content {
+      background: linear-gradient(160deg, #ff8a3d 0%, #ff5e7a 100%);
+      color: #fff;
+      text-align: center;
+      padding: 0 24px 48px;
+    }
+    .hero-sub {
+      font-size: 16px;
+      opacity: 0.95;
+      margin-bottom: 28px;
+      line-height: 1.65;
+    }
+
+    .app-store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #000;
+      color: #fff;
+      border-radius: 14px;
+      padding: 14px 28px;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 14px;
+      transition: opacity 0.2s;
+    }
+    .app-store-btn svg { width: 22px; height: 22px; fill: #fff; }
+    .review-note { font-size: 13px; opacity: 0.85; margin-bottom: 36px; }
+
+    .hero-screenshots {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      padding: 0 24px 12px;
+      scrollbar-width: none;
+    }
+    .hero-screenshots::-webkit-scrollbar { display: none; }
+    .screenshot-img {
+      width: 150px;
+      height: auto;
+      border-radius: 20px;
+      border: 2px solid rgba(255,255,255,0.3);
+      flex-shrink: 0;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+      display: block;
+      scroll-snap-align: start;
+    }
+
+    /* ===== stats strip ===== */
+    .stats-strip {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      background: #3a1f38;
+      color: #fff;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      flex: 1;
+      min-width: 110px;
+      text-align: center;
+      padding: 18px 12px;
+      border-right: 1px solid rgba(255,255,255,0.12);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-size: 20px; font-weight: 800; color: #ffd166; }
+    .stat-label { font-size: 12px; opacity: 0.75; margin-top: 2px; }
+
+    /* ===== 課題提起 ===== */
+    .problem { background: #fff7ef; padding: 56px 24px; text-align: center; }
+    .section-label {
+      display: inline-block;
+      color: #e8792f;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+    .section-title { font-size: 22px; font-weight: 800; line-height: 1.45; margin-bottom: 32px; }
+    .problem-list { list-style: none; max-width: 420px; margin: 0 auto 32px; text-align: left; }
+    .problem-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 14px 0; border-bottom: 1px solid #f0e0d0; font-size: 16px;
+    }
+    .problem-list li:last-child { border-bottom: none; }
+    .problem-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+    .problem-answer {
+      background: #fff; border: 2px solid #e8792f; border-radius: 16px;
+      padding: 24px 20px; max-width: 420px; margin: 0 auto;
+      font-size: 17px; font-weight: 600; line-height: 1.6; color: #a34c14;
+    }
+
+    /* ===== 3ステップ ===== */
+    .steps { padding: 56px 24px; text-align: center; }
+    .step-row { display: flex; flex-direction: column; gap: 24px; max-width: 420px; margin: 0 auto; }
+    .step-item { display: flex; align-items: flex-start; gap: 16px; text-align: left; }
+    .step-num {
+      width: 36px; height: 36px; border-radius: 50%; background: #e8792f; color: #fff;
+      display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px;
+      flex-shrink: 0;
+    }
+    .step-item h4 { font-size: 16px; font-weight: 800; margin-bottom: 2px; }
+    .step-item p { font-size: 14px; color: #666; }
+
+    /* ===== 機能紹介（4モード・スクショ付き） ===== */
+    .features { padding: 56px 24px; text-align: center; background: #fff7ef; }
+    .feature-grid {
+      display: flex; flex-direction: column; gap: 20px; max-width: 440px; margin: 0 auto;
+    }
+    .feature-card {
+      background: #fff; border: 1px solid #f3e4d4; border-radius: 20px;
+      padding: 22px 20px; text-align: left; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .feature-card-shot {
+      width: 100%;
+      max-width: 220px;
+      margin: 0 auto;
+      border-radius: 16px;
+      display: block;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    }
+    .feature-icon-wrap {
+      width: 48px; height: 48px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; margin-bottom: 4px;
+    }
+    .feature-icon-wrap.amber { background: #fff0dd; }
+    .feature-icon-wrap.pink { background: #ffe4ea; }
+    .feature-icon-wrap.blue { background: #e6f0fd; }
+    .feature-icon-wrap.green { background: #e6f6ef; }
+    .feature-card h3 { font-size: 16px; font-weight: 800; margin-bottom: 6px; }
+    .feature-card p { font-size: 14px; color: #555; line-height: 1.6; }
+
+    /* ===== プレミアム（チップ・任意） ===== */
+    .premium {
+      background: linear-gradient(135deg, #3a1f38 0%, #6a2c5c 100%);
+      color: #fff; padding: 56px 24px; text-align: center;
+    }
+    .premium .section-label { color: #ffd166; }
+    .premium .section-title { color: #fff; }
+    .premium-cards { display: flex; flex-direction: column; gap: 14px; max-width: 400px; margin: 0 auto 28px; }
+    .premium-card {
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 16px; padding: 20px; display: flex; align-items: center; gap: 16px; text-align: left;
+    }
+    .premium-card .emoji { font-size: 28px; flex-shrink: 0; }
+    .premium-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+    .premium-card p { font-size: 13px; opacity: 0.78; }
+    .free-note { font-size: 13px; opacity: 0.8; line-height: 1.6; }
+
+    /* ===== プライバシー3列 ===== */
+    .privacy { padding: 56px 24px; text-align: center; background: #fff; }
+    .privacy-cols { display: flex; flex-direction: column; gap: 20px; max-width: 380px; margin: 0 auto; }
+    .privacy-item { text-align: center; }
+    .privacy-icon { font-size: 30px; margin-bottom: 8px; }
+    .privacy-item h4 { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
+    .privacy-item p { font-size: 13px; color: #666; }
+
+    /* ===== CTA (amber) ===== */
+    .cta { padding: 64px 24px; text-align: center; background: linear-gradient(160deg, #ffd166 0%, #ffb347 100%); }
+    .cta .section-label { color: #7a4a00; }
+    .cta .section-title { margin-bottom: 10px; color: #2a1600; }
+    .cta-sub { font-size: 15px; color: #5a3a00; margin-bottom: 28px; }
+    .cta .app-store-btn { font-size: 17px; padding: 18px 36px; border-radius: 16px; margin-bottom: 12px; background: #3a1f38; }
+    .cta-note { font-size: 13px; color: #6b4600; }
+
+    /* ===== フッター ===== */
+    footer { background: #1a1a1a; color: rgba(255,255,255,0.6); padding: 32px 24px; text-align: center; font-size: 13px; }
+    .footer-links { display: flex; justify-content: center; gap: 18px; margin-bottom: 16px; flex-wrap: wrap; }
+    .footer-links a { color: rgba(255,255,255,0.6); transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+    .disclaimer { font-size: 12px; opacity: 0.55; max-width: 600px; margin: 0 auto 16px; line-height: 1.6; }
+
+    @media (min-width: 600px) {
+      .hero-headline { font-size: 30px; }
+      .hero-icon { width: 104px; height: 104px; }
+      .hero-screenshots { gap: 16px; }
+      .screenshot-img { width: 170px; }
+      .premium-cards { display: grid; grid-template-columns: 1fr 1fr; max-width: 640px; }
+      .privacy-cols { flex-direction: row; max-width: 700px; }
+      .privacy-item { flex: 1; }
+    }
+    @media (min-width: 900px) {
+      .feature-grid { max-width: 780px; }
+      .feature-card { flex-direction: row; align-items: center; }
+      .feature-card-shot { max-width: 200px; flex-shrink: 0; }
+      .step-row { flex-direction: row; max-width: 780px; align-items: flex-start; }
+      .step-item { flex: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== パンくず ===== -->
+<nav class="breadcrumb">
+  <a href="../">MC Labs</a> &rsaquo; おあそびカメラ
+</nav>
+
+<!-- ===== ヒーロー：アイコン＋タイトルパネル ===== -->
+<section class="hero-photo">
+  <div class="hero-photo-inner">
+    <img class="hero-icon" src="../images/icon_camera.png" alt="おあそびカメラ アイコン">
+    <div class="hero-badge">📷 iPhone対応 · 写真/ビデオ</div>
+    <h1 class="hero-headline">子どもと一緒に、<br>「見たことのない写真」で遊ぼう</h1>
+  </div>
+</section>
+
+<!-- ===== ヒーロー：内容パネル ===== -->
+<section class="hero-content">
+  <p class="hero-sub">
+    ふつう撮影に加えて、光のお絵かき・ピタッととめる・<br>
+    はやおくりの4モードで遊べる、<br>
+    親子向けの無料カメラアプリです。
+  </p>
+
+  <a href="https://apps.apple.com/jp/app/id6783837828" target="_blank" rel="noopener" class="app-store-btn">
+    <svg viewBox="0 0 814 1000"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.3 134.4-316.7 266.8-316.7 99.8 0 162.6 64.8 212.7 64.8 46.2 0 121.2-68.8 228.5-68.8zm-88-174c43.8-51.7 74.6-123.5 74.6-195.3 0-10.3-.6-20.7-2.6-29.2-70.7 2.6-154.7 47.1-204.7 107.2-38.4 44.4-75.9 116.2-75.9 189 0 11.6 1.9 23.2 2.6 26.9 4.5.6 11.6 1.9 18.7 1.9 63.5 0 143.9-42.5 187.3-100.5z"/></svg>
+    App Storeで無料ダウンロード
+  </a>
+  <p class="review-note">全機能ずっと無料 · 広告なし</p>
+  <div class="hero-screenshots">
+    <img class="screenshot-img" src="./images/02_home.png" alt="おあそびカメラ ふつう撮影画面">
+    <img class="screenshot-img" src="./images/01_lightpaint.png" alt="おあそびカメラ 光のお絵かき画面">
+    <img class="screenshot-img" src="./images/04_freeze.png" alt="おあそびカメラ ピタッととめる画面">
+    <img class="screenshot-img" src="./images/05_timelapse.png" alt="おあそびカメラ はやおくり画面">
+    <img class="screenshot-img" src="./images/03_settings.png" alt="おあそびカメラ 設定画面">
+  </div>
+</section>
+
+<!-- ===== stats strip ===== -->
+<div class="stats-strip">
+  <div class="stat-item"><div class="stat-num">4モード</div><div class="stat-label">の撮影で遊べる</div></div>
+  <div class="stat-item"><div class="stat-num">ずっと</div><div class="stat-label">無料・広告なし</div></div>
+  <div class="stat-item"><div class="stat-num">シンプル</div><div class="stat-label">操作で子どもも安心</div></div>
+</div>
+
+<!-- ===== 課題提起 ===== -->
+<section class="problem">
+  <div class="section-label">こんなことありませんか？</div>
+  <h2 class="section-title">いつものカメラだと、<br>子どもがすぐ飽きてしまう</h2>
+  <ul class="problem-list">
+    <li><span class="problem-icon">📱</span><span>普通に撮るだけだと、子どもがすぐカメラに飽きてしまう</span></li>
+    <li><span class="problem-icon">✨</span><span>線香花火やペンライトの光を、写真でうまく残せない</span></li>
+    <li><span class="problem-icon">🏃</span><span>ジャンプや水しぶきの一瞬を、きれいに撮る方法がわからない</span></li>
+    <li><span class="problem-icon">💸</span><span>子ども用のアプリは課金や広告が多くて使わせにくい</span></li>
+  </ul>
+  <div class="problem-answer">
+    おあそびカメラが、<br>親子の「撮る遊び」を広げます。
+  </div>
+</section>
+
+<!-- ===== 3ステップ ===== -->
+<section class="steps">
+  <div class="section-label">使い方</div>
+  <h2 class="section-title">遊び方はかんたん3ステップ。<br>むずかしい設定はありません</h2>
+  <div class="step-row">
+    <div class="step-item">
+      <span class="step-num">1</span>
+      <div><h4>撮りたいモードを選ぶ</h4><p>ふつう・光のお絵かき・ピタッととめる・はやおくり</p></div>
+    </div>
+    <div class="step-item">
+      <span class="step-num">2</span>
+      <div><h4>シャッターを押すだけ</h4><p>難しい設定なしで、そのモードらしい一枚に</p></div>
+    </div>
+    <div class="step-item">
+      <span class="step-num">3</span>
+      <div><h4>親子で見て、盛り上がる</h4><p>「見たことのない写真」を一緒に楽しめます</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 機能紹介：4モード ===== -->
+<section class="features">
+  <div class="section-label">4つの撮影モード</div>
+  <h2 class="section-title">撮るたびに、新しい遊び方</h2>
+  <div class="feature-grid">
+
+    <div class="feature-card">
+      <img class="feature-card-shot" src="./images/02_home.png" alt="ふつうモードの撮影画面">
+      <div>
+        <div class="feature-icon-wrap amber">📷</div>
+        <h3>ふつう</h3>
+        <p>いつもの普通のカメラ。まずはここから、親子で気軽に撮影を楽しめます。</p>
+      </div>
+    </div>
+
+    <div class="feature-card">
+      <img class="feature-card-shot" src="./images/01_lightpaint.png" alt="光のお絵かきモードの撮影画面">
+      <div>
+        <div class="feature-icon-wrap pink">✨</div>
+        <h3>光のお絵かき</h3>
+        <p>長時間露光で、暗い場所を動く光の軌跡が絵になります。線香花火・ペンライト・車のライトなどで幻想的な一枚に。</p>
+      </div>
+    </div>
+
+    <div class="feature-card">
+      <img class="feature-card-shot" src="./images/04_freeze.png" alt="ピタッととめるモードの撮影画面">
+      <div>
+        <div class="feature-icon-wrap blue">🧊</div>
+        <h3>ピタッととめる</h3>
+        <p>動いている被写体を一瞬で止めて撮影。ジャンプの瞬間や水しぶきをくっきりと残せます。</p>
+      </div>
+    </div>
+
+    <div class="feature-card">
+      <img class="feature-card-shot" src="./images/05_timelapse.png" alt="はやおくりモードの撮影画面">
+      <div>
+        <div class="feature-icon-wrap green">⏩</div>
+        <h3>はやおくり</h3>
+        <p>時間を早送りするタイムラプス撮影。空の雲やお絵かき・工作の様子を短い動画にまとめられます。</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== 安心ポイント（プレミアム枠を流用） ===== -->
+<section class="premium">
+  <div class="section-label">安心して使える理由</div>
+  <h2 class="section-title">子どもが触っても、<br>ずっと無料で安心</h2>
+  <div class="premium-cards">
+    <div class="premium-card">
+      <span class="emoji">🆓</span>
+      <div><h4>全機能ずっと無料</h4><p>4モードすべて課金なしでお使いいただけます</p></div>
+    </div>
+    <div class="premium-card">
+      <span class="emoji">🚫</span>
+      <div><h4>広告なし</h4><p>応援したい方だけ、任意のチップを送れます</p></div>
+    </div>
+    <div class="premium-card">
+      <span class="emoji">🧒</span>
+      <div><h4>シンプル操作</h4><p>子どもが触っても迷わない、わかりやすい画面</p></div>
+    </div>
+    <div class="premium-card">
+      <span class="emoji">⚙️</span>
+      <div><h4>わかりやすい設定画面</h4><p>難しい専門用語なしで、必要な設定だけ調整できます</p></div>
+    </div>
+  </div>
+  <p class="free-note">※ すべてのモードを無料でご利用いただけます。月額課金はありません。</p>
+</section>
+
+<!-- ===== プライバシー3列 ===== -->
+<section class="privacy">
+  <div class="section-label">プライバシーも安心</div>
+  <h2 class="section-title">子どもと使うアプリだからこそ、<br>シンプルで安全な設計に</h2>
+  <div class="privacy-cols">
+    <div class="privacy-item">
+      <div class="privacy-icon">📵</div>
+      <h4>広告なし</h4>
+      <p>広告表示のためのトラッキングもありません</p>
+    </div>
+    <div class="privacy-item">
+      <div class="privacy-icon">🔒</div>
+      <h4>アカウント登録不要</h4>
+      <p>すぐに撮影を始められます</p>
+    </div>
+    <div class="privacy-item">
+      <div class="privacy-icon">🧒</div>
+      <h4>子ども向けのシンプル設計</h4>
+      <p>複雑なメニューがなく、迷わず使えます</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA (amber) ===== -->
+<section class="cta">
+  <div class="section-label">今日から親子で撮ってみよう</div>
+  <h2 class="section-title">「見たことのない写真」を、<br>今日のおでかけから</h2>
+  <p class="cta-sub">無料でダウンロードして、4つのモードをすぐに試せます。</p>
+  <a href="https://apps.apple.com/jp/app/id6783837828" target="_blank" rel="noopener" class="app-store-btn">
+    <svg viewBox="0 0 814 1000" width="24" height="24" fill="white"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.3 134.4-316.7 266.8-316.7 99.8 0 162.6 64.8 212.7 64.8 46.2 0 121.2-68.8 228.5-68.8zm-88-174c43.8-51.7 74.6-123.5 74.6-195.3 0-10.3-.6-20.7-2.6-29.2-70.7 2.6-154.7 47.1-204.7 107.2-38.4 44.4-75.9 116.2-75.9 189 0 11.6 1.9 23.2 2.6 26.9 4.5.6 11.6 1.9 18.7 1.9 63.5 0 143.9-42.5 187.3-100.5z"/></svg>
+    App Storeで無料ダウンロード
+  </a>
+  <p class="cta-note">iPhone対応 · 全機能無料 · 広告なし</p>
+</section>
+
+<!-- ===== フッター ===== -->
+<footer>
+  <div class="footer-links">
+    <a href="../">MC Labs トップへ</a>
+    <a href="./privacy/">プライバシーポリシー</a>
+    <a href="../ketsuatsu-ai/">血圧手帳AI</a>
+    <a href="../ooya-note/">家賃ノート</a>
+    <a href="mailto:chimasaki31@gmail.com">お問い合わせ</a>
+  </div>
+  <p class="disclaimer">
+    ※ おあそびカメラは撮影を楽しむための写真/ビデオアプリです。撮影した写真・動画の取り扱いには十分ご注意のうえご利用ください。
+  </p>
+  <p>© 2026 MC Labs. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

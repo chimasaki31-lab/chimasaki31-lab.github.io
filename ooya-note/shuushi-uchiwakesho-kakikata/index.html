@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>収支内訳書（不動産所得用）の書き方｜科目と記入のポイント</title>
+  <meta name="description" content="収支内訳書（不動産所得用）の書き方を解説。収入金額欄の書き方、租税公課・修繕費・損害保険料・減価償却費・借入金利子など必要経費の主な科目ごとの記入ポイント、日々の記録の重要性をまとめました。">
+
+  <!-- OGP -->
+  <meta property="og:title" content="収支内訳書（不動産所得用）の書き方｜科目と記入のポイント">
+  <meta property="og:description" content="収入金額欄の書き方と、必要経費の主な科目ごとの記入ポイントをやさしく解説。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/ooya-note/shuushi-uchiwakesho-kakikata/">
+  <meta property="og:locale" content="ja_JP">
+
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/ooya-note/shuushi-uchiwakesho-kakikata/">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "収支内訳書（不動産所得用）の書き方｜科目と記入のポイント",
+    "description": "収入金額欄の書き方、必要経費の主な科目ごとの記入ポイント、日々の記録の重要性をまとめました。",
+    "inLanguage": "ja",
+    "author": { "@type": "Organization", "name": "MC Labs" },
+    "publisher": { "@type": "Organization", "name": "MC Labs" },
+    "mainEntityOfPage": "https://chimasaki31-lab.github.io/ooya-note/shuushi-uchiwakesho-kakikata/"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "収支内訳書とはどんな書類ですか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "不動産所得がある人が白色申告の確定申告の際に添付する書類で、1年間の収入と必要経費を科目ごとにまとめたものです。青色申告の場合は青色申告決算書（不動産所得用）を使用します。" }
+      },
+      {
+        "@type": "Question",
+        "name": "修繕費と減価償却費はどう区別すればいいですか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "原状回復程度の修理は修繕費として一括で経費にできますが、価値を高めたり耐久性を増したりする大規模な改修（資本的支出）は、原則として減価償却費として複数年に分けて経費化します。判断に迷う場合は税理士や税務署に確認するのが安心です。" }
+      },
+      {
+        "@type": "Question",
+        "name": "借入金の返済は全額を経費にできますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "経費になるのは利子部分のみです。元本の返済部分は経費になりません。返済予定表などで利子と元本の内訳を確認し、利子部分だけを借入金利子として計上します。" }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif; font-size: 17px; color: #20281f; background: #fff; line-height: 1.8; }
+    a { color: inherit; text-decoration: none; }
+    .breadcrumb { padding: 12px 20px; font-size: 13px; color: #999; border-bottom: 1px solid #eef3ef; }
+    .breadcrumb a { color: #1f5233; }
+    .breadcrumb a:hover { opacity: 0.7; }
+    .hero { background: linear-gradient(160deg, #14301f 0%, #1f5233 55%, #2e7d4f 100%); color: #fff; padding: 48px 20px 40px; text-align: center; }
+    .hero-badge { display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.4); border-radius: 20px; padding: 4px 14px; font-size: 13px; margin-bottom: 18px; letter-spacing: 0.05em; }
+    .hero h1 { font-size: 24px; font-weight: 800; line-height: 1.5; letter-spacing: -0.01em; max-width: 720px; margin: 0 auto; }
+    article { max-width: 760px; margin: 0 auto; padding: 32px 20px 16px; }
+    .lead { background: #eef7f1; border-left: 4px solid #1f5233; padding: 16px 18px; border-radius: 0 8px 8px 0; font-size: 16px; color: #333; margin-bottom: 32px; }
+    article h2 { font-size: 21px; font-weight: 800; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid #1f5233; color: #14301f; }
+    article h3 { font-size: 18px; font-weight: 700; margin: 28px 0 12px; color: #1f5233; }
+    article p { margin-bottom: 16px; }
+    article ul, article ol { margin: 0 0 16px 1.4em; }
+    article li { margin-bottom: 6px; }
+    .note { background: #fff8e6; border-left: 4px solid #e0a800; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 15px; margin: 16px 0; }
+    .table-wrap { overflow-x: auto; margin: 16px 0 20px; -webkit-overflow-scrolling: touch; }
+    table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 360px; }
+    th, td { border: 1px solid #dcecdf; padding: 9px 12px; text-align: left; }
+    th { background: #e6f6ec; font-weight: 700; color: #14301f; }
+    tbody tr:nth-child(even) { background: #f8fbf9; }
+    .cta { background: linear-gradient(160deg, #f9ca24 0%, #f5b400 100%); color: #201400; border-radius: 16px; padding: 28px 24px; margin: 40px 0; text-align: center; }
+    .cta h2 { border: none; color: #201400; margin: 0 0 12px; font-size: 20px; }
+    .cta ul { text-align: left; max-width: 440px; margin: 0 auto 22px; list-style: none; color: #3a2900; }
+    .cta li { margin-bottom: 8px; }
+    .cta-btn { display: inline-block; background: #14301f; color: #fff; font-weight: 800; padding: 14px 32px; border-radius: 30px; font-size: 16px; transition: transform 0.15s, box-shadow 0.15s; }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .cta-note { font-size: 13px; opacity: 0.85; margin-top: 14px; margin-bottom: 0; }
+    .faq-item { border-bottom: 1px solid #eee; padding: 16px 0; }
+    .faq-q { font-weight: 700; color: #14301f; margin-bottom: 6px; }
+    .related { margin: 40px 0 8px; }
+    .related h2 { font-size: 21px; font-weight: 800; margin: 0 0 16px; padding-bottom: 8px; border-bottom: 2px solid #1f5233; color: #14301f; }
+    .related-list { display: flex; flex-direction: column; gap: 12px; margin: 0; }
+    .related-card { display: block; background: #f4faf6; border: 1px solid #dcecdf; border-radius: 12px; padding: 16px 18px; }
+    .related-card:hover { border-color: #1f5233; }
+    .related-card h4 { font-size: 15px; font-weight: 800; color: #1f5233; margin-bottom: 4px; }
+    .related-card p { font-size: 13px; color: #666; margin: 0; }
+    footer { background: #f7f4ef; padding: 28px 20px; text-align: center; font-size: 13px; color: #999; margin-top: 40px; }
+    .footer-links { margin-bottom: 12px; }
+    .footer-links a { color: #1f5233; margin: 0 8px; }
+    .footer-links a:hover { opacity: 0.7; }
+    @media (max-width: 600px) { body { font-size: 16px; } .hero h1 { font-size: 20px; } article h2 { font-size: 19px; } }
+  </style>
+</head>
+<body>
+
+  <nav class="breadcrumb">
+    <a href="../../">MC Labs</a> &rsaquo; <a href="../">家賃ノート</a> &rsaquo; 収支内訳書（不動産所得用）の書き方
+  </nav>
+
+  <header class="hero">
+    <span class="hero-badge">大家さんの実務ガイド</span>
+    <h1>収支内訳書（不動産所得用）の書き方<br>科目と記入のポイント</h1>
+  </header>
+
+  <article>
+    <p class="lead">
+      白色申告で不動産所得がある場合に提出する「収支内訳書（不動産所得用）」。
+      科目の数が多く、何をどこに書けばいいのか迷いがちです。
+      このページでは、<strong>収支内訳書の基本と、経費科目ごとの記入ポイント</strong>をまとめました。
+    </p>
+
+    <h2>この記事でわかること</h2>
+    <ul>
+      <li>収支内訳書とは何か</li>
+      <li>収入金額欄の書き方</li>
+      <li>必要経費の主な科目と記入のポイント</li>
+      <li>日々の記録があると申告時期が楽になる理由</li>
+    </ul>
+
+    <h2>1. 収支内訳書とは</h2>
+    <p>
+      収支内訳書は、不動産所得がある人が<strong>白色申告</strong>の確定申告をする際に添付する書類です。
+      1年間の収入と必要経費を、決められた科目ごとに整理して記入します。
+      なお、青色申告の場合はこの書類の代わりに「青色申告決算書（不動産所得用）」を使用します。
+    </p>
+
+    <h2>2. 収入金額の欄</h2>
+    <p>
+      収入金額欄は、貸間・貸家・貸地・権利金や更新料などの区分に分けて記入します。
+      物件ごとに、家賃・共益費・礼金・更新料・返還しない敷金などを集計し、区分に沿って書き入れます。
+    </p>
+    <div class="note">
+      <strong>ポイント：</strong>家賃は「入金があった月」ではなく「その年に発生した家賃」を計上するのが原則です（未収賃料も含めて計上）。
+    </div>
+
+    <h2>3. 必要経費の主な科目と記入のポイント</h2>
+
+    <h3>租税公課</h3>
+    <p>固定資産税・都市計画税・不動産取得税・登録免許税などが該当します。年の途中で物件を売買した場合は、保有期間に応じて按分するのが一般的です。</p>
+
+    <h3>損害保険料</h3>
+    <p>火災保険・地震保険などの保険料です。その年に対応する期間分を計上します。数年分をまとめて支払った場合は、按分が必要になることがあります。</p>
+
+    <h3>修繕費</h3>
+    <p>原状回復や設備の修理などにかかった費用です。ただし、建物の価値を高めたり耐久性を増したりする大規模な改修（資本的支出）は、修繕費ではなく減価償却の対象になる場合があるため、区別が必要です。</p>
+
+    <h3>減価償却費</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>項目</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td>対象</td><td>建物・建物附属設備など</td></tr>
+          <tr><td>考え方</td><td>取得価額を耐用年数に応じて各年に配分</td></tr>
+          <tr><td>注意点</td><td>計算方法が複雑なため初年度は専門家に確認するのが安心</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>借入金利子</h3>
+    <p>ローンの返済額のうち、<strong>利子部分のみ</strong>が必要経費になります。元本の返済部分は経費になりません。金融機関の返済予定表で利子と元本の内訳を確認しましょう。</p>
+
+    <h3>その他の経費</h3>
+    <ul>
+      <li>管理会社への管理委託料</li>
+      <li>共用部分の水道光熱費</li>
+      <li>管理のために使った交通費・通信費</li>
+      <li>入居者募集にかかった広告費など</li>
+    </ul>
+
+    <h2>4. 日々の記録があると、年明けがぐっと楽になる</h2>
+    <p>
+      科目ごとに日頃から記録しておけば、年末になって慌てて1年分の領収書や通帳を掘り起こす必要がなくなります。
+      月ごとの入金と経費を科目つきで記録しておけば、申告期には集計するだけで収支内訳書への転記がスムーズに進みます。
+    </p>
+
+    <div class="note">
+      <strong>注意：</strong>収支内訳書の記入内容や科目の判断は、個々の取引や状況によって異なります。
+      最終的な判断は税理士・所轄の税務署にご確認ください。
+    </div>
+
+    <div class="cta">
+      <h2>科目ごとの記録を、日々の記帳から</h2>
+      <p>領収書を年末に掘り起こす代わりに、経費が発生したその場で科目つきに記録。<br><strong>家賃ノート</strong>は収支内訳書（不動産所得用）に沿った科目で記録できます。</p>
+      <ul>
+        <li>🧾 租税公課・修繕費・保険料などの科目で記録</li>
+        <li>✅ 家賃の入金もタップだけで記帳</li>
+        <li>📄 プレミアムなら科目別集計・CSV出力にも対応</li>
+        <li>🔒 完全オフライン・営業ゼロ</li>
+      </ul>
+      <a class="cta-btn" href="https://apps.apple.com/jp/app/id6787886522" target="_blank" rel="noopener">App Storeで見る</a>
+      <p class="cta-note">✅ App Storeで公開中です</p>
+    </div>
+
+    <h2>よくある質問（FAQ）</h2>
+    <div class="faq-item">
+      <p class="faq-q">Q. 収支内訳書とはどんな書類ですか？</p>
+      <p>A. 不動産所得がある人が白色申告の確定申告の際に添付する書類で、1年間の収入と必要経費を科目ごとにまとめたものです。青色申告の場合は青色申告決算書（不動産所得用）を使用します。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 修繕費と減価償却費はどう区別すればいいですか？</p>
+      <p>A. 原状回復程度の修理は修繕費として一括で経費にできますが、価値を高めたり耐久性を増したりする大規模な改修（資本的支出）は、原則として減価償却費として複数年に分けて経費化します。判断に迷う場合は税理士や税務署に確認するのが安心です。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 借入金の返済は全額を経費にできますか？</p>
+      <p>A. 経費になるのは利子部分のみです。元本の返済部分は経費になりません。返済予定表などで利子と元本の内訳を確認し、利子部分だけを借入金利子として計上します。</p>
+    </div>
+
+    <div class="related">
+      <h2>関連記事</h2>
+      <div class="related-list">
+        <a class="related-card" href="../yachin-tainou-taisho/">
+          <h4>家賃滞納・未入金への対処法｜大家さんが取るべき手順</h4>
+          <p>未入金に気づく仕組み、督促の段階、記録の残し方をまとめました。</p>
+        </a>
+        <a class="related-card" href="../fudousan-kakutei-shinkoku/">
+          <h4>不動産所得の確定申告のやり方｜大家さんの基礎知識</h4>
+          <p>不動産所得の考え方、白色・青色の違い、必要経費、申告の流れをやさしく解説。</p>
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <footer>
+    <div class="footer-links">
+      <a href="../">家賃ノート</a>
+      <a href="../yachin-tainou-taisho/">家賃滞納・未入金の対処法</a>
+      <a href="../fudousan-kakutei-shinkoku/">確定申告のやり方</a>
+      <a href="../../">MC Labs トップへ</a>
+    </div>
+    <p>© 2026 MC Labs. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

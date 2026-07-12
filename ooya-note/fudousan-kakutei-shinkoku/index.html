@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>不動産所得の確定申告のやり方｜大家さんの基礎知識</title>
+  <meta name="description" content="不動産所得の確定申告のやり方を初めての方向けに解説。不動産所得とは何か（収入-必要経費）、白色申告と青色申告の違い、必要経費になるもの、申告の大まかな流れをまとめました。">
+
+  <!-- OGP -->
+  <meta property="og:title" content="不動産所得の確定申告のやり方｜大家さんの基礎知識">
+  <meta property="og:description" content="不動産所得とは何か、白色・青色の違い、必要経費になるもの、申告の流れをやさしく解説。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/ooya-note/fudousan-kakutei-shinkoku/">
+  <meta property="og:locale" content="ja_JP">
+
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/ooya-note/fudousan-kakutei-shinkoku/">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "不動産所得の確定申告のやり方｜大家さんの基礎知識",
+    "description": "不動産所得とは何か（収入-必要経費）、白色申告と青色申告の違い、必要経費になるもの、申告の大まかな流れをまとめました。",
+    "inLanguage": "ja",
+    "author": { "@type": "Organization", "name": "MC Labs" },
+    "publisher": { "@type": "Organization", "name": "MC Labs" },
+    "mainEntityOfPage": "https://chimasaki31-lab.github.io/ooya-note/fudousan-kakutei-shinkoku/"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "不動産所得とはどう計算しますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "総収入金額から必要経費を差し引いて計算します。総収入金額には家賃のほか礼金・更新料・返還しない敷金なども含まれ、必要経費には管理費・修繕費・固定資産税・保険料・減価償却費・借入金利子などが含まれます。" }
+      },
+      {
+        "@type": "Question",
+        "name": "白色申告と青色申告はどちらを選べばいいですか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "白色申告は簡易な記帳で済み手軽ですが特別控除はありません。青色申告は事前の届出と複式簿記が必要な分、条件を満たせば最大65万円の青色申告特別控除などのメリットがあります。記帳の手間とメリットを比較して選ぶのが一般的です。" }
+      },
+      {
+        "@type": "Question",
+        "name": "確定申告はいつまでに行う必要がありますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "原則として、対象年の翌年2月16日頃から3月15日頃までに申告・納税を行います（曜日により多少前後します）。日々の記帳を続けておくと、この時期の作業負担が大きく減ります。" }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif; font-size: 17px; color: #20281f; background: #fff; line-height: 1.8; }
+    a { color: inherit; text-decoration: none; }
+    .breadcrumb { padding: 12px 20px; font-size: 13px; color: #999; border-bottom: 1px solid #eef3ef; }
+    .breadcrumb a { color: #1f5233; }
+    .breadcrumb a:hover { opacity: 0.7; }
+    .hero { background: linear-gradient(160deg, #14301f 0%, #1f5233 55%, #2e7d4f 100%); color: #fff; padding: 48px 20px 40px; text-align: center; }
+    .hero-badge { display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.4); border-radius: 20px; padding: 4px 14px; font-size: 13px; margin-bottom: 18px; letter-spacing: 0.05em; }
+    .hero h1 { font-size: 24px; font-weight: 800; line-height: 1.5; letter-spacing: -0.01em; max-width: 720px; margin: 0 auto; }
+    article { max-width: 760px; margin: 0 auto; padding: 32px 20px 16px; }
+    .lead { background: #eef7f1; border-left: 4px solid #1f5233; padding: 16px 18px; border-radius: 0 8px 8px 0; font-size: 16px; color: #333; margin-bottom: 32px; }
+    article h2 { font-size: 21px; font-weight: 800; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid #1f5233; color: #14301f; }
+    article h3 { font-size: 18px; font-weight: 700; margin: 28px 0 12px; color: #1f5233; }
+    article p { margin-bottom: 16px; }
+    article ul, article ol { margin: 0 0 16px 1.4em; }
+    article li { margin-bottom: 6px; }
+    .note { background: #fff8e6; border-left: 4px solid #e0a800; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 15px; margin: 16px 0; }
+    .formula { background: #14301f; color: #d9f0e1; padding: 14px 18px; border-radius: 8px; font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 15px; margin: 16px 0; overflow-x: auto; line-height: 1.7; }
+    .table-wrap { overflow-x: auto; margin: 16px 0 20px; -webkit-overflow-scrolling: touch; }
+    table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 320px; }
+    th, td { border: 1px solid #dcecdf; padding: 9px 12px; text-align: left; }
+    th { background: #e6f6ec; font-weight: 700; color: #14301f; }
+    tbody tr:nth-child(even) { background: #f8fbf9; }
+    .cta { background: linear-gradient(160deg, #f9ca24 0%, #f5b400 100%); color: #201400; border-radius: 16px; padding: 28px 24px; margin: 40px 0; text-align: center; }
+    .cta h2 { border: none; color: #201400; margin: 0 0 12px; font-size: 20px; }
+    .cta ul { text-align: left; max-width: 440px; margin: 0 auto 22px; list-style: none; color: #3a2900; }
+    .cta li { margin-bottom: 8px; }
+    .cta-btn { display: inline-block; background: #14301f; color: #fff; font-weight: 800; padding: 14px 32px; border-radius: 30px; font-size: 16px; transition: transform 0.15s, box-shadow 0.15s; }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .cta-note { font-size: 13px; opacity: 0.85; margin-top: 14px; margin-bottom: 0; }
+    .faq-item { border-bottom: 1px solid #eee; padding: 16px 0; }
+    .faq-q { font-weight: 700; color: #14301f; margin-bottom: 6px; }
+    .related { margin: 40px 0 8px; }
+    .related h2 { font-size: 21px; font-weight: 800; margin: 0 0 16px; padding-bottom: 8px; border-bottom: 2px solid #1f5233; color: #14301f; }
+    .related-list { display: flex; flex-direction: column; gap: 12px; margin: 0; }
+    .related-card { display: block; background: #f4faf6; border: 1px solid #dcecdf; border-radius: 12px; padding: 16px 18px; }
+    .related-card:hover { border-color: #1f5233; }
+    .related-card h4 { font-size: 15px; font-weight: 800; color: #1f5233; margin-bottom: 4px; }
+    .related-card p { font-size: 13px; color: #666; margin: 0; }
+    footer { background: #f7f4ef; padding: 28px 20px; text-align: center; font-size: 13px; color: #999; margin-top: 40px; }
+    .footer-links { margin-bottom: 12px; }
+    .footer-links a { color: #1f5233; margin: 0 8px; }
+    .footer-links a:hover { opacity: 0.7; }
+    @media (max-width: 600px) { body { font-size: 16px; } .hero h1 { font-size: 20px; } article h2 { font-size: 19px; } }
+  </style>
+</head>
+<body>
+
+  <nav class="breadcrumb">
+    <a href="../../">MC Labs</a> &rsaquo; <a href="../">家賃ノート</a> &rsaquo; 不動産所得の確定申告のやり方
+  </nav>
+
+  <header class="hero">
+    <span class="hero-badge">大家さんの実務ガイド</span>
+    <h1>不動産所得の確定申告のやり方<br>大家さんの基礎知識</h1>
+  </header>
+
+  <article>
+    <p class="lead">
+      家賃収入があると、原則として確定申告が必要です。
+      「不動産所得って結局何？」「白色と青色、何が違うの？」──
+      はじめて申告する方に向けて、<strong>不動産所得の考え方・白色と青色の違い・経費になるもの・申告の流れ</strong>を、
+      やさしい言葉でまとめました。
+    </p>
+
+    <h2>この記事でわかること</h2>
+    <ul>
+      <li>不動産所得とは何か（収入−必要経費）</li>
+      <li>白色申告と青色申告の違いの概要</li>
+      <li>必要経費になる主なもの</li>
+      <li>確定申告の大まかな流れ</li>
+    </ul>
+
+    <h2>1. 不動産所得とは</h2>
+    <div class="formula">不動産所得の金額 ＝ 総収入金額 − 必要経費</div>
+    <p>
+      不動産所得は、家賃などの<strong>総収入金額</strong>から、その収入を得るためにかかった<strong>必要経費</strong>を差し引いて計算します。
+    </p>
+    <h3>総収入金額に含まれるもの</h3>
+    <ul>
+      <li>毎月の家賃・共益費・駐車場代</li>
+      <li>礼金・更新料</li>
+      <li>敷金のうち、退去時に返還しないことが確定した部分</li>
+    </ul>
+    <p>敷金は預り金として収入に含めませんが、償却などで返還しないと決まった時点で収入になる点に注意が必要です。</p>
+    <h3>必要経費に含まれるもの（概要）</h3>
+    <ul>
+      <li>管理費・管理委託料</li>
+      <li>修繕費</li>
+      <li>固定資産税・都市計画税などの租税公課</li>
+      <li>損害保険料（火災保険・地震保険など）</li>
+      <li>減価償却費</li>
+      <li>借入金の利子（元本部分は経費にならない）</li>
+    </ul>
+
+    <h2>2. 白色申告と青色申告、何が違う</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th></th><th>白色申告</th><th>青色申告</th></tr></thead>
+        <tbody>
+          <tr><td>事前の届出</td><td>不要</td><td>必要（開業から一定期限内）</td></tr>
+          <tr><td>記帳方法</td><td>簡易な記帳（単式簿記）</td><td>複式簿記（一定規模なら簡易も可）</td></tr>
+          <tr><td>特別控除</td><td>なし</td><td>最大65万円等（要件を満たす場合）</td></tr>
+          <tr><td>赤字の繰越</td><td>原則不可</td><td>可能</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      白色申告は記帳の手間が少ない一方、特別控除などのメリットはありません。
+      青色申告は事前の届出と複式簿記（貸借対照表の作成を含む場合）が必要になりますが、
+      条件を満たせば大きな控除や赤字の繰越といったメリットがあります。
+      物件数が多い「事業的規模」かどうかによっても、使える控除の内容が変わってきます。
+    </p>
+    <div class="note">
+      <strong>参考：</strong>家賃ノートの科目別集計は、白色申告・簡易な記帳の範囲を想定した参考機能です。
+      青色申告の複式簿記・貸借対照表の作成には対応していません。
+    </div>
+
+    <h2>3. 必要経費になる主なもの</h2>
+    <ul>
+      <li><strong>租税公課</strong>：固定資産税・都市計画税・不動産取得税など</li>
+      <li><strong>損害保険料</strong>：火災保険・地震保険など、その年に対応する分</li>
+      <li><strong>修繕費</strong>：原状回復や設備の修理費用</li>
+      <li><strong>減価償却費</strong>：建物や設備の取得価額を耐用年数に応じて配分したもの</li>
+      <li><strong>借入金利子</strong>：ローンの利子部分のみ（元本返済分は経費にならない）</li>
+      <li><strong>管理委託料・共用部分の水道光熱費・管理のための交通費や通信費</strong>など</li>
+    </ul>
+
+    <h2>4. 申告の流れ（大まかに）</h2>
+    <ol>
+      <li>1年分の収入と経費を、科目ごとに集計する</li>
+      <li>白色申告なら収支内訳書、青色申告なら青色申告決算書（いずれも不動産所得用）を作成する</li>
+      <li>確定申告書に不動産所得の金額を転記する</li>
+      <li>翌年2月16日頃〜3月15日頃までに申告・納税する</li>
+    </ol>
+    <p>
+      日々の入金・経費を記録しておくと、年明けの集計作業がぐっと楽になります。
+      逆に1年分をまとめて申告時期に処理しようとすると、領収書や通帳を掘り返す作業に時間を取られがちです。
+    </p>
+
+    <div class="note">
+      <strong>注意：</strong>不動産所得の範囲、経費の判断、白色・青色の選択などは個々の状況によって異なります。
+      最終的な判断は税理士・所轄の税務署にご確認ください。
+    </div>
+
+    <div class="cta">
+      <h2>日々の記帳を、申告期の集計に直結させる</h2>
+      <p>毎月の家賃入金と経費を科目つきで記録しておけば、確定申告の時期には集計するだけ。<br><strong>家賃ノート</strong>は収支内訳書（不動産所得用）に沿った科目で記録できます。</p>
+      <ul>
+        <li>🧾 収支内訳書準拠の科目で経費を記録</li>
+        <li>✅ 家賃の入金もタップだけで記帳</li>
+        <li>📄 プレミアムなら科目別集計・CSV出力にも対応</li>
+        <li>🔒 完全オフライン・営業ゼロ</li>
+      </ul>
+      <a class="cta-btn" href="https://apps.apple.com/jp/app/id6787886522" target="_blank" rel="noopener">App Storeで見る</a>
+      <p class="cta-note">✅ App Storeで公開中です</p>
+    </div>
+
+    <h2>よくある質問（FAQ）</h2>
+    <div class="faq-item">
+      <p class="faq-q">Q. 不動産所得とはどう計算しますか？</p>
+      <p>A. 総収入金額から必要経費を差し引いて計算します。総収入金額には家賃のほか礼金・更新料・返還しない敷金なども含まれ、必要経費には管理費・修繕費・固定資産税・保険料・減価償却費・借入金利子などが含まれます。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 白色申告と青色申告はどちらを選べばいいですか？</p>
+      <p>A. 白色申告は簡易な記帳で済み手軽ですが特別控除はありません。青色申告は事前の届出と複式簿記が必要な分、条件を満たせば最大65万円の青色申告特別控除などのメリットがあります。記帳の手間とメリットを比較して選ぶのが一般的です。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 確定申告はいつまでに行う必要がありますか？</p>
+      <p>A. 原則として、対象年の翌年2月16日頃から3月15日頃までに申告・納税を行います（曜日により多少前後します）。日々の記帳を続けておくと、この時期の作業負担が大きく減ります。</p>
+    </div>
+
+    <div class="related">
+      <h2>関連記事</h2>
+      <div class="related-list">
+        <a class="related-card" href="../yachin-tainou-taisho/">
+          <h4>家賃滞納・未入金への対処法｜大家さんが取るべき手順</h4>
+          <p>未入金に気づく仕組み、督促の段階、記録の残し方をまとめました。</p>
+        </a>
+        <a class="related-card" href="../shuushi-uchiwakesho-kakikata/">
+          <h4>収支内訳書（不動産所得用）の書き方｜科目と記入のポイント</h4>
+          <p>収入金額欄の書き方と、必要経費の主な科目ごとの記入ポイントをまとめました。</p>
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <footer>
+    <div class="footer-links">
+      <a href="../">家賃ノート</a>
+      <a href="../yachin-tainou-taisho/">家賃滞納・未入金の対処法</a>
+      <a href="../shuushi-uchiwakesho-kakikata/">収支内訳書の書き方</a>
+      <a href="../../">MC Labs トップへ</a>
+    </div>
+    <p>© 2026 MC Labs. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
