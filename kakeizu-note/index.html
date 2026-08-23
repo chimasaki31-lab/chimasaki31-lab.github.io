@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>家系図ラボ - Undoで戻せる家系図アプリ｜実親も養親も、線が重ならない</title>
+  <meta name="description" content="人数が増えても線が重ならない家系図アプリ。婚姻・養子・再婚・複数世代をまたいでも自動でレイアウトが整い、つなぎ間違えてもUndoで元に戻せます。作成・編集・人数無制限はずっと無料。データは端末内にのみ保存。">
+
+  <!-- OGP -->
+  <meta property="og:title" content="家系図ラボ - Undoで戻せる家系図アプリ">
+  <meta property="og:description" content="人数が増えても線が重ならない家系図アプリ。つなぎ間違えてもUndoで元に戻せます。実親・養親の2組もそのまま記録できます。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/kakeizu-note/">
+  <meta property="og:locale" content="ja_JP">
+
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/kakeizu-note/">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+      font-size: 17px; color: #26201c; background: #fff; line-height: 1.7;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .breadcrumb { padding: 12px 24px; font-size: 13px; color: #999; border-bottom: 1px solid #e7ddd4; }
+    .breadcrumb a { color: #5D4A3A; transition: opacity 0.2s; }
+    .breadcrumb a:hover { opacity: 0.7; }
+
+    .hero {
+      background: linear-gradient(135deg, #8a7360 0%, #5D4A3A 55%, #3a2d22 100%);
+      color: #fff; text-align: center; padding: 60px 24px 48px;
+    }
+    .hero-badge {
+      display: inline-block; background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.4); border-radius: 20px;
+      padding: 4px 14px; font-size: 13px; margin-bottom: 20px; letter-spacing: 0.05em;
+    }
+    .hero h1 { font-size: 25px; font-weight: 800; line-height: 1.5; margin-bottom: 14px; letter-spacing: -0.01em; }
+    .hero-sub { font-size: 16px; opacity: 0.92; margin-bottom: 32px; line-height: 1.7; color: #ecdfd6; }
+
+    .app-store-btn {
+      display: inline-flex; align-items: center; gap: 10px; background: #000; color: #fff;
+      border-radius: 14px; padding: 14px 28px; font-size: 15px; font-weight: 600; margin-bottom: 14px; transition: opacity 0.2s;
+    }
+    .app-store-btn svg { width: 22px; height: 22px; fill: #fff; }
+    .review-note { font-size: 13px; opacity: 0.82; margin-bottom: 36px; }
+
+    .hero-screenshots {
+      display: flex; gap: 12px; overflow-x: auto; -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory; padding: 0 24px 12px; scrollbar-width: none;
+    }
+    .hero-screenshots::-webkit-scrollbar { display: none; }
+    .screenshot-img {
+      width: 150px; height: auto; border-radius: 20px; border: 2px solid rgba(255,255,255,0.25);
+      flex-shrink: 0; box-shadow: 0 8px 32px rgba(0,0,0,0.3); display: block; scroll-snap-align: start;
+    }
+
+    .stats-strip { display: flex; justify-content: center; background: #2c2216; color: #fff; flex-wrap: wrap; }
+    .stat-item { flex: 1; min-width: 110px; text-align: center; padding: 18px 12px; border-right: 1px solid rgba(255,255,255,0.12); }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-size: 20px; font-weight: 800; color: #e0b876; }
+    .stat-label { font-size: 12px; opacity: 0.75; margin-top: 2px; }
+
+    .problem { background: #faf6f1; padding: 56px 24px; text-align: center; }
+    .section-label { display: inline-block; color: #5D4A3A; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; margin-bottom: 10px; }
+    .section-title { font-size: 22px; font-weight: 800; line-height: 1.5; margin-bottom: 32px; color: #26201c; }
+    .problem-list { list-style: none; max-width: 440px; margin: 0 auto 32px; text-align: left; }
+    .problem-list li { display: flex; align-items: flex-start; gap: 10px; padding: 14px 0; border-bottom: 1px solid #e7ddd4; font-size: 16px; }
+    .problem-list li:last-child { border-bottom: none; }
+    .problem-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+    .problem-answer {
+      background: #fff; border: 2px solid #5D4A3A; border-radius: 16px; padding: 24px 20px;
+      max-width: 440px; margin: 0 auto; font-size: 17px; font-weight: 700; line-height: 1.6; color: #3a2d22;
+    }
+
+    .steps { padding: 56px 24px; text-align: center; }
+    .step-row { display: flex; flex-direction: column; gap: 24px; max-width: 420px; margin: 0 auto; }
+    .step-item { display: flex; align-items: flex-start; gap: 16px; text-align: left; }
+    .step-num {
+      width: 36px; height: 36px; border-radius: 50%; background: #5D4A3A; color: #fff;
+      display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; flex-shrink: 0;
+    }
+    .step-item h4 { font-size: 16px; font-weight: 800; margin-bottom: 2px; }
+    .step-item p { font-size: 14px; color: #6f625a; }
+
+    .features { padding: 56px 24px; text-align: center; background: #faf6f1; }
+    .feature-grid { display: grid; grid-template-columns: 1fr; gap: 16px; max-width: 440px; margin: 0 auto; }
+    .feature-card { background: #fff; border: 1px solid #e7ddd4; border-radius: 20px; padding: 24px 20px; text-align: left; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+    .feature-icon-wrap { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 14px; }
+    .feature-icon-wrap.a { background: #ede4d8; }
+    .feature-icon-wrap.b { background: #fdece0; }
+    .feature-icon-wrap.c { background: #e8ede2; }
+    .feature-icon-wrap.d { background: #f0e8db; }
+    .feature-card h3 { font-size: 16px; font-weight: 800; margin-bottom: 6px; }
+    .feature-card p { font-size: 14px; color: #4f463f; line-height: 1.6; }
+
+    .premium { background: linear-gradient(135deg, #2c2216 0%, #5D4A3A 100%); color: #fff; padding: 56px 24px; text-align: center; }
+    .premium .section-label { color: #e0b876; }
+    .premium .section-title { color: #fff; }
+    .premium-cards { display: flex; flex-direction: column; gap: 14px; max-width: 400px; margin: 0 auto 28px; }
+    .premium-card { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 20px; display: flex; align-items: center; gap: 16px; text-align: left; }
+    .premium-card .emoji { font-size: 28px; flex-shrink: 0; }
+    .premium-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+    .premium-card p { font-size: 13px; opacity: 0.78; }
+    .price-box { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 22px 24px; max-width: 360px; margin: 0 auto 20px; }
+    .price-row { display: flex; justify-content: space-between; align-items: center; }
+    .price-label { font-size: 15px; opacity: 0.85; }
+    .price-value { font-size: 22px; font-weight: 800; }
+    .price-tag { font-size: 12px; background: #5D4A3A; color: #fff; border-radius: 6px; padding: 2px 7px; font-weight: 700; margin-left: 6px; }
+    .free-note { font-size: 13px; opacity: 0.72; line-height: 1.6; }
+
+    .privacy { padding: 56px 24px; text-align: center; background: #faf6f1; }
+    .privacy-cols { display: flex; flex-direction: column; gap: 20px; max-width: 380px; margin: 0 auto; }
+    .privacy-item { text-align: center; }
+    .privacy-icon { font-size: 30px; margin-bottom: 8px; }
+    .privacy-item h4 { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
+    .privacy-item p { font-size: 13px; color: #6f625a; }
+
+    .cta { padding: 64px 24px; text-align: center; background: #fff; }
+    .cta .section-title { margin-bottom: 10px; }
+    .cta-sub { font-size: 15px; color: #6f625a; margin-bottom: 28px; }
+    .cta .app-store-btn { font-size: 17px; padding: 18px 36px; border-radius: 16px; margin-bottom: 12px; background: #2c2216; }
+    .cta-note { font-size: 13px; color: #a89a87; }
+
+    footer { background: #26201c; color: rgba(255,255,255,0.6); padding: 32px 24px; text-align: center; font-size: 13px; }
+    .footer-links { display: flex; justify-content: center; gap: 18px; margin-bottom: 16px; flex-wrap: wrap; }
+    .footer-links a { color: rgba(255,255,255,0.6); transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+
+    @media (min-width: 600px) {
+      .hero h1 { font-size: 32px; }
+      .hero-screenshots { gap: 16px; }
+      .screenshot-img { width: 170px; }
+      .premium-cards { display: grid; grid-template-columns: 1fr 1fr; }
+      .privacy-cols { flex-direction: row; max-width: 700px; }
+      .privacy-item { flex: 1; }
+    }
+    @media (min-width: 900px) {
+      .feature-grid { grid-template-columns: 1fr 1fr; max-width: 780px; }
+      .step-row { flex-direction: row; max-width: 780px; align-items: flex-start; }
+      .step-item { flex: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="breadcrumb">
+  <a href="../">MC Labs</a> &rsaquo; 家系図ラボ
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">🌳 Undoで戻せる家系図アプリ</div>
+  <h1>人数が増えても、<br>線が重ならない。</h1>
+  <p class="hero-sub">
+    名前と続柄を入れるだけで、世代ごとに自動できれいに並びます。<br>
+    つなぎ間違えても、ボタン一つでUndo。<br>
+    実の親と、育ての親と。両方そのまま記録できます。
+  </p>
+  <a href="https://apps.apple.com/jp/app/id6797544764" target="_blank" rel="noopener" class="app-store-btn">
+    <svg viewBox="0 0 814 1000"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.3 134.4-316.7 266.8-316.7 99.8 0 162.6 64.8 212.7 64.8 46.2 0 121.2-68.8 228.5-68.8zm-88-174c43.8-51.7 74.6-123.5 74.6-195.3 0-10.3-.6-20.7-2.6-29.2-70.7 2.6-154.7 47.1-204.7 107.2-38.4 44.4-75.9 116.2-75.9 189 0 11.6 1.9 23.2 2.6 26.9 4.5.6 11.6 1.9 18.7 1.9 63.5 0 143.9-42.5 187.3-100.5z"/></svg>
+    App Storeで無料ダウンロード
+  </a>
+  <p class="review-note">✅ 完全オフライン · 広告なし · 作成・編集は人数無制限で無料</p>
+  <div class="hero-screenshots">
+    <img class="screenshot-img" src="./images/01_value.png" alt="家系図ラボ 家系図の全体表示">
+    <img class="screenshot-img" src="./images/02_usage.png" alt="家系図ラボ Undoで元に戻す">
+    <img class="screenshot-img" src="./images/03_dual_parent.png" alt="家系図ラボ 実親・養親の記録">
+    <img class="screenshot-img" src="./images/04_export.png" alt="家系図ラボ PDF書き出し">
+    <img class="screenshot-img" src="./images/05_import.png" alt="家系図ラボ ファイルの取り込み">
+  </div>
+</section>
+
+<div class="stats-strip">
+  <div class="stat-item"><div class="stat-num">自動整列</div><div class="stat-label">人数が増えても線が重ならない</div></div>
+  <div class="stat-item"><div class="stat-num">Undo</div><div class="stat-label">つなぎ間違えてもワンタップで復元</div></div>
+  <div class="stat-item"><div class="stat-num">無制限</div><div class="stat-label">作成・編集はずっと無料</div></div>
+</div>
+
+<section class="problem">
+  <div class="section-label">よく聞くお困りごと</div>
+  <h2 class="section-title">家系図アプリで、<br>こんな経験ありませんか</h2>
+  <ul class="problem-list">
+    <li><span class="problem-icon">🌳</span><span>親戚が増えるほど、線が重なって誰が誰の子か分からなくなる</span></li>
+    <li><span class="problem-icon">↩️</span><span>指が滑って違う人につないでしまっても、元に戻せない</span></li>
+    <li><span class="problem-icon">👪</span><span>養子縁組や再婚があり、実親・養親を1組にまとめられない</span></li>
+  </ul>
+  <div class="problem-answer">
+    家系図ラボは、<br>その2つの困りごとに絞って作りました。
+  </div>
+</section>
+
+<section class="steps">
+  <div class="section-label">使い方</div>
+  <h2 class="section-title">名前と続柄を入れるだけ。<br>レイアウトは自動で整います</h2>
+  <div class="step-row">
+    <div class="step-item">
+      <span class="step-num">1</span>
+      <div><h4>名前と続柄を入力</h4><p>婚姻・養子・再婚もそのまま記録できます</p></div>
+    </div>
+    <div class="step-item">
+      <span class="step-num">2</span>
+      <div><h4>世代ごとに自動で整列</h4><p>複数世代をまたぐ複雑な構成でも線を引き直す必要なし</p></div>
+    </div>
+    <div class="step-item">
+      <span class="step-num">3</span>
+      <div><h4>間違えたらUndo</h4><p>誤って違う人とつないでも、ボタン一つで元通り</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="section-label">主な機能</div>
+  <h2 class="section-title">壊れない・消えない、<br>を大事にしました</h2>
+  <div class="feature-grid">
+
+    <div class="feature-card">
+      <div class="feature-icon-wrap a">🌳</div>
+      <h3>自動レイアウト・人数無制限</h3>
+      <p>何人分でも、何本の家系図でも、無料のまま作成・編集できます。婚姻・養子・再婚をまたいでも自動で整います。</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-wrap b">👪</div>
+      <h3>実親と養親、両方記録</h3>
+      <p>養子縁組があるご家庭でも、実の親・育ての親の2組をそのまま記録できます。無理に1組にまとめる必要はありません。</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-wrap c">📥</div>
+      <h3>親族のファイルを非破壊で取り込み</h3>
+      <p>親戚が作った家系図ファイルを、新しい家系図として追加できます。今お使いの家系図は変更されません。</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-wrap d">📤</div>
+      <h3>ファイル書き出し・PDF出力<span style="display:inline-block;background:#5D4A3A;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;margin-left:6px;vertical-align:middle;">プレミアム</span></h3>
+      <p>全体、または選んだ人より上の代だけを書き出して親族に共有。家紋を添えたPDFで印刷して残せます。</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="premium">
+  <div class="section-label">プレミアム（買い切り）</div>
+  <h2 class="section-title">渡すとき・残すときだけ、<br>買い切り</h2>
+  <div class="premium-cards">
+    <div class="premium-card">
+      <span class="emoji">📤</span>
+      <div><h4>ファイル書き出し</h4><p>全体、または選んだ代から上を親族に共有</p></div>
+    </div>
+    <div class="premium-card">
+      <span class="emoji">🖨</span>
+      <div><h4>PDF出力</h4><p>家紋を添えて印刷して残せる形で書き出し</p></div>
+    </div>
+  </div>
+  <div class="price-box">
+    <div class="price-row">
+      <span class="price-label">プレミアム（買い切り）</span>
+      <span class="price-value">¥600<span class="price-tag">一度きり</span></span>
+    </div>
+  </div>
+  <p class="free-note">※ 作成・編集・人数無制限・複数ツリーの保有・取り込みは<br>購入しなくてもすべて無料でご利用いただけます。</p>
+</section>
+
+<section class="privacy">
+  <div class="section-label">安心してお使いいただけます</div>
+  <h2 class="section-title">家族の記録だからこそ、<br>外に出さない設計に</h2>
+  <div class="privacy-cols">
+    <div class="privacy-item">
+      <div class="privacy-icon">🔒</div>
+      <h4>完全オフライン</h4>
+      <p>氏名・続柄・生年月日はすべて端末内にのみ保存されます</p>
+    </div>
+    <div class="privacy-item">
+      <div class="privacy-icon">📵</div>
+      <h4>広告なし</h4>
+      <p>広告表示のためのトラッキングもありません</p>
+    </div>
+    <div class="privacy-item">
+      <div class="privacy-icon">🚫</div>
+      <h4>アカウント登録不要</h4>
+      <p>サーバーへの送信は一切ありません</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2 class="section-title">次の親戚の集まりの前に、<br>家系図を作っておく</h2>
+  <p class="cta-sub">無料でダウンロードして、人数無制限で作成・編集できます。</p>
+  <a href="https://apps.apple.com/jp/app/id6797544764" target="_blank" rel="noopener" class="app-store-btn">
+    <svg viewBox="0 0 814 1000" width="24" height="24" fill="white"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.3 134.4-316.7 266.8-316.7 99.8 0 162.6 64.8 212.7 64.8 46.2 0 121.2-68.8 228.5-68.8zm-88-174c43.8-51.7 74.6-123.5 74.6-195.3 0-10.3-.6-20.7-2.6-29.2-70.7 2.6-154.7 47.1-204.7 107.2-38.4 44.4-75.9 116.2-75.9 189 0 11.6 1.9 23.2 2.6 26.9 4.5.6 11.6 1.9 18.7 1.9 63.5 0 143.9-42.5 187.3-100.5z"/></svg>
+    App Storeで無料ダウンロード
+  </a>
+  <p class="cta-note">完全オフライン · 広告なし · 作成・編集は人数無制限</p>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="../">MC Labs トップへ</a>
+    <a href="./privacy/">プライバシーポリシー</a>
+    <a href="./support/">サポート</a>
+    <a href="mailto:chimasaki31@gmail.com">お問い合わせ</a>
+  </div>
+  <p>© 2026 MC Labs. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
