@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>家系図の作り方、何から始める？戸籍を使った先祖の調べ方</title>
+  <meta name="description" content="家系図をこれから作る人向けに、何から始めればいいかを解説。身近な親族への聞き取りから、戸籍謄本を使った先祖の調べ方、記録の残し方まで手順を紹介。">
+
+  <!-- OGP -->
+  <meta property="og:title" content="家系図の作り方、何から始める？戸籍を使った先祖の調べ方">
+  <meta property="og:description" content="身近な親族への聞き取りから戸籍を使った調べ方まで、家系図作りの始め方を解説。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/kakeizu-note/kakeizu-tsukurikata/">
+  <meta property="og:locale" content="ja_JP">
+
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/kakeizu-note/kakeizu-tsukurikata/">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "家系図の作り方、何から始める？戸籍を使った先祖の調べ方",
+    "description": "身近な親族への聞き取りから戸籍を使った調べ方まで、家系図作りの始め方を解説。",
+    "inLanguage": "ja",
+    "author": { "@type": "Organization", "name": "MC Labs" },
+    "publisher": { "@type": "Organization", "name": "MC Labs" },
+    "mainEntityOfPage": "https://chimasaki31-lab.github.io/kakeizu-note/kakeizu-tsukurikata/"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "家系図作りは何から始めればいいですか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "まずは自分から分かる範囲、両親・祖父母までを書き出すところから始めるのがおすすめです。分からない部分は、親や親戚への聞き取りで少しずつ埋めていきます。" }
+      },
+      {
+        "@type": "Question",
+        "name": "戸籍謄本はどこで取得できますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "戸籍謄本は本籍地の市区町村役場で取得できます。遠方の場合は郵送でも請求可能です。古い代までさかのぼる場合は、除籍謄本・改製原戸籍が必要になることがあります。詳しい手続きは各自治体の窓口・ウェブサイトでご確認ください。" }
+      },
+      {
+        "@type": "Question",
+        "name": "戸籍で何代くらいさかのぼれますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "保存されている戸籍の年代によって異なりますが、明治期まで遡れる場合もあります。ただし戸籍の保存期間には制度上の制約があり、古い戸籍が既に廃棄されている場合もあります。" }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif; font-size: 17px; color: #26201c; background: #fff; line-height: 1.8; }
+    a { color: inherit; text-decoration: none; }
+    .breadcrumb { padding: 12px 20px; font-size: 13px; color: #999; border-bottom: 1px solid #e7ddd4; }
+    .breadcrumb a { color: #5D4A3A; }
+    .breadcrumb a:hover { opacity: 0.7; }
+    .hero { background: linear-gradient(135deg, #8a7360 0%, #5D4A3A 55%, #3a2d22 100%); color: #fff; padding: 48px 20px 40px; text-align: center; }
+    .hero-badge { display: inline-block; background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.4); border-radius: 20px; padding: 4px 14px; font-size: 13px; margin-bottom: 18px; letter-spacing: 0.05em; }
+    .hero h1 { font-size: 24px; font-weight: 800; line-height: 1.5; letter-spacing: -0.01em; max-width: 720px; margin: 0 auto; }
+    article { max-width: 760px; margin: 0 auto; padding: 32px 20px 16px; }
+    .lead { background: #faf6f1; border-left: 4px solid #5D4A3A; padding: 16px 18px; border-radius: 0 8px 8px 0; font-size: 16px; color: #333; margin-bottom: 32px; }
+    article h2 { font-size: 21px; font-weight: 800; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid #5D4A3A; color: #3a2d22; }
+    article h3 { font-size: 18px; font-weight: 700; margin: 28px 0 12px; color: #5D4A3A; }
+    article p { margin-bottom: 16px; }
+    article ul, article ol { margin: 0 0 16px 1.4em; }
+    article li { margin-bottom: 6px; }
+    .note { background: #fff8e6; border-left: 4px solid #e0a800; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 15px; margin: 16px 0; }
+    .cta { background: linear-gradient(135deg, #2c2216 0%, #5D4A3A 100%); color: #fff; border-radius: 16px; padding: 28px 24px; margin: 40px 0; text-align: center; }
+    .cta h2 { border: none; color: #fff; margin: 0 0 12px; font-size: 20px; }
+    .cta ul { text-align: left; max-width: 440px; margin: 0 auto 22px; list-style: none; }
+    .cta li { margin-bottom: 8px; }
+    .cta-btn { display: inline-block; background: #fff; color: #3a2d22; font-weight: 800; padding: 14px 32px; border-radius: 30px; font-size: 16px; transition: transform 0.15s, box-shadow 0.15s; }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .cta-note { font-size: 13px; opacity: 0.85; margin-top: 14px; margin-bottom: 0; }
+    .faq-item { border-bottom: 1px solid #eee; padding: 16px 0; }
+    .faq-q { font-weight: 700; color: #3a2d22; margin-bottom: 6px; }
+    footer { background: #faf6f1; padding: 28px 20px; text-align: center; font-size: 13px; color: #999; margin-top: 40px; }
+    .footer-links { margin-bottom: 12px; }
+    .footer-links a { color: #5D4A3A; margin: 0 8px; }
+    .footer-links a:hover { opacity: 0.7; }
+    @media (max-width: 600px) { body { font-size: 16px; } .hero h1 { font-size: 20px; } article h2 { font-size: 19px; } }
+  </style>
+</head>
+<body>
+
+  <nav class="breadcrumb">
+    <a href="../../">MC Labs</a> &rsaquo; <a href="../">家系図ラボ</a> &rsaquo; 家系図の作り方
+  </nav>
+
+  <header class="hero">
+    <span class="hero-badge">家系図の作り方ガイド</span>
+    <h1>家系図の作り方、<br>何から始める？</h1>
+  </header>
+
+  <article>
+    <p class="lead">
+      「家系図を作ろうと思ったけれど、何から手をつければいいか分からない」——そんな声はよく聞きます。
+      このページでは、<strong>身近な範囲からの始め方</strong>と、<strong>戸籍を使った先祖の調べ方</strong>を紹介します。
+    </p>
+
+    <h2>1. まずは分かる範囲から書き出す</h2>
+    <p>いきなり先祖まで調べようとせず、まずは<strong>自分・両親・祖父母</strong>など、分かる範囲を書き出すところから始めるのがおすすめです。名前・続柄・分かれば生年月日を記録していきます。分からない部分は空欄のままで構いません。</p>
+
+    <h2>2. 親戚への聞き取りで埋めていく</h2>
+    <p>次に、両親や親戚に話を聞いて、分からなかった部分を埋めていきます。法事や帰省のタイミングは、年長の親族に話を聞く良い機会です。写真や位牌に書かれた情報が手がかりになることもあります。</p>
+    <div class="note">聞き取った内容は、その場でメモしておくのがおすすめです。あとで「誰から聞いた話だったか」が分からなくなることを防げます。</div>
+
+    <h2>3. さらに遡りたい場合は戸籍謄本を使う</h2>
+    <p>聞き取りだけでは分からない先祖の記録は、<strong>戸籍謄本</strong>を取得することで調べられる場合があります。戸籍謄本は本籍地の市区町村役場で取得でき、遠方の場合は郵送での請求も可能です。</p>
+    <ul>
+      <li><strong>現在の戸籍謄本</strong>：今の家族構成が分かる</li>
+      <li><strong>除籍謄本</strong>：結婚・死亡などで戸籍から抜けた人の記録が分かる</li>
+      <li><strong>改製原戸籍</strong>：戸籍の様式が変わる前の、より古い記録が分かる</li>
+    </ul>
+    <p>保存されている戸籍の年代によっては、明治期まで遡れることもあります。ただし戸籍の保存期間には制度上の制約があり、古い戸籍がすでに廃棄されている場合もあります。詳しい手続き・取得できる範囲は、本籍地の自治体窓口にご確認ください。</p>
+
+    <h2>4. 生年月日が正確に分からない場合</h2>
+    <p>先祖の記録では、生年月日が「昭和10年頃」のように正確に分からないことも珍しくありません。無理に西暦・和暦を確定させようとせず、分かる範囲の情報として残しておくのも一つの方法です。</p>
+
+    <h2>5. 分かったことから記録していく</h2>
+    <p>家系図作りは、一度に完成させる必要はありません。分かったことから少しずつ記録し、婚姻・養子縁組・再婚といった複雑な関係も含めて、無理なく整理していくのがおすすめです。</p>
+
+    <div class="cta">
+      <h2>分かったことから、記録していきませんか</h2>
+      <p>名前と続柄を入れるだけで世代ごとに自動整列する<strong>家系図ラボ</strong>なら、聞き取りで少しずつ分かったことをそのまま追加していけます。生年月日は「昭和10年頃」のような自由な書き方にも対応しています。</p>
+      <ul>
+        <li>🌳 名前と続柄を入れるだけで自動レイアウト</li>
+        <li>↩️ つなぎ間違えてもワンタップでUndo</li>
+        <li>👪 実親と養親、両方をそのまま記録</li>
+        <li>🆓 作成・編集・人数無制限でずっと無料</li>
+      </ul>
+      <a class="cta-btn" href="../">家系図ラボを見る</a>
+      <p class="cta-note">完全オフライン・広告なし・作成編集は無料</p>
+    </div>
+
+    <h2>よくある質問（FAQ）</h2>
+    <div class="faq-item">
+      <p class="faq-q">Q. 家系図作りは何から始めればいいですか？</p>
+      <p>A. まずは自分から分かる範囲、両親・祖父母までを書き出すところから始めるのがおすすめです。分からない部分は、親や親戚への聞き取りで少しずつ埋めていきます。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 戸籍謄本はどこで取得できますか？</p>
+      <p>A. 戸籍謄本は本籍地の市区町村役場で取得できます。遠方の場合は郵送でも請求可能です。古い代までさかのぼる場合は、除籍謄本・改製原戸籍が必要になることがあります。詳しい手続きは各自治体の窓口・ウェブサイトでご確認ください。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 戸籍で何代くらいさかのぼれますか？</p>
+      <p>A. 保存されている戸籍の年代によって異なりますが、明治期まで遡れる場合もあります。ただし戸籍の保存期間には制度上の制約があり、古い戸籍が既に廃棄されている場合もあります。</p>
+    </div>
+  </article>
+
+  <footer>
+    <div class="footer-links">
+      <a href="../">家系図ラボ</a>
+      <a href="../zokugara-ichiran/">続柄の書き方一覧</a>
+      <a href="../youshi-saikon-kakikata/">養子・再婚の書き方</a>
+      <a href="../../">MC Labs トップへ</a>
+    </div>
+    <p>© 2026 MC Labs. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

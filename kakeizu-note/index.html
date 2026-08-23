@@ -118,6 +118,15 @@
     .privacy-item h4 { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
     .privacy-item p { font-size: 13px; color: #6f625a; }
 
+    .guides { padding: 56px 24px; text-align: center; background: #fff; }
+    .guide-list { display: flex; flex-direction: column; gap: 14px; max-width: 480px; margin: 0 auto; }
+    .guide-card { display: flex; align-items: center; gap: 14px; text-align: left; background: #faf6f1; border: 1px solid #e7ddd4; border-radius: 14px; padding: 18px 20px; transition: border-color 0.2s, transform 0.2s; }
+    .guide-card:hover { border-color: #5D4A3A; transform: translateY(-2px); }
+    .guide-emoji { font-size: 26px; flex-shrink: 0; }
+    .guide-text h4 { font-size: 16px; font-weight: 800; margin-bottom: 2px; color: #3a2d22; }
+    .guide-text p { font-size: 13px; color: #6f625a; line-height: 1.5; }
+    .guide-arrow { margin-left: auto; color: #5D4A3A; font-weight: 800; flex-shrink: 0; }
+
     .cta { padding: 64px 24px; text-align: center; background: #fff; }
     .cta .section-title { margin-bottom: 10px; }
     .cta-sub { font-size: 15px; color: #6f625a; margin-bottom: 28px; }
@@ -283,6 +292,37 @@
       <h4>アカウント登録不要</h4>
       <p>サーバーへの送信は一切ありません</p>
     </div>
+  </div>
+</section>
+
+<section class="guides">
+  <div class="section-label">家系図の作り方ガイド</div>
+  <h2 class="section-title">家系図のことを<br>もっと知りたい方へ</h2>
+  <div class="guide-list">
+    <a href="./zokugara-ichiran/" class="guide-card">
+      <span class="guide-emoji">👪</span>
+      <div class="guide-text">
+        <h4>続柄の書き方・呼び方一覧</h4>
+        <p>甥・姪・従兄弟・大叔父など、家系図でよく迷う呼び方を整理</p>
+      </div>
+      <span class="guide-arrow">&rsaquo;</span>
+    </a>
+    <a href="./kakeizu-tsukurikata/" class="guide-card">
+      <span class="guide-emoji">📜</span>
+      <div class="guide-text">
+        <h4>家系図の作り方、何から始める？</h4>
+        <p>聞き取りの進め方と、戸籍謄本を使った先祖の調べ方</p>
+      </div>
+      <span class="guide-arrow">&rsaquo;</span>
+    </a>
+    <a href="./youshi-saikon-kakikata/" class="guide-card">
+      <span class="guide-emoji">🌳</span>
+      <div class="guide-text">
+        <h4>養子・再婚がある家系図の書き方</h4>
+        <p>実親と養親、両方を記録する考え方と続柄の書き方</p>
+      </div>
+      <span class="guide-arrow">&rsaquo;</span>
+    </a>
   </div>
 </section>
 

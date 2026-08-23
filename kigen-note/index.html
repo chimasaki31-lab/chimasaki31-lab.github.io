@@ -127,6 +127,15 @@
     .privacy-item h4 { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
     .privacy-item p { font-size: 13px; color: #6f625a; }
 
+    .guides { padding: 56px 24px; text-align: center; background: #fff; }
+    .guide-list { display: flex; flex-direction: column; gap: 14px; max-width: 480px; margin: 0 auto; }
+    .guide-card { display: flex; align-items: center; gap: 14px; text-align: left; background: #faf6f1; border: 1px solid #e7ddd4; border-radius: 14px; padding: 18px 20px; transition: border-color 0.2s, transform 0.2s; }
+    .guide-card:hover { border-color: #6D4C41; transform: translateY(-2px); }
+    .guide-emoji { font-size: 26px; flex-shrink: 0; }
+    .guide-text h4 { font-size: 16px; font-weight: 800; margin-bottom: 2px; color: #4E342E; }
+    .guide-text p { font-size: 13px; color: #6f625a; line-height: 1.5; }
+    .guide-arrow { margin-left: auto; color: #6D4C41; font-weight: 800; flex-shrink: 0; }
+
     .cta { padding: 64px 24px; text-align: center; background: #fff; }
     .cta .section-title { margin-bottom: 10px; }
     .cta-sub { font-size: 15px; color: #6f625a; margin-bottom: 28px; }
@@ -311,6 +320,37 @@
       <h4>アカウント登録不要</h4>
       <p>サーバーへの送信は一切ありません</p>
     </div>
+  </div>
+</section>
+
+<section class="guides">
+  <div class="section-label">食品と期限のガイド</div>
+  <h2 class="section-title">賞味期限のことを<br>もっと知りたい方へ</h2>
+  <div class="guide-list">
+    <a href="./shomi-shohi-chigai/" class="guide-card">
+      <span class="guide-emoji">🔍</span>
+      <div class="guide-text">
+        <h4>賞味期限と消費期限の違い</h4>
+        <p>2つの期限の意味の違いと、過ぎたときの考え方をやさしく解説</p>
+      </div>
+      <span class="guide-arrow">&rsaquo;</span>
+    </a>
+    <a href="./reitou-kigen-mokuyasu/" class="guide-card">
+      <span class="guide-emoji">❄️</span>
+      <div class="guide-text">
+        <h4>冷凍保存の賞味期限はどれくらい？</h4>
+        <p>食材別の目安と、冷凍焼けを防ぐ保存のコツ</p>
+      </div>
+      <span class="guide-arrow">&rsaquo;</span>
+    </a>
+    <a href="./rolling-stock/" class="guide-card">
+      <span class="guide-emoji">🎒</span>
+      <div class="guide-text">
+        <h4>防災備蓄・ローリングストックの期限管理法</h4>
+        <p>日常で消費しながら回す備蓄の考え方と、期限切れを防ぐコツ</p>
+      </div>
+      <span class="guide-arrow">&rsaquo;</span>
+    </a>
   </div>
 </section>
 
