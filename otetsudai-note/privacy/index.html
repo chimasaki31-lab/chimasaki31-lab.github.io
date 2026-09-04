@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index,follow">
-<title>プライバシーポリシー｜おこづかいポイントノート</title>
-<meta name="description" content="お手伝い・お小遣い管理アプリ「おこづかいポイントノート」のプライバシーポリシー。お子さんの名前・お手伝いの記録は端末内にのみ保存され、外部に送信しません。広告・トラッキングなし。">
+<title>プライバシーポリシー｜おこづかいポイントノート / Privacy Policy | Allowance Tracker: Kids Chores</title>
+<meta name="description" content="お手伝い・お小遣い管理アプリ「おこづかいポイントノート」のプライバシーポリシー。記録は端末内にのみ保存され、外部に送信しません。広告・トラッキングなし。/ Privacy policy for Allowance Tracker: Kids Chores. All data stays on your device only.">
 <style>
   :root{
     --ink:#2b2013; --muted:#7c6a4f; --line:#ecdfc2;
@@ -24,6 +24,12 @@
   .hero-inner{max-width:760px; margin:0 auto;}
   .hero h1{margin:0 0 6px; font-size:1.6rem; font-weight:800; letter-spacing:.02em;}
   .hero p{margin:0; color:#fbe9c9; font-size:.95rem;}
+  .langsw{max-width:760px; margin:14px auto 0; padding:0 16px; text-align:right;}
+  .langsw button{
+    font:inherit; font-size:.85rem; font-weight:700; padding:6px 14px; border-radius:999px;
+    border:1px solid rgba(255,255,255,.55); background:rgba(255,255,255,.12); color:#fff; cursor:pointer;
+  }
+  .langsw button.active{background:#fff; color:var(--accent); border-color:#fff;}
   main{max-width:760px; margin:-24px auto 64px; padding:0 16px;}
   .card{
     background:var(--bg); border:1px solid var(--line); border-radius:16px;
@@ -43,29 +49,37 @@
   a{color:var(--accent);}
   .foot{max-width:760px; margin:0 auto; padding:20px 16px 40px; text-align:center; color:var(--muted); font-size:.85rem;}
   .foot a{margin:0 8px;}
+  [data-lang="en"]{display:none; font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;}
+  body.lang-en [data-lang="ja"]{display:none;}
+  body.lang-en [data-lang="en"]{display:block;}
 </style>
 </head>
 <body>
   <header class="hero">
     <div class="hero-inner">
-      <h1>プライバシーポリシー</h1>
-      <p>おこづかいポイントノート - お手伝い記録と貯金管理</p>
+      <h1 data-lang="ja">プライバシーポリシー</h1>
+      <h1 data-lang="en">Privacy Policy</h1>
+      <p data-lang="ja">おこづかいポイントノート - お手伝い記録と貯金管理</p>
+      <p data-lang="en">Allowance Tracker: Kids Chores</p>
+    </div>
+    <div class="langsw">
+      <button type="button" id="btn-ja">日本語</button>
+      <button type="button" id="btn-en">English</button>
     </div>
   </header>
 
   <main>
-    <div class="card">
+    <div class="card" data-lang="ja">
       <p class="lead">
         お手伝い・お小遣い管理アプリ「<strong>おこづかいポイントノート</strong>」（以下「本アプリ」）をご利用いただきありがとうございます。
         本アプリの開発者（以下「当方」）は、お客様のプライバシーを尊重し、その保護に努めます。
-        <span class="em">本アプリに入力された記録（お子さんの名前・お手伝いの項目・ポイントの履歴・暗証番号などの情報）は、お客様の端末内にのみ保存され、当方のサーバーや外部に送信することはありません。</span>
+        <span class="em">本アプリに入力された記録（お子さんの名前・お手伝いの項目・ポイントの履歴などの情報）は、お客様の端末内にのみ保存され、当方のサーバーや外部に送信することはありません。</span>
       </p>
 
       <h2>1. 当アプリが扱う情報</h2>
       <ul>
         <li>本アプリは、お客様ご自身のメールアドレス・電話番号などの<strong>個人情報を収集しません</strong>。アカウント登録やログインもありません。</li>
         <li>登録したお子さんの名前・お手伝いの項目・ポイントの加算や取り消しの履歴・貯金の目標などの<strong>記録データ</strong>は、お客様の端末内にのみ保存されます。当方のサーバーに送信・保存することはなく、当方がそれらを閲覧・取得することはできません。</li>
-        <li>「こどもモード」で設定する暗証番号（PIN）も端末内にのみ保存されます。これは家庭内でのいたずら防止を目的とした簡易な鍵であり、暗号化やセキュリティ機能として設計されたものではありません。</li>
       </ul>
 
       <h2>2. 自動バックアップ機能について</h2>
@@ -107,13 +121,89 @@
       <p>本プライバシーポリシーに関するご質問は、以下までお問い合わせください。</p>
       <p><strong>メールアドレス：</strong> <a href="mailto:chimasaki31@gmail.com">chimasaki31@gmail.com</a></p>
 
-      <p class="updated">最終更新日：2026年8月27日</p>
+      <p class="updated">最終更新日：2026年9月4日</p>
+    </div>
+
+    <div class="card" data-lang="en">
+      <p class="lead">
+        Thank you for using <strong>Allowance Tracker: Kids Chores</strong> (the "App"). The developer of this App ("we") respects your privacy and is committed to protecting it.
+        <span class="em">Everything you record in this App — your child's name, chore list, and point history — is stored only on your own device. We never send it to our servers or anywhere else.</span>
+      </p>
+
+      <h2>1. Information this App handles</h2>
+      <ul>
+        <li>This App does <strong>not collect personal information</strong> such as your email address or phone number. There is no account creation or sign-in.</li>
+        <li>Your <strong>records</strong> — child names, chores, point history (including undos), and savings goals — are stored only on your device. We never send this data to a server, and we have no way to view or access it.</li>
+      </ul>
+
+      <h2>2. Automatic backups</h2>
+      <p>To help prevent data loss, the App automatically saves a backup <strong>on your device only</strong> whenever your records change. This backup is never sent off your device, and we cannot view its contents.</p>
+
+      <h2>3. Exporting and importing files</h2>
+      <p>The App lets you export your records as a file and import a previously exported file. These actions are entirely under your control — where you send or open the file (email, Files app, AirDrop, etc.) is <strong>up to you, and we have no involvement or access</strong>.</p>
+
+      <h2>4. Data sent to outside services</h2>
+      <p>All <strong>recording, display, export, and import features work entirely offline</strong>. The only feature that requires an internet connection is the in-app purchase described below.</p>
+      <ul>
+        <li><strong>Apple (App Store / In-App Purchase)</strong>: The App's premium features (adding a second child, unlimited chores, stats, and savings goals) are sold as a one-time in-app purchase, processed by Apple and our billing platform (RevenueCat). We never directly receive your credit card information. An anonymous device identifier and your purchase history are sent to RevenueCat for this purpose, but none of the data you enter (child names, chore records, etc.) is ever sent. This is handled according to Apple's and RevenueCat's own privacy policies.</li>
+      </ul>
+      <p>This App uses <strong>no analytics, no advertising, and no third-party authentication services</strong> of any kind. We have no mechanism of our own to collect or transmit your information.</p>
+
+      <h2>5. Advertising</h2>
+      <p>This App <strong>displays no advertising</strong>. It does not use any third-party ad SDKs or tracking technologies.</p>
+
+      <h2>6. Information about your child</h2>
+      <p>The App lets you enter your child's name, but this is <strong>stored only on your device</strong> and is never sent to or shared with us or any third party. Entering, managing, and sharing (via file export) any information about your child remains the responsibility of the parent or guardian.</p>
+
+      <h2>7. No syncing between devices</h2>
+      <p>This App has <strong>no automatic sync or cloud-sharing feature between devices</strong>. If you want to view the same records on multiple devices, or you're switching to a new device, export a file and import it on the new device.</p>
+
+      <h2>8. Sharing or selling data</h2>
+      <p>We do not <strong>sell or share</strong> your information with third parties. Other than the payment processing described in Section 4, we never send your data anywhere.</p>
+
+      <h2>9. Data retention and deletion</h2>
+      <ul>
+        <li>Your records and automatic backups are deleted from your device when you delete the App.</li>
+        <li>Any file you've exported remains wherever you saved it; you can delete it yourself at any time.</li>
+        <li>We have no means of accessing the data stored on your device.</li>
+      </ul>
+
+      <h2>10. Changes to this policy</h2>
+      <p>If this policy changes, we will update this page. We may also notify you in the App for significant changes.</p>
+
+      <h2>11. Contact</h2>
+      <p>If you have any questions about this privacy policy, please contact us at:</p>
+      <p><strong>Email:</strong> <a href="mailto:chimasaki31@gmail.com">chimasaki31@gmail.com</a></p>
+
+      <p class="updated">Last updated: September 4, 2026</p>
     </div>
   </main>
 
-  <p class="foot">
+  <p class="foot" data-lang="ja">
     <a href="../support/">サポート</a>｜<a href="https://chimasaki31-lab.github.io/">MC Labs</a><br>
     © 2026 おこづかいポイントノート
   </p>
+  <p class="foot" data-lang="en">
+    <a href="../support/">Support</a> | <a href="https://chimasaki31-lab.github.io/">MC Labs</a><br>
+    © 2026 Allowance Tracker: Kids Chores
+  </p>
+
+  <script>
+    (function(){
+      function setLang(lang){
+        document.body.className = lang === 'en' ? 'lang-en' : '';
+        document.documentElement.lang = lang;
+        document.getElementById('btn-ja').className = lang === 'ja' ? 'active' : '';
+        document.getElementById('btn-en').className = lang === 'en' ? 'active' : '';
+        try { localStorage.setItem('otetsudai_lang', lang); } catch(e){}
+      }
+      document.getElementById('btn-ja').addEventListener('click', function(){ setLang('ja'); });
+      document.getElementById('btn-en').addEventListener('click', function(){ setLang('en'); });
+      var saved = null;
+      try { saved = localStorage.getItem('otetsudai_lang'); } catch(e){}
+      var initial = saved || ((navigator.language || '').toLowerCase().indexOf('ja') === 0 ? 'ja' : 'en');
+      setLang(initial);
+    })();
+  </script>
 </body>
 </html>

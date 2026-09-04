@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index,follow">
-<title>サポート｜おこづかいポイントノート</title>
-<meta name="description" content="お手伝い・お小遣い管理アプリ「おこづかいポイントノート」のサポートページ。使い方・こどもモード・毎月リセット・購入の復元・データのバックアップについてのご案内とお問い合わせ先。">
+<title>サポート｜おこづかいポイントノート / Support | Allowance Tracker: Kids Chores</title>
+<meta name="description" content="お手伝い・お小遣い管理アプリ「おこづかいポイントノート」のサポートページ。使い方・毎月リセット・購入の復元・データのバックアップについてのご案内とお問い合わせ先。/ Support page for Allowance Tracker: Kids Chores.">
 <style>
   :root{
     --ink:#2b2013; --muted:#7c6a4f; --line:#ecdfc2;
@@ -24,6 +24,12 @@
   .hero-inner{max-width:760px; margin:0 auto;}
   .hero h1{margin:0 0 6px; font-size:1.6rem; font-weight:800; letter-spacing:.02em;}
   .hero p{margin:0; color:#fbe9c9; font-size:.95rem;}
+  .langsw{max-width:760px; margin:14px auto 0; padding:0 16px; text-align:right;}
+  .langsw button{
+    font:inherit; font-size:.85rem; font-weight:700; padding:6px 14px; border-radius:999px;
+    border:1px solid rgba(255,255,255,.55); background:rgba(255,255,255,.12); color:#fff; cursor:pointer;
+  }
+  .langsw button.active{background:#fff; color:var(--accent); border-color:#fff;}
   main{max-width:760px; margin:-24px auto 48px; padding:0 16px;}
   .card{
     background:var(--bg); border:1px solid var(--line); border-radius:16px;
@@ -48,18 +54,27 @@
   a{color:var(--accent);}
   .foot{max-width:760px; margin:0 auto; padding:20px 16px 40px; text-align:center; color:var(--muted); font-size:.85rem;}
   .foot a{margin:0 8px;}
+  [data-lang="en"]{display:none; font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;}
+  body.lang-en [data-lang="ja"]{display:none;}
+  body.lang-en [data-lang="en"]{display:block;}
 </style>
 </head>
 <body>
   <header class="hero">
     <div class="hero-inner">
-      <h1>サポート</h1>
-      <p>おこづかいポイントノート - お手伝い記録と貯金管理</p>
+      <h1 data-lang="ja">サポート</h1>
+      <h1 data-lang="en">Support</h1>
+      <p data-lang="ja">おこづかいポイントノート - お手伝い記録と貯金管理</p>
+      <p data-lang="en">Allowance Tracker: Kids Chores</p>
+    </div>
+    <div class="langsw">
+      <button type="button" id="btn-ja">日本語</button>
+      <button type="button" id="btn-en">English</button>
     </div>
   </header>
 
   <main>
-    <div class="card">
+    <div class="card" data-lang="ja">
       <p class="lead">
         「<strong>おこづかいポイントノート</strong>」をご利用いただきありがとうございます。
         よくあるご質問をまとめました。解決しない場合は、ページ下部のメールアドレスまでお気軽にお問い合わせください。
@@ -72,13 +87,6 @@
       <p>本アプリはポイントを家計簿のような「台帳」として記録します。取り消すときも記録を消さず、打ち消しの1行を足して取り消すので、残高は常に履歴の合計と一致します。「取り消したのに戻らない」ということは起こりません。</p>
       <h3>おこづかいへの換算・精算</h3>
       <p>設定で1ポイントあたりの金額を決めておくと、おこづかいを渡すときに渡した分を記録して残高から差し引けます。残高を超えて渡すことはできない仕組みなので、マイナスにはなりません。</p>
-
-      <h2>こどもモード</h2>
-      <h3>こどもモードとは</h3>
-      <p>大きな数字でポイントだけを表示する画面です。この画面からは加算も編集もできないため、お子さんに安心して端末を渡せます。</p>
-      <h3>暗証番号（PIN）を忘れてしまったとき</h3>
-      <p>設定で「もどるときに暗証番号を求める」をオンにしている場合、こどもモードの画面には「おうちの人へ」という案内が用意されています。<strong>アプリを一度終了し、端末のホーム画面からもう一度開き直してください。</strong>通常の画面に戻れるので、設定 →「こどもモードの暗証番号」からいつでも変更・解除できます。アプリの再インストールは不要です。</p>
-      <p>この暗証番号は家庭内でのいたずら防止を目的とした簡易な鍵であり、暗号化やセキュリティ機能ではありません。</p>
 
       <h2>毎月リセットするか、貯め続けるか</h2>
       <p>初期設定は「貯め続ける」です。毎月1日にリセットしたい場合は、設定でオンに切り替えられます。リセットしたときも履歴には残るので、黙って数字が消えることはありません。リセット自体もあとから取り消せます。</p>
@@ -112,13 +120,83 @@
         <p style="margin:10px 0 0; font-size:.9rem; color:var(--muted);">不具合のご報告の際は、お使いのiPhoneの機種・iOSのバージョン・どの画面で何をしたときに起きたかを添えていただけると、原因を特定しやすくなります。</p>
       </div>
 
-      <p class="updated">最終更新日：2026年8月27日</p>
+      <p class="updated">最終更新日：2026年9月4日</p>
+    </div>
+
+    <div class="card" data-lang="en">
+      <p class="lead">
+        Thank you for using <strong>Allowance Tracker: Kids Chores</strong>. Here are answers to common questions. If yours isn't covered, feel free to email us using the address at the bottom of this page.
+      </p>
+
+      <h2>The basics</h2>
+      <h3>Logging a chore</h3>
+      <p>Set up chores (like "Do the dishes" or "Clean the bath") in Settings, and tapping the button on the Home screen adds the points instantly. Tapped the wrong one? Tap "Undo" on the confirmation that appears, or undo it later from the History screen.</p>
+      <h3>Why your numbers never break</h3>
+      <p>This App records points like a bookkeeping ledger. Undoing an entry doesn't erase it — it adds a matching reversal line instead, so your balance always equals the sum of the ledger. "I undid it but it didn't come back" simply can't happen.</p>
+      <h3>Converting points to allowance</h3>
+      <p>Set an amount per point in Settings, and when you pay out an allowance, log the amount paid and it's deducted from the balance. Balances can never go negative, so payouts can't exceed what's actually owed.</p>
+
+      <h2>Keep counting, or reset every month</h2>
+      <p>By default, points just keep accumulating. If you'd rather reset on the 1st of every month, turn that on in Settings. A reset still shows up in the history — nothing disappears silently — and it can be undone too.</p>
+
+      <h2>About the purchase</h2>
+      <h3>What Premium unlocks</h3>
+      <ul>
+        <li>Adding a second child (and beyond)</li>
+        <li>Unlimited chores (the free version caps at 8)</li>
+        <li>Charts for point trends and a per-chore breakdown</li>
+        <li>Savings goals</li>
+      </ul>
+      <p>It's a one-time purchase — pay once and keep using it, with no monthly or yearly fees. <strong>Even without purchasing, logging, undoing, cashing out, viewing history, and exporting all stay free with no limits, and there's no advertising.</strong></p>
+      <h3>Restoring your purchase (new device or reinstall)</h3>
+      <p>Tap <strong>"Restore Purchase"</strong> in the Settings screen. You'll need to be signed in with the same Apple Account you used to buy it.</p>
+      <h3>Refunds</h3>
+      <p>Refunds for in-app purchases are handled by Apple. Please visit <a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a> — we're not able to process refunds ourselves.</p>
+
+      <h2>About your data</h2>
+      <h3>Where it's stored</h3>
+      <p>Everything you enter is stored <strong>only on your iPhone</strong>. No account is required, and nothing is sent to our servers. See our <a href="../privacy/">Privacy Policy</a> for details.</p>
+      <h3>Switching devices / backups</h3>
+      <p>You can export your records as a file from the Settings screen, then import that file on your new device to restore everything. This App has <strong>no automatic sync or cloud-sharing between devices</strong>, so be sure to export before switching phones. The App also keeps an automatic backup on your device.</p>
+      <h3>Deleting your data</h3>
+      <p>Deleting the App removes your records and its automatic backups from your device. Any file you've exported stays wherever you saved it.</p>
+
+      <h2>Contact</h2>
+      <div class="contact">
+        <p style="margin:0 0 6px;">For bug reports, feature requests, or any other questions, please reach out here.</p>
+        <p style="margin:0;"><strong>Email:</strong> <a href="mailto:chimasaki31@gmail.com">chimasaki31@gmail.com</a></p>
+        <p style="margin:10px 0 0; font-size:.9rem; color:var(--muted);">When reporting a bug, it helps to include your iPhone model, iOS version, and what you were doing when it happened.</p>
+      </div>
+
+      <p class="updated">Last updated: September 4, 2026</p>
     </div>
   </main>
 
-  <p class="foot">
+  <p class="foot" data-lang="ja">
     <a href="../privacy/">プライバシーポリシー</a>｜<a href="https://chimasaki31-lab.github.io/">MC Labs</a><br>
     © 2026 おこづかいポイントノート
   </p>
+  <p class="foot" data-lang="en">
+    <a href="../privacy/">Privacy Policy</a> | <a href="https://chimasaki31-lab.github.io/">MC Labs</a><br>
+    © 2026 Allowance Tracker: Kids Chores
+  </p>
+
+  <script>
+    (function(){
+      function setLang(lang){
+        document.body.className = lang === 'en' ? 'lang-en' : '';
+        document.documentElement.lang = lang;
+        document.getElementById('btn-ja').className = lang === 'ja' ? 'active' : '';
+        document.getElementById('btn-en').className = lang === 'en' ? 'active' : '';
+        try { localStorage.setItem('otetsudai_lang', lang); } catch(e){}
+      }
+      document.getElementById('btn-ja').addEventListener('click', function(){ setLang('ja'); });
+      document.getElementById('btn-en').addEventListener('click', function(){ setLang('en'); });
+      var saved = null;
+      try { saved = localStorage.getItem('otetsudai_lang'); } catch(e){}
+      var initial = saved || ((navigator.language || '').toLowerCase().indexOf('ja') === 0 ? 'ja' : 'en');
+      setLang(initial);
+    })();
+  </script>
 </body>
 </html>
