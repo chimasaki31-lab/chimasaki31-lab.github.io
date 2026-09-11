@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>議事録・インタビューをリアルタイムで文字にすべき理由</title>
+  <meta name="description" content="会議やインタビューの記録を、録音してから後でまとめて文字にする方法と、その場でリアルタイムに文字にする方法を比較。リアルタイム処理が向いている場面を解説します。">
+
+  <meta property="og:title" content="議事録・インタビューをリアルタイムで文字にすべき理由">
+  <meta property="og:description" content="録音後にまとめて処理する方法と、リアルタイムで文字にする方法を比較して解説。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/bunjiokoshi-note/giji-roku-real-time/">
+  <meta property="og:locale" content="ja_JP">
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/bunjiokoshi-note/giji-roku-real-time/">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "議事録・インタビューをリアルタイムで文字にすべき理由",
+    "description": "録音後にまとめて処理する方法と、リアルタイムで文字にする方法を比較して解説。",
+    "inLanguage": "ja",
+    "author": { "@type": "Organization", "name": "MC Labs" },
+    "publisher": { "@type": "Organization", "name": "MC Labs" },
+    "mainEntityOfPage": "https://chimasaki31-lab.github.io/bunjiokoshi-note/giji-roku-real-time/"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "録音後にまとめて文字起こしする方法とリアルタイム方式、精度に差はありますか？", "acceptedAnswer": { "@type": "Answer", "text": "処理方式そのものより、使われている音声認識エンジンの性能によって精度は左右されます。リアルタイムだから精度が落ちる、後処理だから精度が高いといった一律の優劣はありません。" } },
+      { "@type": "Question", "name": "長時間の会議でもリアルタイム文字起こしは使えますか？", "acceptedAnswer": { "@type": "Answer", "text": "端末やアプリの制約（バッテリー・ストレージ・アプリ側の1回あたりの録音時間制限など）の範囲であれば利用できます。長時間になる場合は、事前にアプリ側の制限を確認しておくと安心です。" } },
+      { "@type": "Question", "name": "リアルタイム表示中に誤変換があった場合、後から直せますか？", "acceptedAnswer": { "@type": "Answer", "text": "多くのアプリでは、文字起こし結果はテキストとして保存されるため、録音後にテキストを見直して手動で修正できます。リアルタイム表示はあくまで「その場で確認できる」ための機能で、確定後の編集を妨げるものではありません。" } }
+    ]
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif; font-size: 17px; color: #1f2937; background: #fff; line-height: 1.8; }
+    a { color: inherit; text-decoration: none; }
+    .breadcrumb { padding: 12px 20px; font-size: 13px; color: #999; border-bottom: 1px solid #dbe4ee; }
+    .breadcrumb a { color: #c97a1f; }
+    .hero { background: linear-gradient(135deg,#24405c 0%,#1B2A3A 55%,#0F1720 100%); color: #fff; padding: 48px 20px 40px; text-align: center; }
+    .hero-badge { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4); border-radius: 20px; padding: 4px 14px; font-size: 13px; margin-bottom: 18px; letter-spacing: 0.05em; }
+    .hero h1 { font-size: 24px; font-weight: 800; line-height: 1.5; max-width: 720px; margin: 0 auto; }
+    article { max-width: 760px; margin: 0 auto; padding: 32px 20px 16px; }
+    .lead { background: #f3ede2; border-left: 4px solid #c97a1f; padding: 16px 18px; border-radius: 0 8px 8px 0; font-size: 16px; color: #333; margin-bottom: 32px; }
+    article h2 { font-size: 21px; font-weight: 800; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid #c97a1f; color: #8a5510; }
+    article p { margin-bottom: 16px; }
+    article ul, article ol { margin: 0 0 16px 1.4em; }
+    article li { margin-bottom: 6px; }
+    .table-wrap { overflow-x: auto; margin: 16px 0 20px; -webkit-overflow-scrolling: touch; }
+    table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 340px; }
+    th, td { border: 1px solid #e3d9c6; padding: 9px 12px; text-align: left; }
+    th { background: #fbe7cf; font-weight: 700; color: #8a5510; }
+    tbody tr:nth-child(even) { background: #f8f2e6; }
+    .note { background: #fff8e6; border-left: 4px solid #e0a800; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 15px; margin: 16px 0; }
+    .cta { background: linear-gradient(135deg, #1B2A3A 0%, #24405c 100%); color: #fff; border-radius: 16px; padding: 28px 24px; margin: 40px 0; text-align: center; }
+    .cta h2 { border: none; color: #fff; margin: 0 0 12px; font-size: 20px; }
+    .cta ul { text-align: left; max-width: 440px; margin: 0 auto 22px; list-style: none; }
+    .cta li { margin-bottom: 8px; }
+    .cta-btn { display: inline-block; background: #fff; color: #8a5510; font-weight: 800; padding: 14px 32px; border-radius: 30px; font-size: 16px; }
+    .cta-note { font-size: 13px; opacity: 0.85; margin-top: 14px; margin-bottom: 0; }
+    .faq-item { border-bottom: 1px solid #eee; padding: 16px 0; }
+    .faq-q { font-weight: 700; color: #8a5510; margin-bottom: 6px; }
+    footer { background: #f3ede2; padding: 28px 20px; text-align: center; font-size: 13px; color: #999; margin-top: 40px; }
+    .footer-links a { color: #c97a1f; margin: 0 8px; }
+    @media (max-width: 600px) { body { font-size: 16px; } .hero h1 { font-size: 20px; } article h2 { font-size: 19px; } }
+  </style>
+</head>
+<body>
+
+  <nav class="breadcrumb">
+    <a href="../../">MC Labs</a> &rsaquo; <a href="../">文字起こしノート</a> &rsaquo; リアルタイムで残す理由
+  </nav>
+
+  <header class="hero">
+    <span class="hero-badge">文字起こしの使い方ガイド</span>
+    <h1>議事録・インタビューを<br>リアルタイムで文字にすべき理由</h1>
+  </header>
+
+  <article>
+    <p class="lead">
+      会議やインタビューの記録には、「録音だけしておいて後でまとめて文字にする」方法と、「録音しながらその場で文字にする」方法があります。
+      このページでは、<strong>両者の違いと、リアルタイム方式が向いている場面</strong>を整理します。
+    </p>
+
+    <h2>1. 2つの方式の違い</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>方式</th><th>確認できるタイミング</th><th>向いている場面</th></tr></thead>
+        <tbody>
+          <tr><td>録音後にまとめて処理</td><td>録音がすべて終わってから</td><td>編集前提の書き起こし・字幕制作</td></tr>
+          <tr><td>リアルタイム処理</td><td>話しながらその場で</td><td>会議中の確認・聞き逃し対策</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>どちらの方式でも、最終的にはテキストとして記録が残ります。違いは<strong>「いつ内容を確認できるか」</strong>という点です。</p>
+
+    <h2>2. 会議中に「今なんて言ったか」を確認できる</h2>
+    <p>リアルタイム処理では、発言がその場で文字になっていくため、聞き逃した内容や数字・固有名詞をすぐに文字で確認できます。録音後にまとめて処理する方式では、会議が終わるまでこの確認ができません。</p>
+    <div class="note">数字や社名など、聞き間違いが起きやすい情報をその場でテキストで確認できるのは、リアルタイム処理ならではの利点です。</div>
+
+    <h2>3. インタビュー中の相槌・深掘りに使える</h2>
+    <p>取材やインタビューでは、相手の発言をその場でテキストとして見返しながら、次の質問を組み立てたい場面があります。リアルタイムで文字になっていれば、録音を止めずに直前の発言を目で確認しながら会話を続けられます。</p>
+
+    <h2>4. 精度は方式ではなく認識エンジン次第</h2>
+    <p>「リアルタイムだから精度が落ちる」という印象を持たれることがありますが、実際には文字起こしの精度は使われている音声認識エンジンの性能に左右されるものです。リアルタイム処理か後処理かという方式の違いそのものが、精度を直接決めるわけではありません。</p>
+
+    <h2>5. 誤変換は、確定後にテキストとして修正できる</h2>
+    <p>リアルタイム表示中に多少の誤変換があっても、文字起こし結果はテキストとして保存されるため、あとから見直して手動で修正できます。リアルタイム表示は「その場で確認できる」ための機能であり、確定後の編集を妨げるものではありません。</p>
+
+    <div class="cta">
+      <h2>録音しながら、その場で文字になる</h2>
+      <p><strong>文字起こしノート</strong>は、録音しながらリアルタイムで文字になる、完全オンデバイスの文字起こしアプリです。</p>
+      <ul>
+        <li>🎙 録音しながらその場で文字になる（無料3件まで）</li>
+        <li>🔒 音声もテキストも端末の外に出ない</li>
+        <li>📤 SRT/VTT/TXTで書き出し、共有も簡単</li>
+      </ul>
+      <a class="cta-btn" href="../">文字起こしノートを見る</a>
+      <p class="cta-note">買い切り¥800・月額¥400も選択可</p>
+    </div>
+
+    <h2>よくある質問（FAQ）</h2>
+    <div class="faq-item">
+      <p class="faq-q">Q. 録音後にまとめて文字起こしする方法とリアルタイム方式、精度に差はありますか？</p>
+      <p>A. 処理方式そのものより、使われている音声認識エンジンの性能によって精度は左右されます。リアルタイムだから精度が落ちる、後処理だから精度が高いといった一律の優劣はありません。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 長時間の会議でもリアルタイム文字起こしは使えますか？</p>
+      <p>A. 端末やアプリの制約（バッテリー・ストレージ・アプリ側の1回あたりの録音時間制限など）の範囲であれば利用できます。長時間になる場合は、事前にアプリ側の制限を確認しておくと安心です。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. リアルタイム表示中に誤変換があった場合、後から直せますか？</p>
+      <p>A. 多くのアプリでは、文字起こし結果はテキストとして保存されるため、録音後にテキストを見直して手動で修正できます。リアルタイム表示はあくまで「その場で確認できる」ための機能で、確定後の編集を妨げるものではありません。</p>
+    </div>
+  </article>
+
+  <footer>
+    <div class="footer-links">
+      <a href="../">文字起こしノート</a>
+      <a href="../sabusuku-tsukare-kaiketsu/">サブスク疲れの解決</a>
+      <a href="../onsei-data-gaibu-sooshin/">外部送信しないアプリの選び方</a>
+      <a href="../../">MC Labs トップへ</a>
+    </div>
+    <p>© 2026 MC Labs. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

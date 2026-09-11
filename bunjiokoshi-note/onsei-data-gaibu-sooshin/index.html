@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>録音データを外部に送りたくない人のための文字起こしアプリの選び方</title>
+  <meta name="description" content="会議やインタビューの録音データをクラウドに送りたくない人向けに、文字起こしアプリを選ぶときに確認すべきポイントと、オンデバイス処理のアプリを見分ける方法を解説します。">
+
+  <meta property="og:title" content="録音データを外部に送りたくない人のための文字起こしアプリの選び方">
+  <meta property="og:description" content="文字起こしアプリ選びで確認すべきポイントと、オンデバイス処理のアプリを見分ける方法を解説。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/bunjiokoshi-note/onsei-data-gaibu-sooshin/">
+  <meta property="og:locale" content="ja_JP">
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/bunjiokoshi-note/onsei-data-gaibu-sooshin/">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "録音データを外部に送りたくない人のための文字起こしアプリの選び方",
+    "description": "文字起こしアプリ選びで確認すべきポイントと、オンデバイス処理のアプリを見分ける方法を解説。",
+    "inLanguage": "ja",
+    "author": { "@type": "Organization", "name": "MC Labs" },
+    "publisher": { "@type": "Organization", "name": "MC Labs" },
+    "mainEntityOfPage": "https://chimasaki31-lab.github.io/bunjiokoshi-note/onsei-data-gaibu-sooshin/"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "アプリの説明文に「安全」と書いてあれば、外部送信していないと考えていいですか？", "acceptedAnswer": { "@type": "Answer", "text": "「安全」という表現だけでは、通信を暗号化しているだけなのか、そもそも外部に送信していないのかが区別できません。「オンデバイス」「端末内処理」「インターネット接続不要」など、通信の有無そのものに言及した表現を確認する方が確実です。" } },
+      { "@type": "Question", "name": "機内モードで文字起こしができれば、オンデバイス処理と判断していいですか？", "acceptedAnswer": { "@type": "Answer", "text": "有力な判断材料になります。機内モードなど通信を遮断した状態でも文字起こしが正常に動作するなら、少なくともその処理自体はネットワーク通信に依存していないと確認できます。" } },
+      { "@type": "Question", "name": "プライバシーポリシーのどこを見れば分かりますか？", "acceptedAnswer": { "@type": "Answer", "text": "「収集する情報」の項目に音声データやその内容（テキスト化結果）が含まれているか、含まれているとしてどこに送信・保存されるかの記載を確認します。記載がない、または「サーバーに送信して処理します」とある場合はクラウド型です。" } }
+    ]
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif; font-size: 17px; color: #1f2937; background: #fff; line-height: 1.8; }
+    a { color: inherit; text-decoration: none; }
+    .breadcrumb { padding: 12px 20px; font-size: 13px; color: #999; border-bottom: 1px solid #dbe4ee; }
+    .breadcrumb a { color: #c97a1f; }
+    .hero { background: linear-gradient(135deg,#24405c 0%,#1B2A3A 55%,#0F1720 100%); color: #fff; padding: 48px 20px 40px; text-align: center; }
+    .hero-badge { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4); border-radius: 20px; padding: 4px 14px; font-size: 13px; margin-bottom: 18px; letter-spacing: 0.05em; }
+    .hero h1 { font-size: 24px; font-weight: 800; line-height: 1.5; max-width: 720px; margin: 0 auto; }
+    article { max-width: 760px; margin: 0 auto; padding: 32px 20px 16px; }
+    .lead { background: #f3ede2; border-left: 4px solid #c97a1f; padding: 16px 18px; border-radius: 0 8px 8px 0; font-size: 16px; color: #333; margin-bottom: 32px; }
+    article h2 { font-size: 21px; font-weight: 800; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid #c97a1f; color: #8a5510; }
+    article p { margin-bottom: 16px; }
+    article ul, article ol { margin: 0 0 16px 1.4em; }
+    article li { margin-bottom: 6px; }
+    .note { background: #fff8e6; border-left: 4px solid #e0a800; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 15px; margin: 16px 0; }
+    .cta { background: linear-gradient(135deg, #1B2A3A 0%, #24405c 100%); color: #fff; border-radius: 16px; padding: 28px 24px; margin: 40px 0; text-align: center; }
+    .cta h2 { border: none; color: #fff; margin: 0 0 12px; font-size: 20px; }
+    .cta ul { text-align: left; max-width: 440px; margin: 0 auto 22px; list-style: none; }
+    .cta li { margin-bottom: 8px; }
+    .cta-btn { display: inline-block; background: #fff; color: #8a5510; font-weight: 800; padding: 14px 32px; border-radius: 30px; font-size: 16px; }
+    .cta-note { font-size: 13px; opacity: 0.85; margin-top: 14px; margin-bottom: 0; }
+    .faq-item { border-bottom: 1px solid #eee; padding: 16px 0; }
+    .faq-q { font-weight: 700; color: #8a5510; margin-bottom: 6px; }
+    footer { background: #f3ede2; padding: 28px 20px; text-align: center; font-size: 13px; color: #999; margin-top: 40px; }
+    .footer-links a { color: #c97a1f; margin: 0 8px; }
+    @media (max-width: 600px) { body { font-size: 16px; } .hero h1 { font-size: 20px; } article h2 { font-size: 19px; } }
+  </style>
+</head>
+<body>
+
+  <nav class="breadcrumb">
+    <a href="../../">MC Labs</a> &rsaquo; <a href="../">文字起こしノート</a> &rsaquo; 外部送信しないアプリの選び方
+  </nav>
+
+  <header class="hero">
+    <span class="hero-badge">文字起こしアプリの選び方</span>
+    <h1>録音データを外部に送りたくない人のための<br>文字起こしアプリの選び方</h1>
+  </header>
+
+  <article>
+    <p class="lead">
+      会議・インタビュー・個人的なメモなど、録音した内容を「他人のサーバーに預けたくない」と感じる場面は少なくありません。
+      このページでは、<strong>文字起こしアプリを選ぶときに何を確認すればいいか</strong>を整理します。
+    </p>
+
+    <h2>1. まず確認すべきは「処理方式」の記載</h2>
+    <p>アプリストアの説明文やプライバシーポリシーで、次のような表現があるかを確認します。</p>
+    <ul>
+      <li><strong>オンデバイス処理／端末内処理</strong>：音声認識が端末の中だけで完結する</li>
+      <li><strong>インターネット接続不要</strong>：通信がなくても機能する＝クラウドを使っていない可能性が高い</li>
+      <li>逆に<strong>「サーバーで処理」「クラウドAIで解析」</strong>とあれば、音声が外部に送信される方式</li>
+    </ul>
+    <p>「安全に管理します」「暗号化通信」といった表現だけでは、<strong>送信の有無ではなく送信後の管理方法</strong>を説明しているだけの場合があるので注意が必要です。</p>
+
+    <h2>2. 機内モードで動作確認する</h2>
+    <p>実際にアプリをインストールしたら、端末を機内モードにして録音・文字起こしを試す方法があります。通信を遮断した状態でも正常に文字起こしができれば、その処理は少なくともネットワーク通信に依存していないと確認できます。</p>
+    <div class="note">機内モードでエラーが出たり、文字起こしが始まらない場合は、何らかの形でサーバーとの通信を必要としている可能性があります。</div>
+
+    <h2>3. プライバシーポリシーの「収集する情報」を確認する</h2>
+    <p>アプリのプライバシーポリシーには、収集する情報の項目が書かれています。ここに音声データやテキスト化結果が含まれていないか、含まれる場合はどこに送信・保存されるかを確認します。<strong>該当する記載自体がない場合は、そもそも外部に送っていないアプリである可能性が高い</strong>と判断できます。</p>
+
+    <h2>4. アカウント登録の有無も手がかりになる</h2>
+    <p>クラウド処理を行うアプリの多くは、処理結果をサーバー上で管理するためにアカウント登録を前提にしています。逆に、アカウント登録が一切不要なアプリは、データを端末の外に持ち出す仕組み自体を持っていない可能性が高くなります。</p>
+
+    <div class="cta">
+      <h2>音声もテキストも、端末の外に出しません</h2>
+      <p><strong>文字起こしノート</strong>は、音声認識をすべて端末内で処理する完全オンデバイスの文字起こしアプリです。</p>
+      <ul>
+        <li>🔒 音声もテキストも外部サーバーへ送信しない</li>
+        <li>✈️ 機内モードでも録音・文字起こしが可能</li>
+        <li>🔓 アカウント登録不要</li>
+        <li>💰 買い切り¥800、月額¥400も選択可</li>
+      </ul>
+      <a class="cta-btn" href="../">文字起こしノートを見る</a>
+      <p class="cta-note">完全オンデバイス処理</p>
+    </div>
+
+    <h2>よくある質問（FAQ）</h2>
+    <div class="faq-item">
+      <p class="faq-q">Q. アプリの説明文に「安全」と書いてあれば、外部送信していないと考えていいですか？</p>
+      <p>A. 「安全」という表現だけでは、通信を暗号化しているだけなのか、そもそも外部に送信していないのかが区別できません。「オンデバイス」「端末内処理」「インターネット接続不要」など、通信の有無そのものに言及した表現を確認する方が確実です。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 機内モードで文字起こしができれば、オンデバイス処理と判断していいですか？</p>
+      <p>A. 有力な判断材料になります。機内モードなど通信を遮断した状態でも文字起こしが正常に動作するなら、少なくともその処理自体はネットワーク通信に依存していないと確認できます。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. プライバシーポリシーのどこを見れば分かりますか？</p>
+      <p>A. 「収集する情報」の項目に音声データやその内容（テキスト化結果）が含まれているか、含まれているとしてどこに送信・保存されるかの記載を確認します。記載がない、または「サーバーに送信して処理します」とある場合はクラウド型です。</p>
+    </div>
+  </article>
+
+  <footer>
+    <div class="footer-links">
+      <a href="../">文字起こしノート</a>
+      <a href="../sabusuku-tsukare-kaiketsu/">サブスク疲れの解決</a>
+      <a href="../giji-roku-real-time/">議事録をリアルタイムで残す理由</a>
+      <a href="../../">MC Labs トップへ</a>
+    </div>
+    <p>© 2026 MC Labs. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

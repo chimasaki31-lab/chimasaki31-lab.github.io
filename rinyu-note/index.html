@@ -68,7 +68,8 @@
     .free-note { font-size: 13px; opacity: 0.75; line-height: 1.6; max-width: 420px; margin: 0 auto; }
 
     .guide-cta { padding: 56px 24px; text-align: center; background: #fff; }
-    .guide-card { display: flex; align-items: center; gap: 14px; text-align: left; background: #f2f7e9; border: 1px solid #e1ebd4; border-radius: 14px; padding: 20px; max-width: 480px; margin: 0 auto; }
+    .guide-list { display: flex; flex-direction: column; gap: 14px; max-width: 480px; margin: 0 auto; }
+    .guide-card { display: flex; align-items: center; gap: 14px; text-align: left; background: #f2f7e9; border: 1px solid #e1ebd4; border-radius: 14px; padding: 20px; }
     .guide-card:hover { border-color: #558b2f; }
     .guide-emoji { font-size: 28px; flex-shrink: 0; }
     .guide-text h4 { font-size: 16px; font-weight: 800; margin-bottom: 2px; color: #33691e; }
@@ -162,15 +163,33 @@
 
 <section class="guide-cta">
   <div class="section-label">もっと詳しく</div>
-  <h2 class="section-title">記録アプリと個人情報について</h2>
-  <a href="./kojin-joho-fuyou-riyu/" class="guide-card">
-    <span class="guide-emoji">📇</span>
-    <div class="guide-text">
-      <h4>離乳食記録アプリで個人情報登録が不要な理由と選び方</h4>
-      <p>なぜ育児記録アプリは個人情報を求めがちなのか、登録不要でも成立する仕組み</p>
-    </div>
-    <span class="guide-arrow">&rsaquo;</span>
-  </a>
+  <h2 class="section-title">離乳食記録の基本ガイド</h2>
+  <div class="guide-list">
+    <a href="./kojin-joho-fuyou-riyu/" class="guide-card">
+      <span class="guide-emoji">📇</span>
+      <div class="guide-text">
+        <h4>離乳食記録アプリで個人情報登録が不要な理由と選び方</h4>
+        <p>なぜ育児記録アプリは個人情報を求めがちなのか、登録不要でも成立する仕組み</p>
+      </div>
+      <span class="guide-arrow">&rsaquo;</span>
+    </a>
+    <a href="./hajimete-shokuzai-kakunin/" class="guide-card">
+      <span class="guide-emoji">🥣</span>
+      <div class="guide-text">
+        <h4>「はじめて食べた食材」の記録、なぜ必要で何を書けばいいか</h4>
+        <p>園や祖父母に預けるときにも役立つ記録の残し方</p>
+      </div>
+      <span class="guide-arrow">&rsaquo;</span>
+    </a>
+    <a href="./rinyuushoku-getsurei-meyasu/" class="guide-card">
+      <span class="guide-emoji">📅</span>
+      <div class="guide-text">
+        <h4>離乳食の月齢の目安、厚労省ガイドとどう付き合えばいいか</h4>
+        <p>目安と個人差、心配なときの相談先について</p>
+      </div>
+      <span class="guide-arrow">&rsaquo;</span>
+    </a>
+  </div>
 </section>
 
 <section class="cta">

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お小遣い・お手伝い記録アプリ、機種変更のときのデータの持ち運び方</title>
+  <meta name="description" content="クラウド同期のないお小遣い・お手伝い記録アプリで、機種変更時にデータを新しい端末へ引き継ぐ方法（書き出し・取り込み）を解説します。">
+
+  <meta property="og:title" content="お小遣い・お手伝い記録アプリ、機種変更のときのデータの持ち運び方">
+  <meta property="og:description" content="クラウド同期なしのアプリで機種変更時にデータを引き継ぐ方法を解説。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/otetsudai-note/kishu-henkou-hikitsugi/">
+  <meta property="og:locale" content="ja_JP">
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/otetsudai-note/kishu-henkou-hikitsugi/">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "お小遣い・お手伝い記録アプリ、機種変更のときのデータの持ち運び方",
+    "description": "クラウド同期のないアプリで機種変更時にデータを引き継ぐ方法を解説。",
+    "inLanguage": "ja",
+    "author": { "@type": "Organization", "name": "MC Labs" },
+    "publisher": { "@type": "Organization", "name": "MC Labs" },
+    "mainEntityOfPage": "https://chimasaki31-lab.github.io/otetsudai-note/kishu-henkou-hikitsugi/"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "クラウド同期がないアプリは、機種変更のとき不便ではないですか？", "acceptedAnswer": { "@type": "Answer", "text": "自動では引き継がれませんが、データをファイルとして書き出し、新しい端末に取り込むことで手動で引き継げます。ひと手間は必要ですが、記録自体が失われるわけではありません。" } },
+      { "@type": "Question", "name": "書き出したファイルはどこに保存すればいいですか？", "acceptedAnswer": { "@type": "Answer", "text": "端末のファイルアプリやクラウドストレージ（自分で選んだサービス）に保存しておくと、新しい端末からアクセスしやすくなります。誤って削除しないよう、機種変更が完了するまでは残しておくことをおすすめします。" } },
+      { "@type": "Question", "name": "アプリ内課金（買い切り）は機種変更後も引き継げますか？", "acceptedAnswer": { "@type": "Answer", "text": "App Store経由の購入であれば、同じApple IDでサインインした新しい端末で「購入を復元」の操作を行うことで、通常は引き継げます。" } }
+    ]
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif; font-size: 17px; color: #2b2013; background: #fff; line-height: 1.8; }
+    a { color: inherit; text-decoration: none; }
+    .breadcrumb { padding: 12px 20px; font-size: 13px; color: #999; border-bottom: 1px solid #ecdfc2; }
+    .breadcrumb a { color: #9a6708; }
+    .hero { background: linear-gradient(135deg,#e0a83a 0%,#b9720c 55%,#6b3f05 100%); color: #fff; padding: 48px 20px 40px; text-align: center; }
+    .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.5); border-radius: 20px; padding: 4px 14px; font-size: 13px; margin-bottom: 18px; letter-spacing: 0.05em; }
+    .hero h1 { font-size: 24px; font-weight: 800; line-height: 1.5; max-width: 720px; margin: 0 auto; }
+    article { max-width: 760px; margin: 0 auto; padding: 32px 20px 16px; }
+    .lead { background: #fdf6e6; border-left: 4px solid #9a6708; padding: 16px 18px; border-radius: 0 8px 8px 0; font-size: 16px; color: #333; margin-bottom: 32px; }
+    article h2 { font-size: 21px; font-weight: 800; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid #9a6708; color: #6b3f05; }
+    article p { margin-bottom: 16px; }
+    article ul, article ol { margin: 0 0 16px 1.4em; }
+    article li { margin-bottom: 6px; }
+    .note { background: #fff8e6; border-left: 4px solid #e0a800; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 15px; margin: 16px 0; }
+    .cta { background: linear-gradient(135deg, #6b3f05 0%, #3d2403 100%); color: #fff; border-radius: 16px; padding: 28px 24px; margin: 40px 0; text-align: center; }
+    .cta h2 { border: none; color: #fff; margin: 0 0 12px; font-size: 20px; }
+    .cta ul { text-align: left; max-width: 440px; margin: 0 auto 22px; list-style: none; }
+    .cta li { margin-bottom: 8px; }
+    .cta-btn { display: inline-block; background: #fff; color: #6b3f05; font-weight: 800; padding: 14px 32px; border-radius: 30px; font-size: 16px; }
+    .cta-note { font-size: 13px; opacity: 0.85; margin-top: 14px; margin-bottom: 0; }
+    .faq-item { border-bottom: 1px solid #eee; padding: 16px 0; }
+    .faq-q { font-weight: 700; color: #6b3f05; margin-bottom: 6px; }
+    footer { background: #fdf6e6; padding: 28px 20px; text-align: center; font-size: 13px; color: #999; margin-top: 40px; }
+    .footer-links a { color: #9a6708; margin: 0 8px; }
+    @media (max-width: 600px) { body { font-size: 16px; } .hero h1 { font-size: 20px; } article h2 { font-size: 19px; } }
+  </style>
+</head>
+<body>
+
+  <nav class="breadcrumb">
+    <a href="../../">MC Labs</a> &rsaquo; <a href="../">おこづかいポイントノート</a> &rsaquo; 機種変更のデータ持ち運び
+  </nav>
+
+  <header class="hero">
+    <span class="hero-badge">機種変更のときの引き継ぎ</span>
+    <h1>お小遣い・お手伝い記録アプリ、<br>機種変更のときのデータの持ち運び方</h1>
+  </header>
+
+  <article>
+    <p class="lead">
+      「機種変更したら、これまでの記録が全部消えてしまった」——クラウド同期のないアプリでは、こうした不安を感じることがあります。
+      このページでは、<strong>クラウド同期がない場合にデータを引き継ぐ方法</strong>を整理します。
+    </p>
+
+    <h2>1. 自動では引き継がれないが、手動で引き継げる</h2>
+    <p>複数端末での自動同期を行わないアプリでは、機種変更をしただけでは新しい端末に記録は表示されません。しかし多くのアプリには、記録を<strong>ファイルとして書き出す（エクスポートする）</strong>機能が用意されています。この機能を使えば、手動で新しい端末に記録を引き継げます。</p>
+
+    <h2>2. 引き継ぎの基本的な流れ</h2>
+    <ol>
+      <li>古い端末のアプリで、データを書き出し（エクスポート）機能を使ってファイルを保存する</li>
+      <li>そのファイルを、端末のファイルアプリやクラウドストレージ（自分で選んだサービス）に保存する</li>
+      <li>新しい端末に同じアプリをインストールし、取り込み（インポート）機能でそのファイルを読み込む</li>
+    </ol>
+    <div class="note">機種変更が完了し、新しい端末で記録が正しく表示されることを確認するまでは、古い端末や書き出したファイルを消さずに残しておくと安心です。</div>
+
+    <h2>3. アプリ内課金（買い切り）は別の仕組みで引き継がれる</h2>
+    <p>買い切りのアプリ内課金は、記録データとは別に、App Store側のアカウント（Apple ID）に紐づいて管理されています。新しい端末で同じApple IDにサインインし、「購入を復元」の操作を行うことで、通常は追加の支払いなしに有料機能を引き継げます。</p>
+
+    <h2>4. 定期的な書き出しは、故障対策にもなる</h2>
+    <p>機種変更のときだけでなく、端末の故障・紛失に備えて、日頃から定期的にデータを書き出しておくと安心です。書き出したファイルがあれば、万一のときも記録をゼロから作り直す必要がなくなります。</p>
+
+    <div class="cta">
+      <h2>機種変更は、ファイルの書き出し・取り込みで</h2>
+      <p><strong>おこづかいポイントノート</strong>は端末の中だけで動作するアプリです。データはいつでも無料で書き出し・取り込みができます。</p>
+      <ul>
+        <li>📤 データの書き出し・取り込みは無料で回数無制限</li>
+        <li>📒 台帳方式で記録が壊れない</li>
+        <li>🔓 アカウント登録不要・完全オフライン</li>
+      </ul>
+      <a class="cta-btn" href="../">おこづかいポイントノートを見る</a>
+      <p class="cta-note">買い切り¥600</p>
+    </div>
+
+    <h2>よくある質問（FAQ）</h2>
+    <div class="faq-item">
+      <p class="faq-q">Q. クラウド同期がないアプリは、機種変更のとき不便ではないですか？</p>
+      <p>A. 自動では引き継がれませんが、データをファイルとして書き出し、新しい端末に取り込むことで手動で引き継げます。ひと手間は必要ですが、記録自体が失われるわけではありません。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 書き出したファイルはどこに保存すればいいですか？</p>
+      <p>A. 端末のファイルアプリやクラウドストレージ（自分で選んだサービス）に保存しておくと、新しい端末からアクセスしやすくなります。誤って削除しないよう、機種変更が完了するまでは残しておくことをおすすめします。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. アプリ内課金（買い切り）は機種変更後も引き継げますか？</p>
+      <p>A. App Store経由の購入であれば、同じApple IDでサインインした新しい端末で「購入を復元」の操作を行うことで、通常は引き継げます。</p>
+    </div>
+  </article>
+
+  <footer>
+    <div class="footer-links">
+      <a href="../">おこづかいポイントノート</a>
+      <a href="../pointo-kuzurenai-shikumi/">台帳式の仕組み</a>
+      <a href="../otetsudai-motivation/">お手伝いのやる気づくり</a>
+      <a href="../../">MC Labs トップへ</a>
+    </div>
+    <p>© 2026 MC Labs. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

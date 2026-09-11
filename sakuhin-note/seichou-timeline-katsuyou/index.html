@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>子供の作品を成長の記録として残す意味と、成長タイムラインの活用法</title>
+  <meta name="description" content="子供のお絵かき・工作を年齢ごとに記録として残す意味と、成長タイムラインで画風の変化を振り返る活用法を解説します。">
+
+  <meta property="og:title" content="子供の作品を成長の記録として残す意味と、成長タイムラインの活用法">
+  <meta property="og:description" content="作品を年齢ごとに記録する意味と、成長タイムラインの活用法を解説。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/sakuhin-note/seichou-timeline-katsuyou/">
+  <meta property="og:locale" content="ja_JP">
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/sakuhin-note/seichou-timeline-katsuyou/">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "子供の作品を成長の記録として残す意味と、成長タイムラインの活用法",
+    "description": "作品を年齢ごとに記録する意味と、成長タイムラインの活用法を解説。",
+    "inLanguage": "ja",
+    "author": { "@type": "Organization", "name": "MC Labs" },
+    "publisher": { "@type": "Organization", "name": "MC Labs" },
+    "mainEntityOfPage": "https://chimasaki31-lab.github.io/sakuhin-note/seichou-timeline-katsuyou/"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "成長タイムラインは何が便利なのですか？", "acceptedAnswer": { "@type": "Answer", "text": "作品を撮影日ではなく年齢順に自動で並べて表示するため、同じ年齢の頃の作品同士を見比べたり、年齢を追って画風の変化をたどったりしやすくなります。" } },
+      { "@type": "Question", "name": "生年月日を登録しないと使えない機能ですか？", "acceptedAnswer": { "@type": "Answer", "text": "はい、年齢を自動計算して並べる仕組みのため、生年月日の登録が前提になります。生年月日を登録しなくても、撮影・カテゴリ分類・音声メモといった基本機能は利用できます。" } },
+      { "@type": "Question", "name": "きょうだいがいる場合、成長タイムラインは分けられますか？", "acceptedAnswer": { "@type": "Answer", "text": "プレミアム機能で2人目以降の子どもも登録できるアプリであれば、子どもごとに生年月日を設定し、それぞれの成長タイムラインを個別に確認できます。" } }
+    ]
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif; font-size: 17px; color: #4a3f3a; background: #fff; line-height: 1.8; }
+    a { color: inherit; text-decoration: none; }
+    .breadcrumb { padding: 12px 20px; font-size: 13px; color: #999; border-bottom: 1px solid #f3e4dd; }
+    .breadcrumb a { color: #ff7a6e; }
+    .hero { background: linear-gradient(135deg,#ffb3a7 0%,#ff7a6e 55%,#e8574a 100%); color: #fff; padding: 48px 20px 40px; text-align: center; }
+    .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.5); border-radius: 20px; padding: 4px 14px; font-size: 13px; margin-bottom: 18px; letter-spacing: 0.05em; }
+    .hero h1 { font-size: 24px; font-weight: 800; line-height: 1.5; max-width: 720px; margin: 0 auto; }
+    article { max-width: 760px; margin: 0 auto; padding: 32px 20px 16px; }
+    .lead { background: #fff3ef; border-left: 4px solid #ff7a6e; padding: 16px 18px; border-radius: 0 8px 8px 0; font-size: 16px; color: #333; margin-bottom: 32px; }
+    article h2 { font-size: 21px; font-weight: 800; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid #ff7a6e; color: #b8382c; }
+    article p { margin-bottom: 16px; }
+    article ul, article ol { margin: 0 0 16px 1.4em; }
+    article li { margin-bottom: 6px; }
+    .note { background: #fff8e6; border-left: 4px solid #e0a800; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 15px; margin: 16px 0; }
+    .cta { background: linear-gradient(135deg, #e8574a 0%, #b8382c 100%); color: #fff; border-radius: 16px; padding: 28px 24px; margin: 40px 0; text-align: center; }
+    .cta h2 { border: none; color: #fff; margin: 0 0 12px; font-size: 20px; }
+    .cta ul { text-align: left; max-width: 440px; margin: 0 auto 22px; list-style: none; }
+    .cta li { margin-bottom: 8px; }
+    .cta-btn { display: inline-block; background: #fff; color: #b8382c; font-weight: 800; padding: 14px 32px; border-radius: 30px; font-size: 16px; }
+    .cta-note { font-size: 13px; opacity: 0.85; margin-top: 14px; margin-bottom: 0; }
+    .faq-item { border-bottom: 1px solid #eee; padding: 16px 0; }
+    .faq-q { font-weight: 700; color: #b8382c; margin-bottom: 6px; }
+    footer { background: #fff3ef; padding: 28px 20px; text-align: center; font-size: 13px; color: #999; margin-top: 40px; }
+    .footer-links a { color: #ff7a6e; margin: 0 8px; }
+    @media (max-width: 600px) { body { font-size: 16px; } .hero h1 { font-size: 20px; } article h2 { font-size: 19px; } }
+  </style>
+</head>
+<body>
+
+  <nav class="breadcrumb">
+    <a href="../../">MC Labs</a> &rsaquo; <a href="../">さくひんノート</a> &rsaquo; 成長タイムラインの活用法
+  </nav>
+
+  <header class="hero">
+    <span class="hero-badge">作品の残し方</span>
+    <h1>子供の作品を成長の記録として残す意味と、<br>成長タイムラインの活用法</h1>
+  </header>
+
+  <article>
+    <p class="lead">
+      作品を1枚ずつ見返しているだけでは気づきにくい、<strong>年齢を追った画風や表現の変化</strong>があります。
+      このページでは、作品を成長の記録として残す意味と、<strong>成長タイムライン機能の活用法</strong>を紹介します。
+    </p>
+
+    <h2>1. 作品は「今の一枚」より「並べたとき」に価値が出る</h2>
+    <p>1枚の絵や工作を単体で見ても、それがどれくらい成長した結果なのかは分かりにくいものです。しかし同じテーマ（例えば「家族の絵」）を年齢ごとに並べてみると、線の描き方、色の使い方、構図の複雑さがどう変化してきたかが一目で分かります。</p>
+
+    <h2>2. 成長タイムラインは、年齢順に自動で並べる機能</h2>
+    <p>成長タイムラインは、登録した生年月日をもとに、作品を撮影日ではなく<strong>お子さんの年齢順</strong>に自動で並べて表示する機能です。手動でアルバムを並べ替える必要がなく、記録するたびに自動で正しい位置に反映されます。</p>
+    <div class="note">生年月日の登録が前提の機能です。生年月日を登録しなくても、撮影・カテゴリ分類・音声メモといった基本機能は引き続き利用できます。</div>
+
+    <h2>3. きょうだいがいる場合は、それぞれのタイムラインで</h2>
+    <p>きょうだいがいる家庭では、2人目以降の子どもを登録できるプレミアム機能を使うと、子どもごとに生年月日を設定し、それぞれの成長タイムラインを個別に確認できます。兄弟姉妹の作品を混同せず、それぞれの成長を追えます。</p>
+
+    <h2>4. 定期的に見返すと、変化に気づきやすい</h2>
+    <p>成長タイムラインは記録した時点では地味な変化に見えても、半年・1年単位でまとめて見返すと、想像以上の変化に気づくことがあります。誕生日や新学年など、節目のタイミングで見返す習慣をつけると、記録を残す動機にもつながります。</p>
+
+    <div class="cta">
+      <h2>年齢ごとに、自動で並べて振り返れる</h2>
+      <p><strong>さくひんノート</strong>は、生年月日を設定するだけで、作品を年齢ごとに自動で並べる成長タイムライン機能を備えています。</p>
+      <ul>
+        <li>📈 成長タイムラインで画風の変化を振り返る</li>
+        <li>📸 撮影するだけで色味・明るさを自動補正（無料10件まで）</li>
+        <li>🎤 音声メモでお子さん本人の説明も記録</li>
+      </ul>
+      <a class="cta-btn" href="../">さくひんノートを見る</a>
+      <p class="cta-note">アカウント登録不要・広告なし・買い切り¥800</p>
+    </div>
+
+    <h2>よくある質問（FAQ）</h2>
+    <div class="faq-item">
+      <p class="faq-q">Q. 成長タイムラインは何が便利なのですか？</p>
+      <p>A. 作品を撮影日ではなく年齢順に自動で並べて表示するため、同じ年齢の頃の作品同士を見比べたり、年齢を追って画風の変化をたどったりしやすくなります。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 生年月日を登録しないと使えない機能ですか？</p>
+      <p>A. はい、年齢を自動計算して並べる仕組みのため、生年月日の登録が前提になります。生年月日を登録しなくても、撮影・カテゴリ分類・音声メモといった基本機能は利用できます。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. きょうだいがいる場合、成長タイムラインは分けられますか？</p>
+      <p>A. プレミアム機能で2人目以降の子どもも登録できるアプリであれば、子どもごとに生年月日を設定し、それぞれの成長タイムラインを個別に確認できます。</p>
+    </div>
+  </article>
+
+  <footer>
+    <div class="footer-links">
+      <a href="../">さくひんノート</a>
+      <a href="../sakuhin-data-kienai/">作品データが消える不安の解決</a>
+      <a href="../kodomo-sakuhin-seiri/">作品の整理と処分の基準</a>
+      <a href="../../">MC Labs トップへ</a>
+    </div>
+    <p>© 2026 MC Labs. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

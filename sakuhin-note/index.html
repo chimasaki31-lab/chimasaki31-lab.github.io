@@ -61,7 +61,8 @@
     .free-note { font-size: 13px; opacity: 0.85; line-height: 1.6; max-width: 420px; margin: 0 auto; }
 
     .guide-cta { padding: 56px 24px; text-align: center; background: #fff; }
-    .guide-card { display: flex; align-items: center; gap: 14px; text-align: left; background: #fff3ef; border: 1px solid #f3e4dd; border-radius: 14px; padding: 20px; max-width: 480px; margin: 0 auto; }
+    .guide-list { display: flex; flex-direction: column; gap: 14px; max-width: 480px; margin: 0 auto; }
+    .guide-card { display: flex; align-items: center; gap: 14px; text-align: left; background: #fff3ef; border: 1px solid #f3e4dd; border-radius: 14px; padding: 20px; }
     .guide-card:hover { border-color: #ff7a6e; }
     .guide-emoji { font-size: 28px; flex-shrink: 0; }
     .guide-text h4 { font-size: 16px; font-weight: 800; margin-bottom: 2px; color: #b8382c; }
@@ -148,15 +149,33 @@
 
 <section class="guide-cta">
   <div class="section-label">もっと詳しく</div>
-  <h2 class="section-title">作品データが消える不安について</h2>
-  <a href="./sakuhin-data-kienai/" class="guide-card">
-    <span class="guide-emoji">☁️</span>
-    <div class="guide-text">
-      <h4>子供の作品データが消える不安、オフライン保存で解決する方法</h4>
-      <p>クラウド保存アプリでデータが消える仕組みと、端末内保存という選択肢について</p>
-    </div>
-    <span class="guide-arrow">&rsaquo;</span>
-  </a>
+  <h2 class="section-title">作品の残し方ガイド</h2>
+  <div class="guide-list">
+    <a href="./sakuhin-data-kienai/" class="guide-card">
+      <span class="guide-emoji">☁️</span>
+      <div class="guide-text">
+        <h4>子供の作品データが消える不安、オフライン保存で解決する方法</h4>
+        <p>クラウド保存アプリでデータが消える仕組みと、端末内保存という選択肢について</p>
+      </div>
+      <span class="guide-arrow">&rsaquo;</span>
+    </a>
+    <a href="./kodomo-sakuhin-seiri/" class="guide-card">
+      <span class="guide-emoji">📦</span>
+      <div class="guide-text">
+        <h4>子供の作品・工作の整理と処分、何を基準に決めればいいか</h4>
+        <p>増え続ける現物の処分に迷ったときの考え方</p>
+      </div>
+      <span class="guide-arrow">&rsaquo;</span>
+    </a>
+    <a href="./seichou-timeline-katsuyou/" class="guide-card">
+      <span class="guide-emoji">📈</span>
+      <div class="guide-text">
+        <h4>子供の作品を成長の記録として残す意味と、成長タイムラインの活用法</h4>
+        <p>年齢を追った画風の変化を振り返る楽しみ方</p>
+      </div>
+      <span class="guide-arrow">&rsaquo;</span>
+    </a>
+  </div>
 </section>
 
 <section class="cta">

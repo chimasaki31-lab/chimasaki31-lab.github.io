@@ -67,7 +67,8 @@
     .free-note { font-size: 13px; opacity: 0.72; line-height: 1.6; max-width: 420px; margin: 0 auto; }
 
     .guide-cta { padding: 56px 24px; text-align: center; background: #fff; }
-    .guide-card { display: flex; align-items: center; gap: 14px; text-align: left; background: #f3ede2; border: 1px solid #e3d9c6; border-radius: 14px; padding: 20px; max-width: 480px; margin: 0 auto; }
+    .guide-list { display: flex; flex-direction: column; gap: 14px; max-width: 480px; margin: 0 auto; }
+    .guide-card { display: flex; align-items: center; gap: 14px; text-align: left; background: #f3ede2; border: 1px solid #e3d9c6; border-radius: 14px; padding: 20px; }
     .guide-card:hover { border-color: #c97a1f; }
     .guide-emoji { font-size: 28px; flex-shrink: 0; }
     .guide-text h4 { font-size: 16px; font-weight: 800; margin-bottom: 2px; color: #8a5510; }
@@ -161,15 +162,33 @@
 
 <section class="guide-cta">
   <div class="section-label">もっと詳しく</div>
-  <h2 class="section-title">サブスク疲れと文字起こしアプリ</h2>
-  <a href="./sabusuku-tsukare-kaiketsu/" class="guide-card">
-    <span class="guide-emoji">💸</span>
-    <div class="guide-text">
-      <h4>文字起こしアプリの「サブスク疲れ」、買い切りとオンデバイスで解決できる理由</h4>
-      <p>月額料金・クラウド送信・録音待ちという3つの不満を、なぜこの構成で解決できるのか</p>
-    </div>
-    <span class="guide-arrow">&rsaquo;</span>
-  </a>
+  <h2 class="section-title">文字起こしアプリの選び方ガイド</h2>
+  <div class="guide-list">
+    <a href="./sabusuku-tsukare-kaiketsu/" class="guide-card">
+      <span class="guide-emoji">💸</span>
+      <div class="guide-text">
+        <h4>文字起こしアプリの「サブスク疲れ」、買い切りとオンデバイスで解決できる理由</h4>
+        <p>月額料金・クラウド送信・録音待ちという3つの不満を、なぜこの構成で解決できるのか</p>
+      </div>
+      <span class="guide-arrow">&rsaquo;</span>
+    </a>
+    <a href="./onsei-data-gaibu-sooshin/" class="guide-card">
+      <span class="guide-emoji">🔒</span>
+      <div class="guide-text">
+        <h4>録音データを外部に送りたくない人のための文字起こしアプリの選び方</h4>
+        <p>オンデバイス処理のアプリを見分けるための3つの確認ポイント</p>
+      </div>
+      <span class="guide-arrow">&rsaquo;</span>
+    </a>
+    <a href="./giji-roku-real-time/" class="guide-card">
+      <span class="guide-emoji">⏱</span>
+      <div class="guide-text">
+        <h4>議事録・インタビューをリアルタイムで文字にすべき理由</h4>
+        <p>録音後にまとめて処理する方法との違いと、向いている場面</p>
+      </div>
+      <span class="guide-arrow">&rsaquo;</span>
+    </a>
+  </div>
 </section>
 
 <section class="cta">
