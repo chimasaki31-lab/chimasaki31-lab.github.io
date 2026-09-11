@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文字起こしノート - オフライン・買い切りのリアルタイム文字起こしアプリ</title>
+  <meta name="description" content="録音しながらその場で文字になる、完全オンデバイスの文字起こしアプリ。音声もテキストも外部サーバーに送信しません。買い切り¥800、月額¥400も選べます（2ヶ月分お支払いで自動的に買い切りへ切替）。議事録・インタビュー・講義の記録に。">
+
+  <meta property="og:title" content="文字起こしノート - オフライン・買い切りの文字起こしアプリ">
+  <meta property="og:description" content="録音しながらその場で文字になる、完全オンデバイスの文字起こしアプリ。買い切り¥800、月額¥400も選べます。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/bunjiokoshi-note/">
+  <meta property="og:locale" content="ja_JP">
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/bunjiokoshi-note/">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      font-size: 17px; color: #1f2937; background: #fff; line-height: 1.7;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .breadcrumb { padding: 12px 24px; font-size: 13px; color: #999; border-bottom: 1px solid #dbe4ee; }
+    .breadcrumb a { color: #c97a1f; }
+
+    .hero { background: linear-gradient(135deg,#24405c 0%,#1B2A3A 55%,#0F1720 100%); color: #fff; text-align: center; padding: 60px 24px 48px; }
+    .hero-badge { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4); border-radius: 20px; padding: 4px 14px; font-size: 13px; margin-bottom: 20px; letter-spacing: 0.05em; }
+    .hero h1 { font-size: 25px; font-weight: 800; line-height: 1.5; margin-bottom: 14px; }
+    .hero-sub { font-size: 16px; opacity: 0.92; margin-bottom: 32px; color: #cfd8e3; }
+    .app-store-btn { display: inline-flex; align-items: center; gap: 10px; background: #000; color: #fff; border-radius: 14px; padding: 14px 28px; font-size: 15px; font-weight: 600; margin-bottom: 14px; }
+    .app-store-btn svg { width: 22px; height: 22px; fill: #fff; }
+    .review-note { font-size: 13px; opacity: 0.82; }
+
+    .icon-showcase { display: flex; justify-content: center; margin-top: 32px; }
+    .icon-showcase img { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 12px 32px rgba(0,0,0,0.35); }
+
+    .problem { background: #f3ede2; padding: 56px 24px; text-align: center; }
+    .section-label { display: inline-block; color: #c97a1f; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; margin-bottom: 10px; }
+    .section-title { font-size: 22px; font-weight: 800; line-height: 1.5; margin-bottom: 32px; color: #1f2937; }
+    .problem-list { list-style: none; max-width: 460px; margin: 0 auto 32px; text-align: left; }
+    .problem-list li { display: flex; align-items: flex-start; gap: 10px; padding: 14px 0; border-bottom: 1px solid #e3d9c6; font-size: 16px; }
+    .problem-list li:last-child { border-bottom: none; }
+    .problem-icon { font-size: 20px; flex-shrink: 0; }
+    .problem-answer { background: #fff; border: 2px solid #c97a1f; border-radius: 16px; padding: 24px 20px; max-width: 460px; margin: 0 auto; font-size: 17px; font-weight: 700; line-height: 1.6; color: #8a5510; }
+
+    .features { padding: 56px 24px; text-align: center; }
+    .feature-cards { display: flex; flex-direction: column; gap: 20px; max-width: 460px; margin: 0 auto; }
+    .feature-card { background: #fff; border: 1px solid #dbe4ee; border-radius: 20px; padding: 28px 24px; text-align: left; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+    .feature-icon-wrap { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 16px; }
+    .feature-icon-wrap.a { background: #fbe7cf; }
+    .feature-icon-wrap.b { background: #e3edf6; }
+    .feature-icon-wrap.c { background: #f0e9db; }
+    .feature-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+    .feature-badge { display: inline-block; background: #c97a1f; color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: 6px; vertical-align: middle; }
+    .feature-badge.free { background: #24405c; }
+    .feature-card p { font-size: 15px; color: #4f4a41; line-height: 1.7; }
+
+    .premium { background: linear-gradient(135deg, #1B2A3A 0%, #24405c 100%); color: #fff; padding: 56px 24px; text-align: center; }
+    .premium .section-label { color: #e0a870; }
+    .premium .section-title { color: #fff; }
+    .price-cards { display: flex; flex-direction: column; gap: 14px; max-width: 400px; margin: 0 auto 20px; }
+    .price-card { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 20px; text-align: left; }
+    .price-card .label { font-size: 14px; opacity: 0.8; margin-bottom: 4px; }
+    .price-card .value { font-size: 24px; font-weight: 800; }
+    .price-card .note { font-size: 13px; opacity: 0.72; margin-top: 6px; line-height: 1.6; }
+    .free-note { font-size: 13px; opacity: 0.72; line-height: 1.6; max-width: 420px; margin: 0 auto; }
+
+    .guide-cta { padding: 56px 24px; text-align: center; background: #fff; }
+    .guide-card { display: flex; align-items: center; gap: 14px; text-align: left; background: #f3ede2; border: 1px solid #e3d9c6; border-radius: 14px; padding: 20px; max-width: 480px; margin: 0 auto; }
+    .guide-card:hover { border-color: #c97a1f; }
+    .guide-emoji { font-size: 28px; flex-shrink: 0; }
+    .guide-text h4 { font-size: 16px; font-weight: 800; margin-bottom: 2px; color: #8a5510; }
+    .guide-text p { font-size: 13px; color: #6b5d4d; }
+    .guide-arrow { margin-left: auto; color: #c97a1f; font-weight: 800; }
+
+    .cta { padding: 64px 24px; text-align: center; background: #f3ede2; }
+    .cta-sub { font-size: 15px; color: #6b5d4d; margin-bottom: 28px; }
+    .cta .app-store-btn { font-size: 17px; padding: 18px 36px; border-radius: 16px; background: #1B2A3A; }
+    .cta-note { font-size: 13px; color: #a89a87; margin-top: 12px; }
+
+    footer { background: #1B2A3A; color: rgba(255,255,255,0.6); padding: 32px 24px; text-align: center; font-size: 13px; }
+    .footer-links { display: flex; justify-content: center; gap: 18px; margin-bottom: 16px; flex-wrap: wrap; }
+    .footer-links a { color: rgba(255,255,255,0.6); }
+    .footer-links a:hover { color: #fff; }
+
+    @media (min-width: 600px) { .hero h1 { font-size: 32px; } .price-cards { display: grid; grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 900px) { .feature-cards { flex-direction: row; max-width: 900px; } .feature-card { flex: 1; } }
+  </style>
+</head>
+<body>
+
+<nav class="breadcrumb"><a href="../">MC Labs</a> &rsaquo; 文字起こしノート</nav>
+
+<section class="hero">
+  <div class="hero-badge">🎙 リアルタイム文字起こしアプリ</div>
+  <h1>録音が終わるのを、<br>待たなくていい。</h1>
+  <p class="hero-sub">
+    録音しながら、その場でどんどん文字になります。<br>
+    音声もテキストも、この端末の中だけで処理。クラウド不要。<br>
+    買い切り¥800、月額¥400も選べます。
+  </p>
+  <a class="app-store-btn" href="https://apps.apple.com/jp/app/id6809161946" target="_blank" rel="noopener">
+    <svg viewBox="0 0 814 1000"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.3 134.4-316.7 266.8-316.7 99.8 0 162.6 64.8 212.7 64.8 46.2 0 121.2-68.8 228.5-68.8zm-88-174c43.8-51.7 74.6-123.5 74.6-195.3 0-10.3-.6-20.7-2.6-29.2-70.7 2.6-154.7 47.1-204.7 107.2-38.4 44.4-75.9 116.2-75.9 189 0 11.6 1.9 23.2 2.6 26.9 4.5.6 11.6 1.9 18.7 1.9 63.5 0 143.9-42.5 187.3-100.5z"/></svg>
+    App Storeで見る
+  </a>
+  <p class="review-note">✅ 完全オンデバイス処理 · アカウント登録不要 · 買い切り¥800</p>
+  <div class="icon-showcase"><img src="../images/icon_bunjiokoshi.png" alt="文字起こしノートアイコン"></div>
+</section>
+
+<section class="problem">
+  <div class="section-label">こんな悩みありませんか？</div>
+  <h2 class="section-title">文字起こしアプリ、<br>こんな不満はありませんか</h2>
+  <ul class="problem-list">
+    <li><span class="problem-icon">💸</span><span>文字起こしアプリの月額料金が、地味にずっと重い</span></li>
+    <li><span class="problem-icon">⏳</span><span>録音が終わるまで文字にならず、その場で確認できない</span></li>
+    <li><span class="problem-icon">☁️</span><span>会議や取材の音声を、クラウドに送りたくない</span></li>
+  </ul>
+  <div class="problem-answer">文字起こしノートが<br>まとめて解決します。</div>
+</section>
+
+<section class="features">
+  <div class="section-label">主な機能</div>
+  <h2 class="section-title">録音しながら文字になり、<br>端末の外には出ない</h2>
+  <div class="feature-cards">
+    <div class="feature-card">
+      <div class="feature-icon-wrap a">🎙</div>
+      <h3>リアルタイム文字起こし<span class="feature-badge free">無料3件まで</span></h3>
+      <p>録音ボタンを押すと、話した内容がその場でテキストになっていきます。録音が終わるのを待つ必要はありません。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon-wrap b">🔒</div>
+      <h3>完全オンデバイス処理</h3>
+      <p>音声認識はすべて端末内で完結。インターネット接続は不要で、音声データもテキストも外部サーバーへ送信されません。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon-wrap c">📤</div>
+      <h3>保存・書き出し・共有</h3>
+      <p>文字起こし結果はタイムスタンプ付きで保存。コピー・LINE・メールでの共有、SRT/VTT/TXT形式での書き出しに対応します。</p>
+    </div>
+  </div>
+</section>
+
+<section class="premium">
+  <div class="section-label">料金プラン</div>
+  <h2 class="section-title">払いすぎない設計に<br>しました</h2>
+  <div class="price-cards">
+    <div class="price-card">
+      <div class="label">買い切り</div>
+      <div class="value">¥800<span style="font-size:13px;font-weight:400;opacity:.7;"> 一度きり</span></div>
+      <div class="note">一度払えば、それ以降の追加課金は一切ありません。</div>
+    </div>
+    <div class="price-card">
+      <div class="label">月額プラン</div>
+      <div class="value">¥400<span style="font-size:13px;font-weight:400;opacity:.7;"> /月</span></div>
+      <div class="note">まずは試したい方向け。2ヶ月分（合計¥800）お支払いいただいた時点で、自動的に買い切りと同じ状態に切り替わり、以降は無料になります。</div>
+    </div>
+  </div>
+  <p class="free-note">※ 累計3件までは無料で録音・保存できます（削除しても枠は戻りません）。無料の範囲でまず試せます。</p>
+</section>
+
+<section class="guide-cta">
+  <div class="section-label">もっと詳しく</div>
+  <h2 class="section-title">サブスク疲れと文字起こしアプリ</h2>
+  <a href="./sabusuku-tsukare-kaiketsu/" class="guide-card">
+    <span class="guide-emoji">💸</span>
+    <div class="guide-text">
+      <h4>文字起こしアプリの「サブスク疲れ」、買い切りとオンデバイスで解決できる理由</h4>
+      <p>月額料金・クラウド送信・録音待ちという3つの不満を、なぜこの構成で解決できるのか</p>
+    </div>
+    <span class="guide-arrow">&rsaquo;</span>
+  </a>
+</section>
+
+<section class="cta">
+  <h2 class="section-title">録音を、待たなくていいものに。</h2>
+  <p class="cta-sub">端末の中だけで完結する、文字起こしノートを試してください。</p>
+  <a class="app-store-btn" href="https://apps.apple.com/jp/app/id6809161946" target="_blank" rel="noopener">
+    <svg viewBox="0 0 814 1000" width="24" height="24" fill="white"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.3 134.4-316.7 266.8-316.7 99.8 0 162.6 64.8 212.7 64.8 46.2 0 121.2-68.8 228.5-68.8zm-88-174c43.8-51.7 74.6-123.5 74.6-195.3 0-10.3-.6-20.7-2.6-29.2-70.7 2.6-154.7 47.1-204.7 107.2-38.4 44.4-75.9 116.2-75.9 189 0 11.6 1.9 23.2 2.6 26.9 4.5.6 11.6 1.9 18.7 1.9 63.5 0 143.9-42.5 187.3-100.5z"/></svg>
+    App Storeで見る
+  </a>
+  <p class="cta-note">完全オンデバイス · アカウント登録不要 · 買い切り¥800</p>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="../">MC Labs トップへ</a>
+    <a href="./privacy/">プライバシーポリシー</a>
+    <a href="./support/">サポート</a>
+    <a href="mailto:chimasaki31@gmail.com">お問い合わせ</a>
+  </div>
+  <p>© 2026 MC Labs. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

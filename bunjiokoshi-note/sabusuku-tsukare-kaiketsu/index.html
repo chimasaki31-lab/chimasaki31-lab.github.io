@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文字起こしアプリの「サブスク疲れ」、買い切りとオンデバイスで解決できる理由</title>
+  <meta name="description" content="文字起こしアプリの月額料金がなぜ続くのか、クラウド送信のプライバシーリスクとは何か、そしてオンデバイス処理がなぜ買い切りを成立させるのかを解説。文字起こしノートの設計思想を紹介します。">
+
+  <meta property="og:title" content="文字起こしアプリの「サブスク疲れ」、買い切りとオンデバイスで解決できる理由">
+  <meta property="og:description" content="月額料金が続く理由と、オンデバイス処理がなぜ買い切りを成立させるのかを解説。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/bunjiokoshi-note/sabusuku-tsukare-kaiketsu/">
+  <meta property="og:locale" content="ja_JP">
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/bunjiokoshi-note/sabusuku-tsukare-kaiketsu/">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "文字起こしアプリの「サブスク疲れ」、買い切りとオンデバイスで解決できる理由",
+    "description": "月額料金が続く理由と、オンデバイス処理がなぜ買い切りを成立させるのかを解説。",
+    "inLanguage": "ja",
+    "author": { "@type": "Organization", "name": "MC Labs" },
+    "publisher": { "@type": "Organization", "name": "MC Labs" },
+    "mainEntityOfPage": "https://chimasaki31-lab.github.io/bunjiokoshi-note/sabusuku-tsukare-kaiketsu/"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "なぜ文字起こしアプリは月額課金が多いのですか？", "acceptedAnswer": { "@type": "Answer", "text": "多くの文字起こしアプリは音声をクラウドサーバーに送って認識処理を行っており、使われるたびにサーバー側で計算コストが発生します。この継続コストを回収するため、月額のサブスクリプション課金になっているケースが一般的です。" } },
+      { "@type": "Question", "name": "オンデバイス処理だと精度が落ちませんか？", "acceptedAnswer": { "@type": "Answer", "text": "端末のOSが提供する音声認識機能を使うため、クラウド型の最新モデルと比べて言語のカバー範囲や精度で見劣りする場面はあり得ます。ただし議事録・インタビュー・講義メモなど日常的な用途では、ネット接続不要・その場で確認できるという利点が上回る場面が多くあります。" } },
+      { "@type": "Question", "name": "買い切りと月額、どちらを選べばいいですか？", "acceptedAnswer": { "@type": "Answer", "text": "継続して使うか分からない場合はまず月額¥400から試し、使い続けると分かった時点で買い切りに切り替える、という判断で問題ありません。文字起こしノートでは月額を2ヶ月分（合計¥800）支払った時点で自動的に買い切り相当に切り替わり、それ以降は無料になります。" } }
+    ]
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif; font-size: 17px; color: #1f2937; background: #fff; line-height: 1.8; }
+    a { color: inherit; text-decoration: none; }
+    .breadcrumb { padding: 12px 20px; font-size: 13px; color: #999; border-bottom: 1px solid #dbe4ee; }
+    .breadcrumb a { color: #c97a1f; }
+    .hero { background: linear-gradient(135deg,#24405c 0%,#1B2A3A 55%,#0F1720 100%); color: #fff; padding: 48px 20px 40px; text-align: center; }
+    .hero-badge { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4); border-radius: 20px; padding: 4px 14px; font-size: 13px; margin-bottom: 18px; letter-spacing: 0.05em; }
+    .hero h1 { font-size: 24px; font-weight: 800; line-height: 1.5; max-width: 720px; margin: 0 auto; }
+    article { max-width: 760px; margin: 0 auto; padding: 32px 20px 16px; }
+    .lead { background: #f3ede2; border-left: 4px solid #c97a1f; padding: 16px 18px; border-radius: 0 8px 8px 0; font-size: 16px; color: #333; margin-bottom: 32px; }
+    article h2 { font-size: 21px; font-weight: 800; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid #c97a1f; color: #8a5510; }
+    article p { margin-bottom: 16px; }
+    article ul, article ol { margin: 0 0 16px 1.4em; }
+    article li { margin-bottom: 6px; }
+    .note { background: #fff8e6; border-left: 4px solid #e0a800; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 15px; margin: 16px 0; }
+    .cta { background: linear-gradient(135deg, #1B2A3A 0%, #24405c 100%); color: #fff; border-radius: 16px; padding: 28px 24px; margin: 40px 0; text-align: center; }
+    .cta h2 { border: none; color: #fff; margin: 0 0 12px; font-size: 20px; }
+    .cta ul { text-align: left; max-width: 440px; margin: 0 auto 22px; list-style: none; }
+    .cta li { margin-bottom: 8px; }
+    .cta-btn { display: inline-block; background: #fff; color: #8a5510; font-weight: 800; padding: 14px 32px; border-radius: 30px; font-size: 16px; }
+    .cta-note { font-size: 13px; opacity: 0.85; margin-top: 14px; margin-bottom: 0; }
+    .faq-item { border-bottom: 1px solid #eee; padding: 16px 0; }
+    .faq-q { font-weight: 700; color: #8a5510; margin-bottom: 6px; }
+    footer { background: #f3ede2; padding: 28px 20px; text-align: center; font-size: 13px; color: #999; margin-top: 40px; }
+    .footer-links a { color: #c97a1f; margin: 0 8px; }
+    @media (max-width: 600px) { body { font-size: 16px; } .hero h1 { font-size: 20px; } article h2 { font-size: 19px; } }
+  </style>
+</head>
+<body>
+
+  <nav class="breadcrumb">
+    <a href="../../">MC Labs</a> &rsaquo; <a href="../">文字起こしノート</a> &rsaquo; サブスク疲れの解決
+  </nav>
+
+  <header class="hero">
+    <span class="hero-badge">文字起こしアプリの選び方</span>
+    <h1>文字起こしアプリの「サブスク疲れ」、<br>買い切りとオンデバイスで解決できる理由</h1>
+  </header>
+
+  <article>
+    <p class="lead">
+      「使った月も使わなかった月も、同じ金額が引き落とされる」——文字起こしアプリの月額料金に、こう感じたことはありませんか。
+      このページでは、<strong>なぜ多くの文字起こしアプリが月額課金なのか</strong>、そして<strong>オンデバイス処理がなぜ買い切りを成立させるのか</strong>を整理します。
+    </p>
+
+    <h2>1. 文字起こしアプリが月額課金になりがちな理由</h2>
+    <p>多くの文字起こしアプリは、録音した音声をいったんクラウドサーバーに送り、サーバー側の音声認識エンジンで文字に変換しています。この方式では、アプリが使われるたびにサーバー側で計算コストが発生し続けます。開発会社としてはこのコストを回収する必要があるため、使った分だけでなく「使える権利」に対して毎月課金する、サブスクリプション型が選ばれやすくなります。</p>
+    <p>裏を返せば、月額課金そのものが悪いわけではなく、<strong>クラウド処理という設計を選んだ時点で、継続コストの回収方法として月額が合理的になる</strong>という順番です。</p>
+
+    <h2>2. クラウド送信には、もう一つの問題がある</h2>
+    <p>クラウド型の文字起こしには、費用面だけでなくプライバシー面の懸念もあります。会議の内容、取材音源、個人的なメモなど、録音した音声はいったん外部のサーバーに送信され、そこで処理されます。内容によっては、社外秘の情報や第三者のプライバシーに関わる音声を、自分の管理下にないサーバーに預けることになります。</p>
+    <div class="note">「便利さと引き換えに、内容を外部に送っている」という点は、文字起こしアプリを選ぶときに意外と見落とされがちなポイントです。</div>
+
+    <h2>3. オンデバイス処理なら、月額を払い続けなくていい</h2>
+    <p>音声認識を端末の中だけで完結させる「オンデバイス処理」を採用すると、サーバー側の計算コストがそもそも発生しません。開発会社が継続的に回収すべきコストがなくなるため、<strong>買い切り一回払いという価格モデルが成立します</strong>。あわせて、音声もテキストも端末の外に一切出ないため、クラウド送信のプライバシー懸念も同時に解消されます。</p>
+    <p>つまり「買い切りにできる」ことと「クラウドに送らない」ことは、別々の工夫ではなく、オンデバイス処理という一つの設計から同時に生まれる結果です。</p>
+
+    <h2>4. 副次的な利点：録音の完了を待たなくていい</h2>
+    <p>クラウド型の多くは、録音が終わってからまとめてサーバーに送信し、処理結果が返ってくるまで待つ必要があります。オンデバイス処理では音声を送信する必要がないため、<strong>録音しながらその場でテキスト化を進められます</strong>。会議中や取材中に「今なんて言ったか」をすぐ確認したい場面で、この違いが実感しやすくなります。</p>
+
+    <div class="cta">
+      <h2>買い切り¥800、月額¥400も選べます</h2>
+      <p><strong>文字起こしノート</strong>は、録音しながらリアルタイムで文字になる、完全オンデバイスの文字起こしアプリです。</p>
+      <ul>
+        <li>🎙 録音しながらその場で文字になる（無料3件まで）</li>
+        <li>🔒 音声もテキストも端末の外に出ない</li>
+        <li>💰 買い切り¥800、月額¥400も選択可（2ヶ月分で自動的に買い切りへ）</li>
+        <li>📤 SRT/VTT/TXTで書き出し、コピー・LINE・メールで共有</li>
+      </ul>
+      <a class="cta-btn" href="../">文字起こしノートを見る</a>
+      <p class="cta-note">アカウント登録不要・広告なし</p>
+    </div>
+
+    <h2>よくある質問（FAQ）</h2>
+    <div class="faq-item">
+      <p class="faq-q">Q. なぜ文字起こしアプリは月額課金が多いのですか？</p>
+      <p>A. 多くの文字起こしアプリは音声をクラウドサーバーに送って認識処理を行っており、使われるたびにサーバー側で計算コストが発生します。この継続コストを回収するため、月額のサブスクリプション課金になっているケースが一般的です。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. オンデバイス処理だと精度が落ちませんか？</p>
+      <p>A. 端末のOSが提供する音声認識機能を使うため、クラウド型の最新モデルと比べて言語のカバー範囲や精度で見劣りする場面はあり得ます。ただし議事録・インタビュー・講義メモなど日常的な用途では、ネット接続不要・その場で確認できるという利点が上回る場面が多くあります。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 買い切りと月額、どちらを選べばいいですか？</p>
+      <p>A. 継続して使うか分からない場合はまず月額¥400から試し、使い続けると分かった時点で買い切りに切り替える、という判断で問題ありません。文字起こしノートでは月額を2ヶ月分（合計¥800）支払った時点で自動的に買い切り相当に切り替わり、それ以降は無料になります。</p>
+    </div>
+  </article>
+
+  <footer>
+    <div class="footer-links">
+      <a href="../">文字起こしノート</a>
+      <a href="../../">MC Labs トップへ</a>
+    </div>
+    <p>© 2026 MC Labs. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

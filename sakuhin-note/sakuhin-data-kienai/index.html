@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>子供の作品データが消える不安、オフライン保存で解決する方法</title>
+  <meta name="description" content="子供の作品・工作を記録するアプリでクラウド保存のデータが消えるのはなぜか、原因と、端末内保存（オフライン保存）という選択肢でどう解決できるかを解説します。">
+
+  <meta property="og:title" content="子供の作品データが消える不安、オフライン保存で解決する方法">
+  <meta property="og:description" content="クラウド保存でデータが消える仕組みと、端末内保存という選択肢について解説。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/sakuhin-note/sakuhin-data-kienai/">
+  <meta property="og:locale" content="ja_JP">
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/sakuhin-note/sakuhin-data-kienai/">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "子供の作品データが消える不安、オフライン保存で解決する方法",
+    "description": "クラウド保存でデータが消える仕組みと、端末内保存という選択肢について解説。",
+    "inLanguage": "ja",
+    "author": { "@type": "Organization", "name": "MC Labs" },
+    "publisher": { "@type": "Organization", "name": "MC Labs" },
+    "mainEntityOfPage": "https://chimasaki31-lab.github.io/sakuhin-note/sakuhin-data-kienai/"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "クラウド保存アプリでデータが消えることはよくあるのですか？", "acceptedAnswer": { "@type": "Answer", "text": "サービスの仕様変更、アカウントの不具合、サービス自体の終了など、利用者側の操作ミスがなくてもデータが失われるケースは起こり得ます。写真や動画など重いデータほど同期処理でエラーが起きやすく、失われたときの影響も大きくなります。" } },
+      { "@type": "Question", "name": "端末内保存だけだと、機種変更のときにデータが引き継げませんか？", "acceptedAnswer": { "@type": "Answer", "text": "端末内保存は「クラウドに自動で送らない」という設計であって、データを持ち出せないという意味ではありません。書き出し（エクスポート）機能でファイルとして保存し、新しい端末に取り込むことで引き継げます。" } },
+      { "@type": "Question", "name": "端末が壊れたら、データも消えてしまうのでは？", "acceptedAnswer": { "@type": "Answer", "text": "端末そのものの故障・紛失に対する備えは、クラウド保存でも端末内保存でも別途必要です。端末内保存の場合は、定期的にデータを書き出してバックアップしておくことをおすすめします。" } }
+    ]
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif; font-size: 17px; color: #4a3f3a; background: #fff; line-height: 1.8; }
+    a { color: inherit; text-decoration: none; }
+    .breadcrumb { padding: 12px 20px; font-size: 13px; color: #999; border-bottom: 1px solid #f3e4dd; }
+    .breadcrumb a { color: #ff7a6e; }
+    .hero { background: linear-gradient(135deg,#ffb3a7 0%,#ff7a6e 55%,#e8574a 100%); color: #fff; padding: 48px 20px 40px; text-align: center; }
+    .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.5); border-radius: 20px; padding: 4px 14px; font-size: 13px; margin-bottom: 18px; letter-spacing: 0.05em; }
+    .hero h1 { font-size: 24px; font-weight: 800; line-height: 1.5; max-width: 720px; margin: 0 auto; }
+    article { max-width: 760px; margin: 0 auto; padding: 32px 20px 16px; }
+    .lead { background: #fff3ef; border-left: 4px solid #ff7a6e; padding: 16px 18px; border-radius: 0 8px 8px 0; font-size: 16px; color: #333; margin-bottom: 32px; }
+    article h2 { font-size: 21px; font-weight: 800; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid #ff7a6e; color: #b8382c; }
+    article p { margin-bottom: 16px; }
+    article ul, article ol { margin: 0 0 16px 1.4em; }
+    article li { margin-bottom: 6px; }
+    .note { background: #fff8e6; border-left: 4px solid #e0a800; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 15px; margin: 16px 0; }
+    .cta { background: linear-gradient(135deg, #e8574a 0%, #b8382c 100%); color: #fff; border-radius: 16px; padding: 28px 24px; margin: 40px 0; text-align: center; }
+    .cta h2 { border: none; color: #fff; margin: 0 0 12px; font-size: 20px; }
+    .cta ul { text-align: left; max-width: 440px; margin: 0 auto 22px; list-style: none; }
+    .cta li { margin-bottom: 8px; }
+    .cta-btn { display: inline-block; background: #fff; color: #b8382c; font-weight: 800; padding: 14px 32px; border-radius: 30px; font-size: 16px; }
+    .cta-note { font-size: 13px; opacity: 0.85; margin-top: 14px; margin-bottom: 0; }
+    .faq-item { border-bottom: 1px solid #eee; padding: 16px 0; }
+    .faq-q { font-weight: 700; color: #b8382c; margin-bottom: 6px; }
+    footer { background: #fff3ef; padding: 28px 20px; text-align: center; font-size: 13px; color: #999; margin-top: 40px; }
+    .footer-links a { color: #ff7a6e; margin: 0 8px; }
+    @media (max-width: 600px) { body { font-size: 16px; } .hero h1 { font-size: 20px; } article h2 { font-size: 19px; } }
+  </style>
+</head>
+<body>
+
+  <nav class="breadcrumb">
+    <a href="../../">MC Labs</a> &rsaquo; <a href="../">さくひんノート</a> &rsaquo; 作品データが消える不安
+  </nav>
+
+  <header class="hero">
+    <span class="hero-badge">作品の残し方</span>
+    <h1>子供の作品データが消える不安、<br>オフライン保存で解決する方法</h1>
+  </header>
+
+  <article>
+    <p class="lead">
+      「せっかく撮った作品の写真が、ある日アプリを開いたら全部消えていた」——クラウド保存型の作品管理アプリで、こうした経験をした方は少なくありません。
+      このページでは、<strong>なぜクラウド保存でデータが消えることがあるのか</strong>、そして<strong>端末内保存（オフライン保存）でどう解決できるのか</strong>を整理します。
+    </p>
+
+    <h2>1. クラウド保存でデータが消える主な原因</h2>
+    <p>クラウド保存型のアプリは、撮影した写真をいったんインターネット経由でサーバーに送信し、そこに保存します。この仕組みには次のようなリスクがつきまといます。</p>
+    <ul>
+      <li>同期処理の途中でエラーが起き、一部のデータだけ保存されない</li>
+      <li>アプリ側の不具合やアップデートで、サーバー上のデータとの紐付けが壊れる</li>
+      <li>サービス自体が終了・仕様変更し、過去のデータにアクセスできなくなる</li>
+    </ul>
+    <p>写真や動画はデータ量が大きいため、同期に時間がかかりやすく、その分エラーが起きる余地も大きくなります。<strong>利用者側の操作ミスがなくても、仕組み上データが失われることがある</strong>のが、クラウド保存の弱点です。</p>
+
+    <h2>2. 端末内保存（オフライン保存）なら、その原因自体が発生しない</h2>
+    <p>作品の写真・音声メモ・記録を端末の中だけに保存する方式では、そもそもサーバーとの同期処理を行いません。同期エラーやサービス終了によってデータが失われる、という経路自体が存在しないため、クラウド保存特有のリスクを避けられます。</p>
+    <div class="note">「クラウドに預けない」というのは不便に思えるかもしれませんが、見方を変えれば「クラウド側の都合に左右されない」ということでもあります。</div>
+
+    <h2>3. 機種変更や紛失には、書き出し機能で備える</h2>
+    <p>端末内保存にも弱点はあります。端末そのものが故障・紛失した場合、その端末の中にしかないデータは失われてしまいます。この対策として有効なのが、データを<strong>ファイルとして書き出す（エクスポートする）</strong>機能です。定期的に書き出しておけば、機種変更のときはそのファイルを新しい端末に取り込むだけで引き継げますし、故障に備えたバックアップにもなります。</p>
+
+    <h2>4. 「消えない」を優先するか、「自動で同期する」を優先するか</h2>
+    <p>クラウド保存にも、複数端末で自動的に同じデータを見られるという利点はあります。どちらが正解というより、<strong>何を優先したいか</strong>で選ぶのが実際的です。作品を長く手元に残しておきたい、クラウドの不具合でデータが消える心配をしたくない、という場合は、端末内保存という選択肢が向いています。</p>
+
+    <div class="cta">
+      <h2>写真も音声メモも、端末の中だけに</h2>
+      <p><strong>さくひんノート</strong>は、子供の作品・工作を撮影するだけで記録できるアプリです。写真・音声メモ・記録はすべて端末内に保存され、クラウドを経由しません。</p>
+      <ul>
+        <li>📸 撮影するだけで色味・明るさを自動補正（無料10件まで）</li>
+        <li>🎤 音声メモでお子さん本人の説明も記録</li>
+        <li>📈 成長タイムラインで年齢ごとに自動整理</li>
+        <li>📤 データはいつでも書き出し・取り込み可能（無料）</li>
+      </ul>
+      <a class="cta-btn" href="../">さくひんノートを見る</a>
+      <p class="cta-note">アカウント登録不要・広告なし・買い切り¥800</p>
+    </div>
+
+    <h2>よくある質問（FAQ）</h2>
+    <div class="faq-item">
+      <p class="faq-q">Q. クラウド保存アプリでデータが消えることはよくあるのですか？</p>
+      <p>A. サービスの仕様変更、アカウントの不具合、サービス自体の終了など、利用者側の操作ミスがなくてもデータが失われるケースは起こり得ます。写真や動画など重いデータほど同期処理でエラーが起きやすく、失われたときの影響も大きくなります。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 端末内保存だけだと、機種変更のときにデータが引き継げませんか？</p>
+      <p>A. 端末内保存は「クラウドに自動で送らない」という設計であって、データを持ち出せないという意味ではありません。書き出し（エクスポート）機能でファイルとして保存し、新しい端末に取り込むことで引き継げます。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 端末が壊れたら、データも消えてしまうのでは？</p>
+      <p>A. 端末そのものの故障・紛失に対する備えは、クラウド保存でも端末内保存でも別途必要です。端末内保存の場合は、定期的にデータを書き出してバックアップしておくことをおすすめします。</p>
+    </div>
+  </article>
+
+  <footer>
+    <div class="footer-links">
+      <a href="../">さくひんノート</a>
+      <a href="../../">MC Labs トップへ</a>
+    </div>
+    <p>© 2026 MC Labs. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お小遣い・お手伝いポイントが「消える」「戻らない」を防ぐ台帳式の仕組み</title>
+  <meta name="description" content="お小遣い・お手伝いのポイント管理アプリで、取り消したのに残高が合わなくなる原因と、台帳方式（取り消しを「打ち消し」で処理する仕組み）がなぜそれを防げるのかを解説します。">
+
+  <meta property="og:title" content="お小遣い・お手伝いポイントが「消える」「戻らない」を防ぐ台帳式の仕組み">
+  <meta property="og:description" content="ポイント管理アプリで残高がずれる原因と、台帳方式がどう解決するのかを解説。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/otetsudai-note/pointo-kuzurenai-shikumi/">
+  <meta property="og:locale" content="ja_JP">
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/otetsudai-note/pointo-kuzurenai-shikumi/">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "お小遣い・お手伝いポイントが「消える」「戻らない」を防ぐ台帳式の仕組み",
+    "description": "ポイント管理アプリで残高がずれる原因と、台帳方式がどう解決するのかを解説。",
+    "inLanguage": "ja",
+    "author": { "@type": "Organization", "name": "MC Labs" },
+    "publisher": { "@type": "Organization", "name": "MC Labs" },
+    "mainEntityOfPage": "https://chimasaki31-lab.github.io/otetsudai-note/pointo-kuzurenai-shikumi/"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "なぜポイント管理アプリで取り消したのに残高が合わなくなるのですか？", "acceptedAnswer": { "@type": "Answer", "text": "「現在の残高」という1つの数字だけを直接書き換える方式だと、取り消し処理の実装漏れや操作のタイミングによって、表示上の残高と実際にあったはずの増減が食い違うことがあります。" } },
+      { "@type": "Question", "name": "台帳方式とはどういう仕組みですか？", "acceptedAnswer": { "@type": "Answer", "text": "残高を直接書き換えるのではなく、増減の記録（行）を積み重ねていき、残高はその記録の合計として毎回計算する方式です。取り消すときも記録を消さず、逆向きの「打ち消し」の行を追加します。" } },
+      { "@type": "Question", "name": "毎月ポイントをリセットしたい場合、記録はどうなりますか？", "acceptedAnswer": { "@type": "Answer", "text": "台帳方式ではリセットも1つの記録として履歴に残ります。黙って残高が0になるのではなく、「リセットで-〇〇pt」という行が追加されるため、後から見返しても経緯をたどれます。" } }
+    ]
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif; font-size: 17px; color: #2b2013; background: #fff; line-height: 1.8; }
+    a { color: inherit; text-decoration: none; }
+    .breadcrumb { padding: 12px 20px; font-size: 13px; color: #999; border-bottom: 1px solid #ecdfc2; }
+    .breadcrumb a { color: #9a6708; }
+    .hero { background: linear-gradient(135deg,#e0a83a 0%,#b9720c 55%,#6b3f05 100%); color: #fff; padding: 48px 20px 40px; text-align: center; }
+    .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.5); border-radius: 20px; padding: 4px 14px; font-size: 13px; margin-bottom: 18px; letter-spacing: 0.05em; }
+    .hero h1 { font-size: 24px; font-weight: 800; line-height: 1.5; max-width: 720px; margin: 0 auto; }
+    article { max-width: 760px; margin: 0 auto; padding: 32px 20px 16px; }
+    .lead { background: #fdf6e6; border-left: 4px solid #9a6708; padding: 16px 18px; border-radius: 0 8px 8px 0; font-size: 16px; color: #333; margin-bottom: 32px; }
+    article h2 { font-size: 21px; font-weight: 800; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid #9a6708; color: #6b3f05; }
+    article p { margin-bottom: 16px; }
+    article ul, article ol { margin: 0 0 16px 1.4em; }
+    article li { margin-bottom: 6px; }
+    .table-wrap { overflow-x: auto; margin: 16px 0 20px; -webkit-overflow-scrolling: touch; }
+    table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 340px; }
+    th, td { border: 1px solid #ecdfc2; padding: 9px 12px; text-align: left; }
+    th { background: #f6e6bf; font-weight: 700; color: #6b3f05; }
+    tbody tr:nth-child(even) { background: #fdf6e6; }
+    td.num { text-align: right; white-space: nowrap; }
+    .note { background: #fff8e6; border-left: 4px solid #e0a800; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 15px; margin: 16px 0; }
+    .cta { background: linear-gradient(135deg, #6b3f05 0%, #3d2403 100%); color: #fff; border-radius: 16px; padding: 28px 24px; margin: 40px 0; text-align: center; }
+    .cta h2 { border: none; color: #fff; margin: 0 0 12px; font-size: 20px; }
+    .cta ul { text-align: left; max-width: 440px; margin: 0 auto 22px; list-style: none; }
+    .cta li { margin-bottom: 8px; }
+    .cta-btn { display: inline-block; background: #fff; color: #6b3f05; font-weight: 800; padding: 14px 32px; border-radius: 30px; font-size: 16px; }
+    .cta-note { font-size: 13px; opacity: 0.85; margin-top: 14px; margin-bottom: 0; }
+    .faq-item { border-bottom: 1px solid #eee; padding: 16px 0; }
+    .faq-q { font-weight: 700; color: #6b3f05; margin-bottom: 6px; }
+    footer { background: #fdf6e6; padding: 28px 20px; text-align: center; font-size: 13px; color: #999; margin-top: 40px; }
+    .footer-links a { color: #9a6708; margin: 0 8px; }
+    @media (max-width: 600px) { body { font-size: 16px; } .hero h1 { font-size: 20px; } article h2 { font-size: 19px; } }
+  </style>
+</head>
+<body>
+
+  <nav class="breadcrumb">
+    <a href="../../">MC Labs</a> &rsaquo; <a href="../">おこづかいポイントノート</a> &rsaquo; 台帳式の仕組み
+  </nav>
+
+  <header class="hero">
+    <span class="hero-badge">ポイント管理アプリの選び方</span>
+    <h1>お小遣い・お手伝いポイントが「消える」「戻らない」を<br>防ぐ台帳式の仕組み</h1>
+  </header>
+
+  <article>
+    <p class="lead">
+      「お手伝いを取り消したのに、ポイントが元に戻らない」「気づいたら残高の数字が合わなくなっていた」——お小遣い・お手伝いのポイント管理アプリで、こうした経験はありませんか。
+      このページでは、<strong>なぜ残高がずれることがあるのか</strong>、そして<strong>台帳方式という仕組みがどう解決するのか</strong>を整理します。
+    </p>
+
+    <h2>1. 残高がずれる原因＝「現在の数字」を直接書き換える方式</h2>
+    <p>多くのポイント管理アプリは、「残高」という1つの数字を直接足し引きして書き換えています。この方式では、取り消し処理の実装や操作のタイミングによって、加算・減算の一部が正しく反映されないと、表示されている残高と本来あるべき残高が食い違ってしまうことがあります。しかも一度ずれると、どの操作が原因だったのかを後から追いかけるのが難しくなります。</p>
+
+    <h2>2. 台帳方式とは何か</h2>
+    <p>台帳方式は、家計簿や会計の帳簿と同じ考え方です。残高という1つの数字を直接変更するのではなく、<strong>「いつ・何が・いくつ増減したか」という記録（行）を1件ずつ積み重ねていき</strong>、残高はその記録すべての合計として、都度計算し直します。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>日付</th><th>項目</th><th class="num">増減</th><th class="num">残高</th></tr></thead>
+        <tbody>
+          <tr><td>09/08</td><td>お風呂そうじ</td><td class="num">+10pt</td><td class="num">110pt</td></tr>
+          <tr><td>09/09</td><td>食器洗い</td><td class="num">+10pt</td><td class="num">120pt</td></tr>
+          <tr><td>09/10</td><td>食器洗い（取り消し）</td><td class="num">-10pt</td><td class="num">110pt</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>取り消すときも記録そのものは消さず、逆向きの「打ち消し」の行を追加するだけです。残高は常にこの台帳の合計から計算されるため、<strong>表示と履歴が食い違うことがありません</strong>。</p>
+
+    <h2>3. 履歴をたどれば、経緯が全部わかる</h2>
+    <p>台帳方式のもう一つの利点は、各行に「その時点の残高」も一緒に記録される点です。あとから履歴を見返せば、いつ何が起きて残高がどう変化したのかを、行を追うだけですべて確認できます。「なぜこの残高になっているのか分からない」という状態が起きにくくなります。</p>
+    <div class="note">毎月のリセットも例外ではありません。台帳方式ではリセットも1件の記録として残るため、ある日突然0になったように見えることはなく、「リセットで-〇〇pt」という行として履歴に残ります。</div>
+
+    <h2>4. 機種変更のときはどうなるか</h2>
+    <p>台帳方式かどうかに関わらず、記録を新しい端末に引き継ぐには何らかの手段が必要です。クラウド同期を使わない設計の場合は、記録をファイルとして書き出し、新しい端末で取り込む方法で引き継ぎます。台帳形式のデータはそのまま1行ずつ複製できるため、書き出し・取り込みとも相性のよい構造です。</p>
+
+    <div class="cta">
+      <h2>取り消しても、数字がずれない</h2>
+      <p><strong>おこづかいポイントノート</strong>は、ポイントを台帳のように記録するお手伝い・お小遣い管理アプリです。</p>
+      <ul>
+        <li>📒 取り消しは「打ち消し」で処理、記録は消えない</li>
+        <li>👆 お手伝いは1タップ、間違えてもすぐ戻せる</li>
+        <li>🔁 毎月リセットするか貯め続けるかを選択制</li>
+        <li>📤 機種変更はファイルの書き出し・取り込みで対応</li>
+      </ul>
+      <a class="cta-btn" href="../">おこづかいポイントノートを見る</a>
+      <p class="cta-note">完全オフライン・買い切り¥600</p>
+    </div>
+
+    <h2>よくある質問（FAQ）</h2>
+    <div class="faq-item">
+      <p class="faq-q">Q. なぜポイント管理アプリで取り消したのに残高が合わなくなるのですか？</p>
+      <p>A. 「現在の残高」という1つの数字だけを直接書き換える方式だと、取り消し処理の実装漏れや操作のタイミングによって、表示上の残高と実際にあったはずの増減が食い違うことがあります。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 台帳方式とはどういう仕組みですか？</p>
+      <p>A. 残高を直接書き換えるのではなく、増減の記録（行）を積み重ねていき、残高はその記録の合計として毎回計算する方式です。取り消すときも記録を消さず、逆向きの「打ち消し」の行を追加します。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 毎月ポイントをリセットしたい場合、記録はどうなりますか？</p>
+      <p>A. 台帳方式ではリセットも1つの記録として履歴に残ります。黙って残高が0になるのではなく、「リセットで-〇〇pt」という行が追加されるため、後から見返しても経緯をたどれます。</p>
+    </div>
+  </article>
+
+  <footer>
+    <div class="footer-links">
+      <a href="../">おこづかいポイントノート</a>
+      <a href="../../">MC Labs トップへ</a>
+    </div>
+    <p>© 2026 MC Labs. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

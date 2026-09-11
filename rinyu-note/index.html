@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>離乳食ノート - 月齢の目安とはじめて食材メモ｜アカウント登録不要の育児記録アプリ</title>
+  <meta name="description" content="離乳食の記録を、アカウント登録なしでその日から始められるアプリ。はじめて食べた食材が自動でたまり、月齢と厚生労働省ガイドの目安も表示。記録・写真はすべて端末内保存で外部に送信しません。買い切り¥600。">
+
+  <meta property="og:title" content="離乳食ノート - アカウント登録不要の離乳食記録アプリ">
+  <meta property="og:description" content="名前も住所も要りません。はじめて食べた食材が自動でたまり、月齢の目安も表示する離乳食記録アプリ。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/rinyu-note/">
+  <meta property="og:locale" content="ja_JP">
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/rinyu-note/">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif; font-size: 17px; color: #2b3320; background: #fff; line-height: 1.7; }
+    a { color: inherit; text-decoration: none; }
+    .breadcrumb { padding: 12px 24px; font-size: 13px; color: #999; border-bottom: 1px solid #e1ebd4; }
+    .breadcrumb a { color: #558b2f; }
+
+    .hero { background: linear-gradient(135deg,#9ccc65 0%,#689f38 55%,#33691e 100%); color: #fff; text-align: center; padding: 60px 24px 48px; }
+    .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.5); border-radius: 20px; padding: 4px 14px; font-size: 13px; margin-bottom: 20px; letter-spacing: 0.05em; }
+    .hero h1 { font-size: 25px; font-weight: 800; line-height: 1.5; margin-bottom: 14px; }
+    .hero-sub { font-size: 16px; opacity: 0.95; margin-bottom: 32px; color: #eaf6d8; }
+    .app-store-btn { display: inline-flex; align-items: center; gap: 10px; background: #000; color: #fff; border-radius: 14px; padding: 14px 28px; font-size: 15px; font-weight: 600; margin-bottom: 14px; }
+    .app-store-btn svg { width: 22px; height: 22px; fill: #fff; }
+    .review-note { font-size: 13px; opacity: 0.9; }
+    .icon-showcase { display: flex; justify-content: center; margin-top: 32px; }
+    .icon-showcase img { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 12px 32px rgba(0,0,0,0.25); }
+
+    .problem { background: #f2f7e9; padding: 56px 24px; text-align: center; }
+    .section-label { display: inline-block; color: #33691e; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; margin-bottom: 10px; }
+    .section-title { font-size: 22px; font-weight: 800; line-height: 1.5; margin-bottom: 32px; color: #2b3320; }
+    .problem-list { list-style: none; max-width: 460px; margin: 0 auto 32px; text-align: left; }
+    .problem-list li { display: flex; align-items: flex-start; gap: 10px; padding: 14px 0; border-bottom: 1px solid #e1ebd4; font-size: 16px; }
+    .problem-list li:last-child { border-bottom: none; }
+    .problem-icon { font-size: 20px; flex-shrink: 0; }
+    .problem-answer { background: #fff; border: 2px solid #558b2f; border-radius: 16px; padding: 24px 20px; max-width: 460px; margin: 0 auto; font-size: 17px; font-weight: 700; line-height: 1.6; color: #33691e; }
+
+    .features { padding: 56px 24px; text-align: center; }
+    .feature-cards { display: flex; flex-direction: column; gap: 20px; max-width: 460px; margin: 0 auto; }
+    .feature-card { background: #fff; border: 1px solid #e1ebd4; border-radius: 20px; padding: 28px 24px; text-align: left; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+    .feature-icon-wrap { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 16px; }
+    .feature-icon-wrap.a { background: #e3f0d6; }
+    .feature-icon-wrap.b { background: #eef6e3; }
+    .feature-icon-wrap.c { background: #dcecc8; }
+    .feature-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+    .feature-badge { display: inline-block; background: #558b2f; color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: 6px; vertical-align: middle; }
+    .feature-badge.free { background: #33691e; }
+    .feature-card p { font-size: 15px; color: #556249; line-height: 1.7; }
+
+    .disclaimer { background: #fff8e6; border: 1px solid #f0dca0; border-radius: 12px; padding: 16px 20px; max-width: 460px; margin: 24px auto 0; font-size: 14px; color: #6b5a2c; text-align: left; }
+
+    .premium { background: linear-gradient(135deg, #33691e 0%, #1b3a0f 100%); color: #fff; padding: 56px 24px; text-align: center; }
+    .premium .section-label { color: #c5e1a5; }
+    .premium .section-title { color: #fff; }
+    .premium-cards { display: flex; flex-direction: column; gap: 14px; max-width: 400px; margin: 0 auto 20px; }
+    .premium-card { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 18px; display: flex; align-items: center; gap: 14px; text-align: left; }
+    .premium-card .emoji { font-size: 26px; flex-shrink: 0; }
+    .premium-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+    .premium-card p { font-size: 13px; opacity: 0.78; }
+    .price-box { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 22px 24px; max-width: 360px; margin: 0 auto 20px; }
+    .price-row { display: flex; justify-content: space-between; align-items: center; }
+    .price-label { font-size: 15px; opacity: 0.85; }
+    .price-value { font-size: 22px; font-weight: 800; }
+    .free-note { font-size: 13px; opacity: 0.75; line-height: 1.6; max-width: 420px; margin: 0 auto; }
+
+    .guide-cta { padding: 56px 24px; text-align: center; background: #fff; }
+    .guide-card { display: flex; align-items: center; gap: 14px; text-align: left; background: #f2f7e9; border: 1px solid #e1ebd4; border-radius: 14px; padding: 20px; max-width: 480px; margin: 0 auto; }
+    .guide-card:hover { border-color: #558b2f; }
+    .guide-emoji { font-size: 28px; flex-shrink: 0; }
+    .guide-text h4 { font-size: 16px; font-weight: 800; margin-bottom: 2px; color: #33691e; }
+    .guide-text p { font-size: 13px; color: #667a53; }
+    .guide-arrow { margin-left: auto; color: #558b2f; font-weight: 800; }
+
+    .cta { padding: 64px 24px; text-align: center; background: #f2f7e9; }
+    .cta-sub { font-size: 15px; color: #667a53; margin-bottom: 28px; }
+    .cta .app-store-btn { font-size: 17px; padding: 18px 36px; border-radius: 16px; background: #33691e; }
+    .cta-note { font-size: 13px; color: #8ba078; margin-top: 12px; }
+
+    footer { background: #33691e; color: rgba(255,255,255,0.65); padding: 32px 24px; text-align: center; font-size: 13px; }
+    .footer-links { display: flex; justify-content: center; gap: 18px; margin-bottom: 16px; flex-wrap: wrap; }
+    .footer-links a { color: rgba(255,255,255,0.65); }
+    .footer-links a:hover { color: #fff; }
+
+    @media (min-width: 600px) { .premium-cards { display: grid; grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 900px) { .feature-cards { flex-direction: row; max-width: 900px; } .feature-card { flex: 1; } }
+  </style>
+</head>
+<body>
+
+<nav class="breadcrumb"><a href="../">MC Labs</a> &rsaquo; 離乳食ノート</nav>
+
+<section class="hero">
+  <div class="hero-badge">🍼 離乳食の記録アプリ</div>
+  <h1>名前も住所も、<br>要りません。</h1>
+  <p class="hero-sub">
+    アカウント登録なしで、その日から記録できます。<br>
+    はじめて食べた食材が自動でたまり、月齢と厚労省ガイドの目安も表示。<br>
+    記録は端末の中だけに保存され、外部に送信しません。
+  </p>
+  <a class="app-store-btn" href="https://apps.apple.com/jp/app/id6806284621" target="_blank" rel="noopener">
+    <svg viewBox="0 0 814 1000"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.3 134.4-316.7 266.8-316.7 99.8 0 162.6 64.8 212.7 64.8 46.2 0 121.2-68.8 228.5-68.8zm-88-174c43.8-51.7 74.6-123.5 74.6-195.3 0-10.3-.6-20.7-2.6-29.2-70.7 2.6-154.7 47.1-204.7 107.2-38.4 44.4-75.9 116.2-75.9 189 0 11.6 1.9 23.2 2.6 26.9 4.5.6 11.6 1.9 18.7 1.9 63.5 0 143.9-42.5 187.3-100.5z"/></svg>
+    App Storeで見る
+  </a>
+  <p class="review-note">✅ アカウント登録不要 · 完全オフライン · 買い切り¥600</p>
+  <div class="icon-showcase"><img src="../images/icon_rinyu.png" alt="離乳食ノートアイコン"></div>
+</section>
+
+<section class="problem">
+  <div class="section-label">こんな悩みありませんか？</div>
+  <h2 class="section-title">離乳食の記録、<br>始めるのに一苦労では</h2>
+  <ul class="problem-list">
+    <li><span class="problem-icon">📇</span><span>記録を始めるのに、名前・住所・電話番号を入力させられた</span></li>
+    <li><span class="problem-icon">📞</span><span>登録後、営業の電話やメールが来るようになった</span></li>
+    <li><span class="problem-icon">🥣</span><span>「あの食材、もう食べさせたっけ？」を思い出せない</span></li>
+  </ul>
+  <div class="problem-answer">離乳食ノートが<br>まとめて解決します。</div>
+</section>
+
+<section class="features">
+  <div class="section-label">主な機能</div>
+  <h2 class="section-title">登録なしで始めて、<br>自動でたまっていく</h2>
+  <div class="feature-cards">
+    <div class="feature-card">
+      <div class="feature-icon-wrap a">🔓</div>
+      <h3>アカウント登録不要<span class="feature-badge free">無料無制限</span></h3>
+      <p>メールアドレスも電話番号も入力しません。ダウンロードしたその日から使い始められ、記録の登録・編集・削除は件数の上限なく無料です。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon-wrap b">🥣</div>
+      <h3>はじめて食材が自動集計</h3>
+      <p>食べたものを選んで記録するだけで、初めて食べた食材とその日付が一覧に。記録から毎回計算しているので、あとから直しても日付がずれません。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon-wrap c">📅</div>
+      <h3>月齢と厚労省ガイドの目安</h3>
+      <p>誕生日を登録すると今日が生後何か月何日かを自動計算。「授乳・離乳の支援ガイド」に記載のステージ目安（回数・調理形態）もあわせて表示します。</p>
+    </div>
+  </div>
+  <div class="disclaimer">
+    ⚠️ このアプリは、食材ごとの「食べてよい・だめ」の判定は行いません。月齢の目安はあくまで参考情報です。進め方については、かかりつけの小児科医・保健センターにご相談ください。
+  </div>
+</section>
+
+<section class="premium">
+  <div class="section-label">プレミアム（買い切り）</div>
+  <h2 class="section-title">写真とグラフで、<br>もっと振り返りやすく</h2>
+  <div class="premium-cards">
+    <div class="premium-card"><span class="emoji">📷</span><div><h4>写真を添付</h4><p>その日の様子を記録に残せる</p></div></div>
+    <div class="premium-card"><span class="emoji">📊</span><div><h4>食品群カバー率グラフ</h4><p>偏りをグラフで確認</p></div></div>
+    <div class="premium-card"><span class="emoji">👶</span><div><h4>2人目以降の登録</h4><p>きょうだいごとに記録を分けられる</p></div></div>
+    <div class="premium-card"><span class="emoji">🚫</span><div><h4>追加課金なし</h4><p>一度払えば月額料金は一切なし</p></div></div>
+  </div>
+  <div class="price-box">
+    <div class="price-row"><span class="price-label">プレミアム（買い切り）</span><span class="price-value">¥600<span style="font-size:12px;font-weight:400;opacity:.8;"> 一度きり</span></span></div>
+  </div>
+  <p class="free-note">※ 記録の登録・編集・削除、データの書き出し・取り込みは、件数の上限なく無料でご利用いただけます。</p>
+</section>
+
+<section class="guide-cta">
+  <div class="section-label">もっと詳しく</div>
+  <h2 class="section-title">記録アプリと個人情報について</h2>
+  <a href="./kojin-joho-fuyou-riyu/" class="guide-card">
+    <span class="guide-emoji">📇</span>
+    <div class="guide-text">
+      <h4>離乳食記録アプリで個人情報登録が不要な理由と選び方</h4>
+      <p>なぜ育児記録アプリは個人情報を求めがちなのか、登録不要でも成立する仕組み</p>
+    </div>
+    <span class="guide-arrow">&rsaquo;</span>
+  </a>
+</section>
+
+<section class="cta">
+  <h2 class="section-title">今日の一口から、記録してみませんか。</h2>
+  <p class="cta-sub">名前も住所も要らない、離乳食ノートを試してください。</p>
+  <a class="app-store-btn" href="https://apps.apple.com/jp/app/id6806284621" target="_blank" rel="noopener">
+    <svg viewBox="0 0 814 1000" width="24" height="24" fill="white"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.3 134.4-316.7 266.8-316.7 99.8 0 162.6 64.8 212.7 64.8 46.2 0 121.2-68.8 228.5-68.8zm-88-174c43.8-51.7 74.6-123.5 74.6-195.3 0-10.3-.6-20.7-2.6-29.2-70.7 2.6-154.7 47.1-204.7 107.2-38.4 44.4-75.9 116.2-75.9 189 0 11.6 1.9 23.2 2.6 26.9 4.5.6 11.6 1.9 18.7 1.9 63.5 0 143.9-42.5 187.3-100.5z"/></svg>
+    App Storeで見る
+  </a>
+  <p class="cta-note">アカウント登録不要 · 完全オフライン · 買い切り¥600</p>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="../">MC Labs トップへ</a>
+    <a href="./privacy/">プライバシーポリシー</a>
+    <a href="./support/">サポート</a>
+    <a href="mailto:chimasaki31@gmail.com">お問い合わせ</a>
+  </div>
+  <p>© 2026 MC Labs. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

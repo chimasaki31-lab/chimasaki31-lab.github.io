@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>おこづかいポイントノート - お手伝い記録と貯金管理｜台帳式で残高がずれないアプリ</title>
+  <meta name="description" content="お手伝いのポイントを台帳のように記録し、取り消しても打ち消しで処理するので残高がずれないアプリ。毎月リセットするか貯め続けるかも選択制。データは端末内保存でファイルの書き出し・取り込みに対応。買い切り¥600。">
+
+  <meta property="og:title" content="おこづかいポイントノート - 台帳式で残高がずれない">
+  <meta property="og:description" content="取り消しても数字がずれない、台帳方式のお手伝い・お小遣い管理アプリ。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/otetsudai-note/">
+  <meta property="og:locale" content="ja_JP">
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/otetsudai-note/">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif; font-size: 17px; color: #2b2013; background: #fff; line-height: 1.7; }
+    a { color: inherit; text-decoration: none; }
+    .breadcrumb { padding: 12px 24px; font-size: 13px; color: #999; border-bottom: 1px solid #ecdfc2; }
+    .breadcrumb a { color: #9a6708; }
+
+    .hero { background: linear-gradient(135deg,#e0a83a 0%,#b9720c 55%,#6b3f05 100%); color: #fff; text-align: center; padding: 60px 24px 48px; }
+    .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.5); border-radius: 20px; padding: 4px 14px; font-size: 13px; margin-bottom: 20px; letter-spacing: 0.05em; }
+    .hero h1 { font-size: 25px; font-weight: 800; line-height: 1.5; margin-bottom: 14px; }
+    .hero-sub { font-size: 16px; opacity: 0.95; margin-bottom: 32px; color: #fbe9c9; }
+    .app-store-btn { display: inline-flex; align-items: center; gap: 10px; background: #000; color: #fff; border-radius: 14px; padding: 14px 28px; font-size: 15px; font-weight: 600; margin-bottom: 14px; }
+    .app-store-btn svg { width: 22px; height: 22px; fill: #fff; }
+    .review-note { font-size: 13px; opacity: 0.9; }
+    .icon-showcase { display: flex; justify-content: center; margin-top: 32px; }
+    .icon-showcase img { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 12px 32px rgba(0,0,0,0.25); }
+
+    .problem { background: #fdf6e6; padding: 56px 24px; text-align: center; }
+    .section-label { display: inline-block; color: #9a6708; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; margin-bottom: 10px; }
+    .section-title { font-size: 22px; font-weight: 800; line-height: 1.5; margin-bottom: 32px; color: #2b2013; }
+    .problem-list { list-style: none; max-width: 460px; margin: 0 auto 32px; text-align: left; }
+    .problem-list li { display: flex; align-items: flex-start; gap: 10px; padding: 14px 0; border-bottom: 1px solid #ecdfc2; font-size: 16px; }
+    .problem-list li:last-child { border-bottom: none; }
+    .problem-icon { font-size: 20px; flex-shrink: 0; }
+    .problem-answer { background: #fff; border: 2px solid #9a6708; border-radius: 16px; padding: 24px 20px; max-width: 460px; margin: 0 auto; font-size: 17px; font-weight: 700; line-height: 1.6; color: #6b3f05; }
+
+    .features { padding: 56px 24px; text-align: center; }
+    .feature-cards { display: flex; flex-direction: column; gap: 20px; max-width: 460px; margin: 0 auto; }
+    .feature-card { background: #fff; border: 1px solid #ecdfc2; border-radius: 20px; padding: 28px 24px; text-align: left; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+    .feature-icon-wrap { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 16px; }
+    .feature-icon-wrap.a { background: #f6e6bf; }
+    .feature-icon-wrap.b { background: #faefd4; }
+    .feature-icon-wrap.c { background: #f0dca0; }
+    .feature-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+    .feature-badge { display: inline-block; background: #9a6708; color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: 6px; vertical-align: middle; }
+    .feature-badge.free { background: #6b3f05; }
+    .feature-card p { font-size: 15px; color: #5c4a30; line-height: 1.7; }
+
+    .example { background: #fdf6e6; padding: 56px 24px; text-align: center; }
+    .example-card { background: #fff; border: 1px solid #ecdfc2; border-radius: 16px; padding: 24px; max-width: 440px; margin: 0 auto; text-align: left; }
+    .example-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f0e4c8; font-size: 15px; }
+    .example-row:last-child { border-bottom: none; }
+    .example-row .label { color: #8a7455; }
+    .example-row .val { font-weight: 700; color: #2b2013; }
+    .example-note { font-size: 14px; color: #a08a63; margin-top: 14px; }
+
+    .premium { background: linear-gradient(135deg, #6b3f05 0%, #3d2403 100%); color: #fff; padding: 56px 24px; text-align: center; }
+    .premium .section-label { color: #f0dca0; }
+    .premium .section-title { color: #fff; }
+    .premium-cards { display: flex; flex-direction: column; gap: 14px; max-width: 400px; margin: 0 auto 20px; }
+    .premium-card { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 18px; display: flex; align-items: center; gap: 14px; text-align: left; }
+    .premium-card .emoji { font-size: 26px; flex-shrink: 0; }
+    .premium-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+    .premium-card p { font-size: 13px; opacity: 0.78; }
+    .price-box { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 22px 24px; max-width: 360px; margin: 0 auto 20px; }
+    .price-row { display: flex; justify-content: space-between; align-items: center; }
+    .price-label { font-size: 15px; opacity: 0.85; }
+    .price-value { font-size: 22px; font-weight: 800; }
+    .free-note { font-size: 13px; opacity: 0.75; line-height: 1.6; max-width: 420px; margin: 0 auto; }
+
+    .guide-cta { padding: 56px 24px; text-align: center; background: #fff; }
+    .guide-card { display: flex; align-items: center; gap: 14px; text-align: left; background: #fdf6e6; border: 1px solid #ecdfc2; border-radius: 14px; padding: 20px; max-width: 480px; margin: 0 auto; }
+    .guide-card:hover { border-color: #9a6708; }
+    .guide-emoji { font-size: 28px; flex-shrink: 0; }
+    .guide-text h4 { font-size: 16px; font-weight: 800; margin-bottom: 2px; color: #6b3f05; }
+    .guide-text p { font-size: 13px; color: #8a7455; }
+    .guide-arrow { margin-left: auto; color: #9a6708; font-weight: 800; }
+
+    .cta { padding: 64px 24px; text-align: center; background: #fdf6e6; }
+    .cta-sub { font-size: 15px; color: #8a7455; margin-bottom: 28px; }
+    .cta .app-store-btn { font-size: 17px; padding: 18px 36px; border-radius: 16px; background: #6b3f05; }
+    .cta-note { font-size: 13px; color: #b09a72; margin-top: 12px; }
+
+    footer { background: #6b3f05; color: rgba(255,255,255,0.65); padding: 32px 24px; text-align: center; font-size: 13px; }
+    .footer-links { display: flex; justify-content: center; gap: 18px; margin-bottom: 16px; flex-wrap: wrap; }
+    .footer-links a { color: rgba(255,255,255,0.65); }
+    .footer-links a:hover { color: #fff; }
+
+    @media (min-width: 600px) { .premium-cards { display: grid; grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 900px) { .feature-cards { flex-direction: row; max-width: 900px; } .feature-card { flex: 1; } }
+  </style>
+</head>
+<body>
+
+<nav class="breadcrumb"><a href="../">MC Labs</a> &rsaquo; おこづかいポイントノート</nav>
+
+<section class="hero">
+  <div class="hero-badge">🪙 お手伝い・お小遣い管理アプリ</div>
+  <h1>取り消しても、<br>数字がずれない。</h1>
+  <p class="hero-sub">
+    ポイントは台帳のように記録し、取り消しは「打ち消し」で処理。<br>
+    残高はいつも履歴の合計と一致します。<br>
+    機種変更のときは、ファイルに書き出してそのまま持っていけます。
+  </p>
+  <a class="app-store-btn" href="https://apps.apple.com/jp/app/id6805915218" target="_blank" rel="noopener">
+    <svg viewBox="0 0 814 1000"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.3 134.4-316.7 266.8-316.7 99.8 0 162.6 64.8 212.7 64.8 46.2 0 121.2-68.8 228.5-68.8zm-88-174c43.8-51.7 74.6-123.5 74.6-195.3 0-10.3-.6-20.7-2.6-29.2-70.7 2.6-154.7 47.1-204.7 107.2-38.4 44.4-75.9 116.2-75.9 189 0 11.6 1.9 23.2 2.6 26.9 4.5.6 11.6 1.9 18.7 1.9 63.5 0 143.9-42.5 187.3-100.5z"/></svg>
+    App Storeで見る
+  </a>
+  <p class="review-note">✅ 完全オフライン · アカウント登録不要 · 買い切り¥600</p>
+  <div class="icon-showcase"><img src="../images/icon_otetsudai.png" alt="おこづかいポイントノートアイコン"></div>
+</section>
+
+<section class="problem">
+  <div class="section-label">こんな悩みありませんか？</div>
+  <h2 class="section-title">お小遣い管理アプリ、<br>こんな不満はありませんか</h2>
+  <ul class="problem-list">
+    <li><span class="problem-icon">🔢</span><span>取り消したのにポイントが戻らない、数字が合わなくなった</span></li>
+    <li><span class="problem-icon">📱</span><span>機種変更したら記録が全部消えた</span></li>
+    <li><span class="problem-icon">🔁</span><span>毎月勝手にリセットされて、貯め続けたいのにできない</span></li>
+  </ul>
+  <div class="problem-answer">おこづかいポイントノートが<br>まとめて解決します。</div>
+</section>
+
+<section class="features">
+  <div class="section-label">主な機能</div>
+  <h2 class="section-title">台帳方式だから、<br>数字が壊れない</h2>
+  <div class="feature-cards">
+    <div class="feature-card">
+      <div class="feature-icon-wrap a">📒</div>
+      <h3>台帳方式の記録<span class="feature-badge free">無料無制限</span></h3>
+      <p>ポイントを家計簿のような「台帳」として記録。取り消すときも記録を消さず、打ち消しの1行を足して処理するので、表示と履歴がずれません。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon-wrap b">👆</div>
+      <h3>1タップで記録、すぐ戻せる</h3>
+      <p>お手伝いのボタンを押すだけでポイントが加算されます。押し間違えても、その場の「取り消す」からすぐ戻せます。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon-wrap c">🔁</div>
+      <h3>リセットは選択制</h3>
+      <p>初期設定は「貯め続ける」。毎月1日にリセットしたい場合だけ設定でオンにでき、リセットも履歴に残るので黙って消えることはありません。</p>
+    </div>
+  </div>
+</section>
+
+<section class="example">
+  <div class="section-label">記録のイメージ</div>
+  <h2 class="section-title">台帳には、こう残る</h2>
+  <div class="example-card">
+    <div class="example-row"><span class="label">日付</span><span class="val">2026/09/10</span></div>
+    <div class="example-row"><span class="label">項目</span><span class="val">お風呂そうじ</span></div>
+    <div class="example-row"><span class="label">増減</span><span class="val">+10pt</span></div>
+    <div class="example-row"><span class="label">残高</span><span class="val">120pt</span></div>
+  </div>
+  <p class="example-note">※ 取り消すと「-10pt 打ち消し」の行が追加され、記録自体は消えません。</p>
+</section>
+
+<section class="premium">
+  <div class="section-label">プレミアム（買い切り）</div>
+  <h2 class="section-title">きょうだいと、<br>もっと詳しい統計を</h2>
+  <div class="premium-cards">
+    <div class="premium-card"><span class="emoji">👧</span><div><h4>2人目以降の登録</h4><p>きょうだいごとに台帳を分けられる</p></div></div>
+    <div class="premium-card"><span class="emoji">📋</span><div><h4>項目を無制限に登録</h4><p>無料は8件まで</p></div></div>
+    <div class="premium-card"><span class="emoji">📊</span><div><h4>ポイント推移・内訳グラフ</h4><p>項目別の傾向を確認</p></div></div>
+    <div class="premium-card"><span class="emoji">🎯</span><div><h4>貯金の目標設定</h4><p>目標額に向けて貯められる</p></div></div>
+  </div>
+  <div class="price-box">
+    <div class="price-row"><span class="price-label">プレミアム（買い切り）</span><span class="price-value">¥600<span style="font-size:12px;font-weight:400;opacity:.8;"> 一度きり</span></span></div>
+  </div>
+  <p class="free-note">※ ポイントの記録・取り消し・精算・履歴の閲覧・書き出しは、無料のまま回数無制限で使えます。このアプリは端末の中だけで動作し、複数端末での自動同期はありません。端末を移すときは書き出したファイルを取り込んでください。</p>
+</section>
+
+<section class="guide-cta">
+  <div class="section-label">もっと詳しく</div>
+  <h2 class="section-title">ポイントが「消える」を防ぐ仕組み</h2>
+  <a href="./pointo-kuzurenai-shikumi/" class="guide-card">
+    <span class="guide-emoji">📒</span>
+    <div class="guide-text">
+      <h4>お小遣い・お手伝いポイントが「消える」「戻らない」を防ぐ台帳式の仕組み</h4>
+      <p>なぜポイント管理アプリで数字がずれるのか、台帳方式がどう解決するのか</p>
+    </div>
+    <span class="guide-arrow">&rsaquo;</span>
+  </a>
+</section>
+
+<section class="cta">
+  <h2 class="section-title">数字がずれない安心感を。</h2>
+  <p class="cta-sub">台帳方式のおこづかいポイントノートを試してください。</p>
+  <a class="app-store-btn" href="https://apps.apple.com/jp/app/id6805915218" target="_blank" rel="noopener">
+    <svg viewBox="0 0 814 1000" width="24" height="24" fill="white"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.3 134.4-316.7 266.8-316.7 99.8 0 162.6 64.8 212.7 64.8 46.2 0 121.2-68.8 228.5-68.8zm-88-174c43.8-51.7 74.6-123.5 74.6-195.3 0-10.3-.6-20.7-2.6-29.2-70.7 2.6-154.7 47.1-204.7 107.2-38.4 44.4-75.9 116.2-75.9 189 0 11.6 1.9 23.2 2.6 26.9 4.5.6 11.6 1.9 18.7 1.9 63.5 0 143.9-42.5 187.3-100.5z"/></svg>
+    App Storeで見る
+  </a>
+  <p class="cta-note">完全オフライン · アカウント登録不要 · 買い切り¥600</p>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="../">MC Labs トップへ</a>
+    <a href="./privacy/">プライバシーポリシー</a>
+    <a href="./support/">サポート</a>
+    <a href="mailto:chimasaki31@gmail.com">お問い合わせ</a>
+  </div>
+  <p>© 2026 MC Labs. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
