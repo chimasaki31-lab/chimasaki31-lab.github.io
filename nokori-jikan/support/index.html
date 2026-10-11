@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index,follow">
+<title>サポート｜のこり時間</title>
+<meta name="description" content="アプリ「のこり時間（寿命カウントダウン｜死ぬまでにやりたいことリスト）」のサポートページ。使い方・数値の出どころ・よくある質問・購入の復元・お問い合わせ先。">
+<style>
+  :root{
+    --ink:#14203F; --muted:#5d6788; --line:#dde2ef;
+    --bg:#ffffff; --accent:#B9792C;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:#f7f5f2; color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;
+    line-height:1.85; -webkit-text-size-adjust:100%;
+  }
+  .hero{
+    background:linear-gradient(135deg,#14203F 0%,#2B3A6B 55%,#E8C07D 100%);
+    color:#fff; padding:48px 20px 40px;
+  }
+  .hero-inner{max-width:760px; margin:0 auto;}
+  .hero h1{margin:0 0 6px; font-size:1.6rem; font-weight:800; letter-spacing:.02em;}
+  .hero p{margin:0; color:#f6e6c6; font-size:.95rem;}
+  main{max-width:760px; margin:-24px auto 48px; padding:0 16px;}
+  .card{
+    background:var(--bg); border:1px solid var(--line); border-radius:16px;
+    padding:28px 26px; box-shadow:0 8px 30px rgba(20,32,63,.06); margin-bottom:18px;
+  }
+  .lead{font-size:1rem; margin-top:0;}
+  h2{
+    font-size:1.12rem; font-weight:800; margin:34px 0 10px; padding-top:18px;
+    border-top:1px solid var(--line);
+  }
+  h2:first-of-type{border-top:none; padding-top:0; margin-top:0;}
+  h3{font-size:1rem; font-weight:700; margin:22px 0 6px; color:var(--accent);}
+  p{margin:0 0 12px;}
+  ul,ol{margin:0 0 12px; padding-left:1.2em;}
+  li{margin:6px 0;}
+  .em{color:var(--accent); font-weight:700;}
+  .note{
+    background:#fbf3e4; border:1px solid var(--line); border-radius:12px;
+    padding:14px 18px; margin:0 0 12px; font-size:.92rem; color:var(--muted);
+  }
+  .contact{
+    background:#f5ecdc; border:1px solid var(--line); border-radius:12px;
+    padding:18px 20px; margin-top:8px;
+  }
+  .updated{margin-top:30px; color:var(--muted); font-size:.9rem; text-align:right;}
+  a{color:var(--accent);}
+  .foot{max-width:760px; margin:0 auto; padding:20px 16px 40px; text-align:center; color:var(--muted); font-size:.85rem;}
+  .foot a{margin:0 8px;}
+</style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <h1>サポート</h1>
+      <p>寿命カウントダウン｜死ぬまでにやりたいことリスト</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="card">
+      <p class="lead">
+        「<strong>のこり時間</strong>」をご利用いただきありがとうございます。
+        よくあるご質問をまとめました。解決しない場合は、ページ下部のメールアドレスまでお気軽にお問い合わせください。
+      </p>
+
+      <h2>基本的な使い方</h2>
+      <h3>残り時間を見る</h3>
+      <p>生年月日と性別を入れると、平均余命まで・健康寿命までの残りの日数を表示します。「平均余命／健康寿命」のボタンで、大きく表示する方を切り替えられます。</p>
+      <h3>やりたいことを足す</h3>
+      <p>「やりたいこと」タブの「＋ やりたいことを足す」から、かかる時間・かかるお金・1回きりか毎年か・期限（期限なし／健康寿命まで／◯歳まで）を入れます。</p>
+      <h3>叶えたら記録する</h3>
+      <p>カードの「叶えた！」を押すと、日付・写真・ひとことを残せます。1回きりのものは「叶えたこと」に移り、毎年のものは記録が増えていきます。</p>
+      <h3>叶える計画（プレミアム）</h3>
+      <p>これからのやりたいことを全部叶えるのに、1年にいくら・週に何時間が必要かを計算します。自由に使える時間とお金を入れると、全部叶う年齢の目安も表示します。</p>
+      <h3>ホーム画面ウィジェット</h3>
+      <p>ホーム画面を長押しして、ウィジェットの追加から「のこり時間」を選ぶと追加できます。小サイズは無料、中サイズ・ロック画面はプレミアムで使えます。</p>
+
+      <h2>数値の出どころ</h2>
+      <ul>
+        <li>平均余命：厚生労働省「令和7年簡易生命表」（0〜105歳・男女別）。性別を「選ばない」にした場合は男女の平均です。</li>
+        <li>健康寿命：厚生労働省「健康寿命の令和4年値」（男性72.57歳・女性75.45歳）。</li>
+      </ul>
+      <div class="note">表示する日数は統計上の平均から計算した目安です。お客様個人の寿命や健康状態を予測・診断するものではありません。</div>
+
+      <h2>データのバックアップ</h2>
+      <p>設定画面の「書き出し・読み込み」から、データを写真ごと1つのファイルに書き出せます。機種変更のときは、書き出したファイルを新しいiPhoneで「読み込み」してください（読み込むと、その端末の今のデータは置き換わります）。アプリを削除するとデータは消えますので、定期的な書き出しをおすすめします。</p>
+
+      <h2>購入について</h2>
+      <h3>無料で使える範囲とプレミアム</h3>
+      <ul>
+        <li>無料：残り時間の表示（平均余命・健康寿命）、やりたいこと10件まで、叶えた記録（写真つき）、合計の時間とお金、小サイズのウィジェット、書き出し・読み込み</li>
+        <li>プレミアム（買い切り）：やりたいことの件数無制限、叶える計画、中サイズ・ロック画面のウィジェット</li>
+      </ul>
+      <p>買い切りのため、月額・年額の料金はありません。広告も表示されません。</p>
+      <h3>購入を復元したい（機種変更・再インストール時）</h3>
+      <p>アプリ内の設定画面の「プレミアムを見る（購入・復元）」から<strong>「購入を復元する」</strong>をタップしてください。ご購入時と同じApple Accountでサインインしている必要があります。</p>
+      <h3>返金について</h3>
+      <p>アプリ内課金の返金はAppleが対応しています。<a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a> からお手続きください。当方では返金処理を行えません。</p>
+
+      <h2>動作環境</h2>
+      <p>iOS 15以降のiPhoneで使えます（ロック画面のウィジェットはiOS 16以降）。</p>
+
+      <h2>データについて</h2>
+      <p>入力した内容は<strong>お使いのiPhoneの中だけ</strong>に保存されます。アカウント登録は不要で、当方のサーバーに送信されることはありません。詳しくは<a href="../privacy/">プライバシーポリシー</a>をご覧ください。</p>
+
+      <h2>お問い合わせ</h2>
+      <div class="contact">
+        <p style="margin:0 0 6px;">不具合のご報告・ご要望・ご質問は、こちらまでお願いします。</p>
+        <p style="margin:0;"><strong>メールアドレス：</strong> <a href="mailto:chimasaki31@gmail.com">chimasaki31@gmail.com</a></p>
+        <p style="margin:10px 0 0; font-size:.9rem; color:var(--muted);">不具合のご報告の際は、お使いのiPhoneの機種・iOSのバージョン・どの画面で何をしたときに起きたかを添えていただけると、原因を特定しやすくなります。</p>
+      </div>
+
+      <p class="updated">最終更新日：2026年10月12日</p>
+    </div>
+  </main>
+
+  <p class="foot">
+    <a href="../privacy/">プライバシーポリシー</a>｜<a href="https://chimasaki31-lab.github.io/">MC Labs</a><br>
+    © 2026 のこり時間
+  </p>
+</body>
+</html>
