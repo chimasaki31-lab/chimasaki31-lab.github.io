@@ -48,18 +48,33 @@
   a{color:var(--accent);}
   .foot{max-width:760px; margin:0 auto; padding:20px 16px 40px; text-align:center; color:var(--muted); font-size:.85rem;}
   .foot a{margin:0 8px;}
+  .langsw{max-width:760px; margin:14px auto 0; text-align:right;}
+  .langsw button{
+    font:inherit; font-size:.85rem; font-weight:700; padding:6px 14px; border-radius:999px;
+    border:1px solid rgba(255,255,255,.55); background:rgba(255,255,255,.12); color:#fff; cursor:pointer;
+  }
+  .langsw button.active{background:#fff; color:var(--accent); border-color:#fff;}
+  [data-lang="en"]{display:none; font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;}
+  body.lang-en [data-lang="ja"]{display:none;}
+  body.lang-en [data-lang="en"]{display:block;}
 </style>
 </head>
 <body>
   <header class="hero">
     <div class="hero-inner">
-      <h1>サポート</h1>
-      <p>立ち位置ノート - ダンスフォーメーション作成</p>
+      <h1 data-lang="ja">サポート</h1>
+      <h1 data-lang="en">Support</h1>
+      <p data-lang="ja">立ち位置ノート - ダンスフォーメーション作成</p>
+      <p data-lang="en">Dance Formation Maker &amp; Choreo</p>
+      <div class="langsw">
+        <button type="button" id="btn-ja">日本語</button>
+        <button type="button" id="btn-en">English</button>
+      </div>
     </div>
   </header>
 
   <main>
-    <div class="card">
+    <div class="card" data-lang="ja">
       <p class="lead">
         「<strong>立ち位置ノート</strong>」をご利用いただきありがとうございます。
         よくあるご質問をまとめました。解決しない場合は、ページ下部のメールアドレスまでお気軽にお問い合わせください。
@@ -106,13 +121,85 @@
         <p style="margin:10px 0 0; font-size:.9rem; color:var(--muted);">不具合のご報告の際は、お使いのiPhoneの機種・iOSのバージョン・どの画面で何をしたときに起きたかを添えていただけると、原因を特定しやすくなります。</p>
       </div>
 
-      <p class="updated">最終更新日：2026年8月24日</p>
+      <p class="updated">最終更新日：2026年10月22日（英語版を追加）</p>
+    </div>
+
+    <div class="card" data-lang="en">
+      <p class="lead">
+        Thank you for using <strong>Dance Formation Maker &amp; Choreo</strong>.
+        Here are answers to common questions. If you can't find what you need, feel free to email us at the address at the bottom of this page.
+      </p>
+
+      <h2>Getting started</h2>
+      <h3>Create a project</h3>
+      <p>Create a new project from the home screen, add dancers, and drag them into place on the stage. Names are always shown, and Snap to Grid makes lining up easy. The free version saves up to 3 projects.</p>
+      <h3>Add formation changes</h3>
+      <p>Add scenes (formations) one after another, and the App plays back the changes between them as a continuous animation. You can set the transition time for each scene and scrub through the playback.</p>
+      <h3>Play along with music (Premium)</h3>
+      <p>Import an audio file and link each scene to a point in the song, and your formations will play back in sync with the music. Songs protected by DRM (such as from Apple Music) can't be imported.</p>
+
+      <h2>Purchases</h2>
+      <h3>What Premium unlocks</h3>
+      <ul>
+        <li>Unlimited saved projects</li>
+        <li>Music sync and timeline</li>
+        <li>Curved transition paths and hand-drawn lines/arrows</li>
+        <li>PDF export (every scene, with movement arrows)</li>
+      </ul>
+      <p>Premium is a one-time purchase: buy it once and keep it. There are no monthly or yearly fees. <strong>Without buying, you can still edit dancers and scenes, play back without music, and export PNGs for free.</strong></p>
+      <h3>Restore a purchase (new device or reinstall)</h3>
+      <p>Open <strong>Settings</strong> in the App and tap <strong>Restore Purchase</strong>. You need to be signed in with the same Apple Account you used to buy.</p>
+      <h3>Refunds</h3>
+      <p>Refunds for in-app purchases are handled by Apple. Please request one at <a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>. We are unable to process refunds ourselves.</p>
+
+      <h2>Exporting</h2>
+      <h3>PNG (free)</h3>
+      <p>Export the scene you're viewing as an image from the export sheet.</p>
+      <h3>PDF (Premium)</h3>
+      <p>Export every scene, one per page. Each page also shows arrows pointing to where each dancer moves next, so the formation changes are clear at a glance when you print and hand them out.</p>
+
+      <h2>Your data</h2>
+      <h3>Where it's stored</h3>
+      <p>Your projects and imported music files are stored <strong>only on your iPhone</strong>. No account is needed, and nothing is sent to our servers. See the <a href="../privacy/">Privacy Policy</a> for details.</p>
+      <h3>Deleting your data</h3>
+      <p>Deleting the App erases your projects from your device. Exported files remain wherever you saved them.</p>
+
+      <h2>Contact</h2>
+      <div class="contact">
+        <p style="margin:0 0 6px;">For bug reports, requests, or questions, please email us.</p>
+        <p style="margin:0;"><strong>Email:</strong> <a href="mailto:chimasaki31@gmail.com">chimasaki31@gmail.com</a></p>
+        <p style="margin:10px 0 0; font-size:.9rem; color:var(--muted);">When reporting a bug, please include your iPhone model, iOS version, and which screen you were on and what you did when it happened. This helps us find the cause.</p>
+      </div>
+
+      <p class="updated">Last updated: October 22, 2026</p>
     </div>
   </main>
 
-  <p class="foot">
+  <p class="foot" data-lang="ja">
     <a href="../privacy/">プライバシーポリシー</a>｜<a href="https://chimasaki31-lab.github.io/">MC Labs</a><br>
     © 2026 立ち位置ノート
   </p>
+  <p class="foot" data-lang="en">
+    <a href="../privacy/">Privacy Policy</a> | <a href="https://chimasaki31-lab.github.io/">MC Labs</a><br>
+    © 2026 Dance Formation Maker &amp; Choreo
+  </p>
+
+  <script>
+    (function(){
+      function setLang(lang){
+        document.body.className = lang === 'en' ? 'lang-en' : '';
+        document.documentElement.lang = lang;
+        document.getElementById('btn-ja').className = lang === 'ja' ? 'active' : '';
+        document.getElementById('btn-en').className = lang === 'en' ? 'active' : '';
+        try { localStorage.setItem('tachiichi_lang', lang); } catch(e){}
+      }
+      document.getElementById('btn-ja').addEventListener('click', function(){ setLang('ja'); });
+      document.getElementById('btn-en').addEventListener('click', function(){ setLang('en'); });
+      var saved = null;
+      try { saved = localStorage.getItem('tachiichi_lang'); } catch(e){}
+      var initial = saved || ((navigator.language || '').toLowerCase().indexOf('ja') === 0 ? 'ja' : 'en');
+      setLang(initial);
+    })();
+  </script>
 </body>
 </html>
