@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>成長曲線ノート - 子供の身長・体重をグラフで記録｜日本の標準値対応</title>
-  <meta name="description" content="学校や健診で測った身長・体重を入れるだけで、母子手帳と同じ日本の標準値（0歳〜17歳6ヶ月）の成長曲線に重ねて表示。SDスコア・パーセンタイル自動計算。完全オフライン・登録不要・広告なし。">
+  <meta name="description" content="学校や健診で測った身長・体重を入れるだけで、母子手帳と同じ日本の標準値（0歳〜17歳6ヶ月）の成長曲線に重ねて表示。SDスコア・パーセンタイル自動計算。予防接種の記録にも対応。完全オフライン・登録不要・広告なし。">
 
   <!-- OGP -->
   <meta property="og:title" content="成長曲線ノート - 子供の身長・体重をグラフで記録">
@@ -192,6 +192,11 @@
     .step-item h4 { font-size: 16px; font-weight: 800; margin-bottom: 2px; }
     .step-item p { font-size: 14px; color: #666; }
 
+    /* ===== 予防接種 ===== */
+    .vaccine-shot { display: flex; justify-content: center; margin: 0 auto 28px; }
+    .vaccine-shot .screenshot-img { width: 200px; }
+    .vaccine-note { font-size: 13px; color: #777; max-width: 420px; margin: 24px auto 0; line-height: 1.6; }
+
     /* ===== 機能紹介 2x2グリッド ===== */
     .features { padding: 56px 24px; text-align: center; background: #f4faf7; }
     .feature-grid {
@@ -332,6 +337,7 @@
     <img class="screenshot-img" src="./images/04_sd.png" alt="成長曲線ノート SDスコア表示画面">
     <img class="screenshot-img" src="./images/05_records.png" alt="成長曲線ノート 記録一覧画面">
     <img class="screenshot-img" src="./images/03_backup.png" alt="成長曲線ノート バックアップ画面">
+    <img class="screenshot-img" src="./images/06_vaccination.png" alt="成長曲線ノート 予防接種の記録画面">
   </div>
 </section>
 
@@ -410,6 +416,30 @@
   </div>
 </section>
 
+<!-- ===== 予防接種 ===== -->
+<section class="steps">
+  <div class="section-label">予防接種の記録</div>
+  <h2 class="section-title">入園・入学書類の接種欄、<br>母子手帳を探さずに書けます</h2>
+  <div class="vaccine-shot">
+    <img class="screenshot-img" src="./images/06_vaccination.png" alt="ワクチンごとに何回目をいつ受けたかが並ぶ予防接種の記録画面">
+  </div>
+  <div class="step-row">
+    <div class="step-item">
+      <span class="step-num">1</span>
+      <div><h4>母子手帳を見ながら、一度だけ入力</h4><p>ワクチンの種類と何回目かを選び、接種日を入れるだけ。一覧にないワクチンも名前を入れて追加できます</p></div>
+    </div>
+    <div class="step-item">
+      <span class="step-num">2</span>
+      <div><h4>ワクチンごとにまとまって並ぶ</h4><p>母子手帳の接種記録と同じように、種類ごとに何回目・接種日・そのときの月齢が並びます</p></div>
+    </div>
+    <div class="step-item">
+      <span class="step-num">3</span>
+      <div><h4>書類はiPhoneを見ながら記入</h4><p>入園・入学や健診の書類を書くとき、いつものiPhoneで接種歴を見ながら書き写せます</p></div>
+    </div>
+  </div>
+  <p class="vaccine-note">※ 予防接種の記録は無料でご利用いただけます。このアプリは記録用で、接種の予定・時期の判定は行いません。接種の時期は、母子健康手帳やかかりつけ医、お住まいの自治体の案内でご確認ください。</p>
+</section>
+
 <!-- ===== 基準（出典） ===== -->
 <section class="source">
   <div class="section-label">成長曲線の基準について</div>
@@ -444,7 +474,7 @@
       <span class="price-value">¥900<span class="price-tag">一度きり</span></span>
     </div>
   </div>
-  <p class="free-note">※ 1人分の記録・成長曲線グラフ・SDスコア・自動バックアップは<br>無料でご利用いただけます。月額課金はありません。</p>
+  <p class="free-note">※ 1人分の記録・成長曲線グラフ・SDスコア・予防接種の記録・自動バックアップは<br>無料でご利用いただけます。月額課金はありません。</p>
 </section>
 
 <!-- ===== プライバシー3列 ===== -->
